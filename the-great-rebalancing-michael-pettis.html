@@ -1,137 +1,402 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="generator" content="pandoc" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <meta name="author" content="Siva Swaminathan" />
-  <title>The Great Rebalancing, by Michael Pettis</title>
-  <style>
-    code{white-space: pre-wrap;}
-    span.smallcaps{font-variant: small-caps;}
-    span.underline{text-decoration: underline;}
-    div.column{display: inline-block; vertical-align: top; width: 50%;}
-    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    ul.task-list{list-style: none;}
-  </style>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" type="text/javascript"></script>
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
-  <link rel="stylesheet" type="text/css" href="css/new.css" />
+<!-- 2020-12-29 Tue 13:05 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>The Great Rebalancing, by Michael Pettis</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Siva Swaminathan" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="css/new.css" />
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
 </head>
 <body>
-<header id="title-block-header">
-</header>
+<div id="content">
 <h1 class="title">The Great Rebalancing, by Michael Pettis</h1>
-<p class="author">Siva Swaminathan</p>
-<p class="date">June 2020</p>
-<p>(2013), so it is interesting to see how the book has aged.</p>
-<ul>
-<li>The way I would phrase his punchline: <strong>In a globalized world, all domestic policy is trade policy.</strong></li>
-<li>Makes the point (and cites consensus among economic historians) that imperialism was driven by finding a market for excess production ("savings") generated by the industrial revolution (Ref: Hobson, Luxemburg, Lenin)</li>
-<li><span class="math inline">\(\textrm{GDP} \equiv \textrm{Consumption} + \textrm{Surplus (invested productively or not)}\)</span> (eg: Refers to production surplus as "savings" which is unusual; normal English usage would lead one to consider <em>uninvested &amp; fungible</em> capital as savings, not quite production in excess of consumption, but maybe the wording is not crucial for the argument)(Seems like "GDP = Consumption + Savings/Investment" by definition, so any unconsumed surplus is called "savings")</li>
-<li>In summary, the only time it makes sense for a country to suppress wages (i.e. household income, which will mostly go towards consumption) is when it has high unemployment. In that case, increased investment compared to consumption will promote productive investment (<em>especially towards export</em>), and hence increase employment. After reaching high employment, continuing to suppress household income is effectively forcing unemployment in countries with policies less oriented towards thrift.</li>
+<p>
+(2013), so it is interesting to see how the book has aged.
+</p>
+
+<ul class="org-ul">
+<li>The way I would phrase his punchline: <b>In a globalized world, all domestic policy is trade policy.</b></li>
+<li>Makes the point (and cites consensus among economic historians) that imperialism was driven by finding a market for excess production (&ldquo;savings&rdquo;) generated by the industrial revolution (Ref: Hobson, Luxemburg, Lenin)</li>
+<li>\(\textrm{GDP} \equiv \textrm{Consumption} + \textrm{Surplus (invested productively or not)}\) (eg: Refers to production surplus as &ldquo;savings&rdquo; which is unusual; normal English usage would lead one to consider <i>uninvested &amp; fungible</i> capital as savings, not quite production in excess of consumption, but maybe the wording is not crucial for the argument)(Seems like &ldquo;GDP = Consumption + Savings/Investment&rdquo; by definition, so any unconsumed surplus is called &ldquo;savings&rdquo;)</li>
+<li>In summary, the only time it makes sense for a country to suppress wages (i.e. household income, which will mostly go towards consumption) is when it has high unemployment. In that case, increased investment compared to consumption will promote productive investment (<i>especially towards export</i>), and hence increase employment. After reaching high employment, continuing to suppress household income is effectively forcing unemployment in countries with policies less oriented towards thrift.</li>
 <li>Financial repression through low interest rates might effectively be similar to devaluing the currency, because it shifts resources from households (consumption) to businesses (investment).</li>
 </ul>
-<h1 id="on-production-surpluses-and-income-inequality-appendix">On production surpluses and income inequality (appendix)</h1>
-<ul>
-<li>Age of mass production &amp; mass consumption. Lacking capital for mass consumption, non-savers reduce consumption, so there's no return for savers investing capital to boost production – unless consumers take on debt. So, <em>rising income inequality forces up the savings rate</em> since rich people can't/don't consume proportional to wealth (or redistribute for others to consume). If credit cannot surge enough, another consequence is rising unemployment (decreased production to match decreased demand) (This is what triggered New Deal policy making, as a response to Gilded Age inequality – Marriner Eccles FRB Chairman 1932-1948).</li>
+
+<div id="outline-container-org9b3bac6" class="outline-2">
+<h2 id="org9b3bac6"><span class="section-number-2">1</span> On production surpluses and income inequality (appendix)</h2>
+<div class="outline-text-2" id="text-1">
+<ul class="org-ul">
+<li>Age of mass production &amp; mass consumption. Lacking capital for mass consumption, non-savers reduce consumption, so there&rsquo;s no return for savers investing capital to boost production &#x2013; unless consumers take on debt. So, <i>rising income inequality forces up the savings rate</i> since rich people can&rsquo;t/don&rsquo;t consume proportional to wealth (or redistribute for others to consume). If credit cannot surge enough, another consequence is rising unemployment (decreased production to match decreased demand) (This is what triggered New Deal policy making, as a response to Gilded Age inequality &#x2013; Marriner Eccles FRB Chairman 1932-1948).</li>
 <li>If household income (as a fraction of GDP) shrinks, then households retain (and therefore consume) a smaller fraction of their productivity.</li>
 <li>Pettis argues that different policies in Germany &amp; China which transfer money from households (suppress consumption) to producers (boost production) have similar effects.
-<ul>
-<li>In Germany, agreement circa ~2000 to restrain wage growth lower than productivity. German euro is "undervalued" in relation to Spain, Italy, France having "overvalued" euro.</li>
+<ul class="org-ul">
+<li>In Germany, agreement circa ~2000 to restrain wage growth lower than productivity. German euro is &ldquo;undervalued&rdquo; in relation to Spain, Italy, France having &ldquo;overvalued&rdquo; euro.</li>
 <li>In China, caused by a combination of large (rural) unemployment rate (and export-focused policies?). Undervalued yuan since 1994, and artificially low interest rates.</li>
 </ul></li>
-<li>If there are available avenues for productive investment (i.e. capital is the limiting factor determining growth i.e. "capital-ism"), inequality is a good eay of financing them – since the rich will likely invest marginal gains, compared to the poor who will likely consume marginal gains. (Many developing countries suffer because of insufficient savings to bootstrap productive investments, simultaneously creating jobs).</li>
-<li>Productivity improvements could result in increasing incomes or inequality (empirical analysis: Piketty's r-vs-g). When productivity improvements are sufficiently high (the target of juicy investment opportunities i.e. low-hanging fruit), household quality-of-life increases even when inequality does (can now consume more per unit income, so okay if incomes don't grow as much, esp. as a fraction of GDP), and the increased inequality is used to sponsor the next round of productivity improvements. This is the crux of the "trickle down" theory (where capitalists are mythologized as "job creators" leading progress; the phase the US "elite" believe themselves to be in).</li>
+<li>If there are available avenues for productive investment (i.e. capital is the limiting factor determining growth i.e. &ldquo;capital-ism&rdquo;), inequality is a good eay of financing them &#x2013; since the rich will likely invest marginal gains, compared to the poor who will likely consume marginal gains. (Many developing countries suffer because of insufficient savings to bootstrap productive investments, simultaneously creating jobs).</li>
+<li>Productivity improvements could result in increasing incomes or inequality (empirical analysis: Piketty&rsquo;s r-vs-g). When productivity improvements are sufficiently high (the target of juicy investment opportunities i.e. low-hanging fruit), household quality-of-life increases even when inequality does (can now consume more per unit income, so okay if incomes don&rsquo;t grow as much, esp. as a fraction of GDP), and the increased inequality is used to sponsor the next round of productivity improvements. This is the crux of the &ldquo;trickle down&rdquo; theory (where capitalists are mythologized as &ldquo;job creators&rdquo; leading progress; the phase the US &ldquo;elite&rdquo; believe themselves to be in).</li>
 </ul>
-<h2 id="what-happens-when-savings-rise-due-to-increasing-income-inequality">What happens when savings rise (due to increasing income inequality)?</h2>
-<p>As an immediate consequence, productive investment must rise with savings, or it can be siphoned off into wasteful investment (excess inventory, or other useless endeavors).</p>
-<ul>
+</div>
+<div id="outline-container-org3ba345f" class="outline-3">
+<h3 id="org3ba345f"><span class="section-number-3">1.1</span> What happens when savings rise (due to increasing income inequality)?</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+As an immediate consequence, productive investment must rise with savings, or it can be siphoned off into wasteful investment (excess inventory, or other useless endeavors).
+</p>
+<ul class="org-ul">
 <li>But (as Eccles pointed out) since the purpose of investment today is (to profit off) increased consumption tomorrow, productive investment will only happen if inequality were not permanent (and about to reverse). So, unlikely to get increase in productive investment.</li>
-<li>Over short time periods, increasing inequality can be "buffered" by increasing inventory – but likely people will not stupidly continue that over long periods.</li>
-<li>Too much capital, and not enough investing opportunities, so interest rates will naturally fall – and suddenly cheap capital will likely lead to speculative asset bubbles! Example unproductive investments:
-<ul>
+<li>Over short time periods, increasing inequality can be &ldquo;buffered&rdquo; by increasing inventory &#x2013; but likely people will not stupidly continue that over long periods.</li>
+<li>Too much capital, and not enough investing opportunities, so interest rates will naturally fall &#x2013; and suddenly cheap capital will likely lead to speculative asset bubbles! Example unproductive investments:
+<ul class="org-ul">
 <li>Infrastructure: unused {lavish buildings, swanky airports, highways, hosting a mega sporting event, etc}. Pettis claims: Arizona housing tracts, Dublin apartments, Spanish airports, Chinese ghost cities, etc.</li>
 <li>Financial assets: overvalued securities.</li>
-<li>Investment in zero-sum games (eg: Softbank – WeWork and Uber; What about SuperPACs – too small in scale?)</li>
+<li>Investment in zero-sum games (eg: Softbank &#x2013; WeWork and Uber; What about SuperPACs &#x2013; too small in scale?)</li>
 </ul></li>
 </ul>
-<h2 id="can-savings-increase-be-somehow-avoided-even-under-increasing-inequality">Can savings increase be somehow avoided, even under increasing inequality?</h2>
-<p>Needs transfer of wealth from the rich to the poor. (eg: redistributive taxation to fuel consumption)</p>
-<ol>
-<li>Wealthy households "consume" proportionally to income. Generically unlikely to happen, but one set of possibilities eg: by funding charity, research(alternatively seen as productive investment), etc (eg: Gilded age; Bill Gates). Also, politically unsustainable in a democracy.</li>
+</div>
+</div>
+<div id="outline-container-org52b15a6" class="outline-3">
+<h3 id="org52b15a6"><span class="section-number-3">1.2</span> Can savings increase be somehow avoided, even under increasing inequality?</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+Needs transfer of wealth from the rich to the poor. (eg: redistributive taxation to fuel consumption)
+</p>
+<ol class="org-ol">
+<li>Wealthy households &ldquo;consume&rdquo; proportionally to income. Generically unlikely to happen, but one set of possibilities eg: by funding charity, research(alternatively seen as productive investment), etc (eg: Gilded age; Bill Gates). Also, politically unsustainable in a democracy.</li>
 <li>Lower savings from poorer people to offset increased savings from wealthy people. eg: debt-fueled consumption (eg: student, home, credit-card loans; health-care funding?) but this is only possible whe there is an asset bubble (borrow against assets with increasing value, eg: houses, college degrees, etc.)
-<ul>
-<li>Note: An (eventual) debt jubilee is akin to redistributive taxation, except morally unfair in punishing poor savers who held off unwise consumption (hence politicallly untenable, unless done "uniformly" eg: universal college education)</li>
+<ul class="org-ul">
+<li>Note: An (eventual) debt jubilee is akin to redistributive taxation, except morally unfair in punishing poor savers who held off unwise consumption (hence politicallly untenable, unless done &ldquo;uniformly&rdquo; eg: universal college education)</li>
 </ul></li>
 <li>Increasing unemployment, so that you have a segment of population whose income drops to zero but consumption cannot, so they contribute negative to savings (either dip into their own savings, or borrow from others savings, or welfare from govt., or crime, etc.). This also reduces GDP, thereby reducing savings (since basic consumption will remain constant)</li>
 </ol>
-<h2 id="universal-thrift-and-the-tragedy-of-the-commons">Universal thrift, and the tragedy of the commons</h2>
-<ul>
-<li>Bernard Mandeville's <em>Fable of the bees</em> was considered "un-christian" for stating that spending by the rich was good for the poor, and everyone becoming thrifty would be a disaster! (Interesting relation to Max Weber's Protestant ethic and the spirit of capitalism)</li>
+</div>
+</div>
+<div id="outline-container-orgd14b7bc" class="outline-3">
+<h3 id="orgd14b7bc"><span class="section-number-3">1.3</span> Universal thrift, and the tragedy of the commons</h3>
+<div class="outline-text-3" id="text-1-3">
+<ul class="org-ul">
+<li>Bernard Mandeville&rsquo;s <i>Fable of the bees</i> was considered &ldquo;un-christian&rdquo; for stating that spending by the rich was good for the poor, and everyone becoming thrifty would be a disaster! (Interesting relation to Max Weber&rsquo;s Protestant ethic and the spirit of capitalism)</li>
 <li>John Hobson, Confessions of an economic heretic (~1930s)</li>
 <li>Thrift is great at an individual level; why not at the universal level?
-<ul>
+<ul class="org-ul">
 <li>Thrift is either productive investment, or optionality by deferring consumption. If nobody is doing enough consumption today, the cycle breaks and economic flywheel decelerates. If everyone held on to money for optionality, no-one would be doing any value-generating activity. Yet another tragedy of the commons! (let others spend today, and I shall spend tomorrow when I might get more bang for the my buck, compared to today!)</li>
 </ul></li>
 </ul>
-<h2 id="applying-these-ideas-to-what-we-observe-in-the-world">Applying these ideas to what we observe in the world</h2>
-<ul>
+</div>
+</div>
+<div id="outline-container-orga4a7bfe" class="outline-3">
+<h3 id="orga4a7bfe"><span class="section-number-3">1.4</span> Applying these ideas to what we observe in the world</h3>
+<div class="outline-text-3" id="text-1-4">
+<ul class="org-ul">
 <li>Summary table of possible equilibrating responses to increased savings from income inequality.
-<ul>
-<li>Of the six options, only "sustainable"<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> ones are to put savings towards productive investments, or unemployment (or welfare – either by the rich, or through the government with VERY HIGH marginal tax rates, which is one of the sub-cases of "linear consumption").</li>
-<li>In the current political climate (welfare unlikely), if productive investments don't absorb savings, the only macroeconomic solution is unemployment.</li>
+<ul class="org-ul">
+<li>Of the six options, only &ldquo;sustainable&rdquo;<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup> ones are to put savings towards productive investments, or unemployment (or welfare &#x2013; either by the rich, or through the government with VERY HIGH marginal tax rates, which is one of the sub-cases of &ldquo;linear consumption&rdquo;).</li>
+<li>In the current political climate (welfare unlikely), if productive investments don&rsquo;t absorb savings, the only macroeconomic solution is unemployment.</li>
 </ul></li>
 <li>In the intermediate term, unsustainable possibilities include debt-fueled consumption, but that will likely increase debt beyond serviceable levels, so unlikely to continue.
-<ul>
+<ul class="org-ul">
 <li>Examples galore in the US</li>
 <li>Credit-financed consumption in Southern Europe, Housing bubbles around the (China, Canada, India?).</li>
 </ul></li>
-<li>Historically, unemployment starts in regions with fastest increase in debt (eg: US), but soon direct/indirect interventions in trade shift this to regions with high savings (eg: China, Germany)<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.
-<ul>
+<li>Historically, unemployment starts in regions with fastest increase in debt (eg: US), but soon direct/indirect interventions in trade shift this to regions with high savings (eg: China, Germany)<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup>.
+<ul class="org-ul">
 <li>Regions with surpluses are dependent on high-demand regions to siphon off the savings &amp; excess production, otherwise their own supply and demand cannot balance, and all their hitherto productive investments will turn unproductive (unless they can raise their consumption drastically). This is the position China &amp; Germany are in.</li>
 <li>Nicely worked out example of Germany-Spain system. (Presumably could equally well have been Greece instead of Spain. Also, I wonder whether this explains the impetus for the Catalonian separatist movement)</li>
 <li>Trade war is how regions negotiate/assign global unemployment; so expect trade tensions to be increasingly focal over the next several years.</li>
 </ul></li>
-<li>"Austerity economics" is completely wrong, because it presumes that universal thrift is a positive thing; in reality, you're always playing whack-a-mole to try and bury the excess savings in a zero-sum game. <em>The solution is not for low-savings countries to cut back on consumption, but for high-savings countries to increase consumption (lest they be forced into unemployment!)</em></li>
+<li>&ldquo;Austerity economics&rdquo; is completely wrong, because it presumes that universal thrift is a positive thing; in reality, you&rsquo;re always playing whack-a-mole to try and bury the excess savings in a zero-sum game. <i>The solution is not for low-savings countries to cut back on consumption, but for high-savings countries to increase consumption (lest they be forced into unemployment!)</i></li>
 <li>At the global level, there are only three sustainable options:
-<ol>
-<li>Increase in consumption by saving groups (Something China is trying to do<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>, and Germany has tepid steps towards)</li>
-<li>Direct savings into productive investment instead of producing inventory for export (and trying to export away savings) Private sector reluctance (hard to capture value), so likely government funded (eg: China research funding, CERN Higgs factory, Infrastructure projects towards productivity, etc.)</li>
+<ol class="org-ol">
+<li>Increase in consumption by saving groups (Something China is trying to do<sup><a id="fnr.3" class="footref" href="#fn.3">3</a></sup>, and Germany has tepid steps towards)</li>
+<li>Direct savings into productive investment instead of producing inventory for export (and trying to export away savings)
+Private sector reluctance (hard to capture value), so likely government funded (eg: China research funding, CERN Higgs factory, Infrastructure projects towards productivity, etc.)</li>
 <li>High unemployment in savings heavy region.</li>
 <li>The above changes will likely be slow, so (as a stop gap) need countries with productive investment opportunities to keep demand high while the structural distortions are worked out.</li>
 </ol></li>
 <li>The first country to introduce downward wealth re-distribution will likely export away the employment and growth that result from a surge in consumption (effectively donating away the savings). Reduced global trade will likely provide impetus for local downward redistribution, but not until then.</li>
 <li>Increasing debt-fueled consumption in the US, or export-oriented investments in China are likely to worsen the underlying structural imbalances.</li>
 </ul>
-<h2 id="in-summary">In summary</h2>
+</div>
+</div>
+<div id="outline-container-org15fc1d1" class="outline-3">
+<h3 id="org15fc1d1"><span class="section-number-3">1.5</span> In summary</h3>
+<div class="outline-text-3" id="text-1-5">
 <blockquote>
-<p><em>"It is utterly impossible, as this country has demonstrated again and again, for the rich to save as much as they have been trying to save, and save anything that is worth saving. They can save idle factories and useless railroad coaches; they can save empty office buildings and closed banks; they can save paper evidences of foreign loans; but as a class they cannot save anything that is worth saving, above and beyond the amount that is made profitable by the increase of consumer buying. It is for the interests of the well-to-do – to protect them from the results of their own folly – that we should take from them a sufficient amount of their surplus to enable consumers to consume and business to operate at a profit. This is not “soaking the rich”; it is saving the rich. Incidentally, it is the only way to assure them the serenity and security which they do not have at the present moment."</em> (Marriner Eccles testimony to the US Congress, 1933)</p>
+<p>
+<i>&ldquo;It is utterly impossible, as this country has demonstrated again and again, for the rich to save as much as they have been trying to save, and save anything that is worth saving. They can save idle factories and useless railroad coaches; they can save empty office buildings and closed banks; they can save paper evidences of foreign loans; but as a class they cannot save anything that is worth saving, above and beyond the amount that is made profitable by the increase of consumer buying. It is for the interests of the well-to-do &#x2013; to protect them from the results of their own folly &#x2013; that we should take from them a sufficient amount of their surplus to enable consumers to consume and business to operate at a profit. This is not “soaking the rich”; it is saving the rich. Incidentally, it is the only way to assure them the serenity and security which they do not have at the present moment.&rdquo;</i>  (Marriner Eccles testimony to the US Congress, 1933)
+</p>
 </blockquote>
-<h2 id="my-comments">My comments</h2>
-<ul>
-<li><em>FRB further injecting "liquidity" into capital markets is akin to pouring fuel on the fire, because it's all meant to go towards investment!</em> Also, perversely, generating debt to fuel investment is effectively claiming that inequality is <em>"not high enough"</em> to produce the necessary investment, for the given consumption level!</li>
-<li>Note: <strong>The same likely applies even if the inequality is driven by technology/automation, and in fact explains the imperial dynamics of the industrial revolution quite well!</strong></li>
-<li>PS: Apart from inequality, population dynamics also contribute to the dynamics of savings. Young and old people weigh heavily on the consumption, while middle-aged people weigh heavily on savings… either for retirement, or to fuel consumption of the other two groups under their umbrella. An excess of savings-age population (unwilling to retire) will also likely cause complications.</li>
+</div>
+</div>
+<div id="outline-container-org6711e2b" class="outline-3">
+<h3 id="org6711e2b"><span class="section-number-3">1.6</span> My comments</h3>
+<div class="outline-text-3" id="text-1-6">
+<ul class="org-ul">
+<li><i>FRB further injecting &ldquo;liquidity&rdquo; into capital markets is akin to pouring fuel on the fire, because it&rsquo;s all meant to go towards investment!</i> Also, perversely, generating debt to fuel investment is effectively claiming that inequality is <i>&ldquo;not high enough&rdquo;</i> to produce the necessary investment, for the given consumption level!</li>
+<li>Note: <b>The same likely applies even if the inequality is driven by technology/automation, and in fact explains the imperial dynamics of the industrial revolution quite well!</b></li>
+<li>PS: Apart from inequality, population dynamics also contribute to the dynamics of savings. Young and old people weigh heavily on the consumption, while middle-aged people weigh heavily on savings&#x2026; either for retirement, or to fuel consumption of the other two groups under their umbrella. An excess of savings-age population (unwilling to retire) will also likely cause complications.</li>
 <li>Unemployment in high-savings regions is reminiscent of the Maxwell construction for phase mixtures, stabilizing otherwise metastable states. (Employment being the order parameter; savings among employed must match consumption among unemployed)</li>
-<li>Alternate solution to "unemployment" – instead of reducing the number of employed people, reduce the per-capita working hours.</li>
-<li>Basically, the rest of the world refuses to act as the "bank" for the thrifty, allowing them to run up large and sustained surpluses, because that is a hard promise to keep.</li>
+<li>Alternate solution to &ldquo;unemployment&rdquo; &#x2013; instead of reducing the number of employed people, reduce the per-capita working hours.</li>
+<li>Basically, the rest of the world refuses to act as the &ldquo;bank&rdquo; for the thrifty, allowing them to run up large and sustained surpluses, because that is a hard promise to keep.</li>
 <li>The savings glut from US inequality combined with the savings glut from China has been a double whammy on the Rust Belt[fn::which is exactly where unemployment hit first! Only, the Republicans &amp; progressive Democrats disagree on which of the two sources of savings glut to squeeze, while the moderate Democrats are stuck) (and rural US more broadly).</li>
-<li>Done well, healthcare welfare might be one form of wealth redistribution which is very difficult to export away to China (largely a service industry, and most value of drugs captured in the US). Likewise education, since American students don't go abroad for college. (<em>I don't mean loans, unless they're loans that are meant to be forgiven</em>). This would reduce (structural) inequality, by pipint (rich people) savings towards (poor people) consumption; any improvement in productive capacity from improved health or capabilities is a bonus.</li>
-<li>Applications to India? Sainath has mentioned that since the opening up of India's economy, India has had <strong>massive</strong> inequality growth. How does that affect unemployment, and trade deficits? Also, the propensity to buy gold contributes to the deficitr</li>
-<li>Applications to intra-US politics – rural(central)-vs-urban(bicoastal)?</li>
+<li>Done well, healthcare welfare might be one form of wealth redistribution which is very difficult to export away to China (largely a service industry, and most value of drugs captured in the US). Likewise education, since American students don&rsquo;t go abroad for college. (<i>I don&rsquo;t mean loans, unless they&rsquo;re loans that are meant to be forgiven</i>). This would reduce (structural) inequality, by pipint (rich people) savings towards (poor people) consumption; any improvement in productive capacity from improved health or capabilities is a bonus.</li>
+<li>Applications to India? Sainath has mentioned that since the opening up of India&rsquo;s economy, India has had <b>massive</b> inequality growth. How does that affect unemployment, and trade deficits? Also, the propensity to buy gold contributes to the deficitr</li>
+<li>Applications to intra-US politics &#x2013; rural(central)-vs-urban(bicoastal)?</li>
 <li>Why do religions forbid lending with interest?</li>
 <li>We saw a use of this perspective to analyze the industrial revolution and imperialism. What about analyzing automation?</li>
 </ul>
-<section class="footnotes" role="doc-endnotes">
-<hr />
-<ol>
-<li id="fn1" role="doc-endnote"><p>nature has a way of <em>forcing</em> ecosystems to become sustainable<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2" role="doc-endnote"><p>Written in 2013, this seems incredibly prescient about the Trump phenomenon<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3" role="doc-endnote"><p>Third Plenum reform proposals<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
-</section>
+</div>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">nature has a way of <i>forcing</i> ecosystems to become sustainable</p></div></div>
+
+<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara"><p class="footpara">Written in 2013, this seems incredibly prescient about the Trump phenomenon</p></div></div>
+
+<div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3">3</a></sup> <div class="footpara"><p class="footpara">Third Plenum reform proposals</p></div></div>
+
+
+</div>
+</div></div>
+<div id="postamble" class="status">
+<p class="date">Date: June 2020</p>
+<p class="author">Author: Siva Swaminathan</p>
+<p class="date">Created: 2020-12-29 Tue 13:05</p>
+</div>
 </body>
 </html>
