@@ -1,4 +1,9 @@
-#+TITLE: what is art?
+#+TITLE: What is art
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="css/new.css" />
+#+AUTHOR: Siva Swaminathan
+#+DATE: Dec 2020
+#+OPTIONS: toc:nil
+
 
 Art is not about paints and canvas, or instruments, or words, or body movements. Those are merely mediums for expression. The essence of art is about *seeing* (sensing, perceiving) something that others might not, and communicating & sharing that, through whichever medium might be conveniently expressive.
 
@@ -8,7 +13,7 @@ Sometimes, the message might simply be the mastery of a medium or form (includin
 
 Typically, the most natural path for the emergence of a work of such beauty is a deep involvement between the person and the medium (the subject/person and the object/work), shaping each into a good fit for the other. It is worth noting that the deep involvement might be not directly in the output, but in the medium i.e. the doing of the work. At the same time, the doing has to be un-self-conscious.
 
-----
+---
 
 Artifacts produced in this manner get called "art", though it's worth discriminating between the process and the artifacts. Art _works_ are (imho) valueable not intrinsically, but for the message they carry -- especially for their potency in offering a new perspective of reality, in contrast to those embedded in a certain context and history. They might be so effective in reshaping the sensory experience that they automatically lead to a consequential change in behavior. Absorbed into the human experience, they forever change how we perceive things.
 FN(The art market is a strange beast. For all practical purposes, I consider a photograph or a copy of a painting almost as valuable as the original, especially when one has to work hard to prove a meaningful difference)
@@ -20,7 +25,7 @@ Essential to the practice of art is a give-and-take (art works and attention) be
 
 Art, in this sense, involves indirect communication, sharing perceptions that might not easily be conveyed by other means.
 
-----
+---
 
 It is often very hard to communicate ideas in abstract, and the best way to share is to actually reify the idea into something concrete -- using an apropos medium.
 The medium may be chosen for a combination of its affordances, and your proficiency/skill in *playing* with it.
@@ -36,7 +41,7 @@ Each medium distorts the message in its own manner, so much that one might often
 
 We often wear several layers of tinted galsses when we see the world, and radically new forms of perception often involve removing one of those, to see the world better.
 
-----
+---
 
 Every human activity, including life itself, is potentially a canvas on which you create art given your unique combination of constraints and freedom. This is a medium available to *everyone*, and it behooves us to indulge in this process in the spirit of *play* (the idea of `leela`). A life "well lived" may well be considered a work of art.
 
@@ -45,6 +50,6 @@ Every human activity, including life itself, is potentially a canvas on which yo
 The (main?) application of technology is, imho, to expand artistic freedom and agency -- to help people _get a grip_ (affordances) on tools and media so they may express themselves artistically (including self-authoring).
 
 
-----
+---
 
 None of what I've said might come as a revelation to anyone who's devoted many years to art, but as someone who has not, and has never consciously reflected on this question till recently, I find that this to be a potent insight to play with.
