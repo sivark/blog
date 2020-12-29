@@ -1,0 +1,50 @@
+#+TITLE: what is art?
+
+Art is not about paints and canvas, or instruments, or words, or body movements. Those are merely mediums for expression. The essence of art is about *seeing* (sensing, perceiving) something that others might not, and communicating & sharing that, through whichever medium might be conveniently expressive.
+
+If the essence of art is sharing/communication, what is beauty? It is about the emotions it invokes in the receiver. Work that induces acute feelings (intentionally, not accidentally) could be appreciated as *beautiful* in the sense of effectively conveying a message.
+
+Sometimes, the message might simply be the mastery of a medium or form (including the human physical form), in which case the "beauty" might associate more intrinsically with just the method & its expression, rather than with some extrinsic content.
+
+Typically, the most natural path for the emergence of a work of such beauty is a deep involvement between the person and the medium (the subject/person and the object/work), shaping each into a good fit for the other. It is worth noting that the deep involvement might be not directly in the output, but in the medium i.e. the doing of the work. At the same time, the doing has to be un-self-conscious.
+
+----
+
+Artifacts produced in this manner get called "art", though it's worth discriminating between the process and the artifacts. Art _works_ are (imho) valueable not intrinsically, but for the message they carry -- especially for their potency in offering a new perspective of reality, in contrast to those embedded in a certain context and history. They might be so effective in reshaping the sensory experience that they automatically lead to a consequential change in behavior. Absorbed into the human experience, they forever change how we perceive things.
+FN(The art market is a strange beast. For all practical purposes, I consider a photograph or a copy of a painting almost as valuable as the original, especially when one has to work hard to prove a meaningful difference)
+
+In this sense, the most beautiful composition would be meaningless (in the sense of not carrying a message) if it were generated "randomly" by a computer. The content of human value is not typically the artifact or the method, but the message it encodes, and the feeling it (intentionally) engenders in the receiver.
+
+(On the need for an audience)
+Essential to the practice of art is a give-and-take (art works and attention) between the artist and their audience. Technology might create new mediums with expressive freedoms, but if it also disintermediates the aboe relationship then it destroys the possibility of constructing art.
+
+Art, in this sense, involves indirect communication, sharing perceptions that might not easily be conveyed by other means.
+
+----
+
+It is often very hard to communicate ideas in abstract, and the best way to share is to actually reify the idea into something concrete -- using an apropos medium.
+The medium may be chosen for a combination of its affordances, and your proficiency/skill in *playing* with it.
+
+Sometimes the reification might be so subtle as to simply enable the creation of a mood/atmosphere for the listener to dwell in, which might invoke certain insights. I tend to use multiple media in this manner, especially books (for their intended message) & music (often the mood they create is not the primary target, but simply in service of some other line of thought).
+
+The expressive medium could be pretty much anything -- including engineering, economics, software, communities/organizations, etc, and ways of “playing” those media might involve anything from scientific research to starting a company to managing people & organizations. FN(Teaching a kid painting is no different, in this sense, from teaching a kid programming)
+FN(including tweaking your desktop environment or your editor (sharpening the tools you take pride in, in a generalized sense) to feel more ergonomic to your needs!)FN(scientific research, building businesses, governance, etc) FN(The idea of a "resource" was invented with the development of economics; re: Heidegger/Technology, re:Conviviality?)
+
+In this perspective, media are merely vessels -- a means to communicate -- and come and go as the circumstances of technology and society evolve. It's worth keeping separate any specific medium from the deeper idea of perception & communication.
+
+Each medium distorts the message in its own manner, so much that one might often need to invent a new medium for a new thought/message. This is especially true with _language_, for its _affordances_ (the concepts it affords; words/phrases) are like grooves/ruts of convenience, that tend to become patterns of thought.
+
+We often wear several layers of tinted galsses when we see the world, and radically new forms of perception often involve removing one of those, to see the world better.
+
+----
+
+Every human activity, including life itself, is potentially a canvas on which you create art given your unique combination of constraints and freedom. This is a medium available to *everyone*, and it behooves us to indulge in this process in the spirit of *play* (the idea of `leela`). A life "well lived" may well be considered a work of art.
+
+*Play* is just practicing *expressive freedom* through some medium or the other, by typically by reifying some message of choice.
+
+The (main?) application of technology is, imho, to expand artistic freedom and agency -- to help people _get a grip_ (affordances) on tools and media so they may express themselves artistically (including self-authoring).
+
+
+----
+
+None of what I've said might come as a revelation to anyone who's devoted many years to art, but as someone who has not, and has never consciously reflected on this question till recently, I find that this to be a potent insight to play with.
