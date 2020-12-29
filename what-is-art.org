@@ -1,4 +1,4 @@
-#+TITLE: What is art
+#+TITLE: What is art?
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="css/new.css" />
 #+AUTHOR: Siva Swaminathan
 #+DATE: Dec 2020
@@ -15,12 +15,10 @@ Typically, the most natural path for the emergence of a work of such beauty is a
 
 ---
 
-Artifacts produced in this manner get called "art", though it's worth discriminating between the process and the artifacts. Art _works_ are (imho) valueable not intrinsically, but for the message they carry -- especially for their potency in offering a new perspective of reality, in contrast to those embedded in a certain context and history. They might be so effective in reshaping the sensory experience that they automatically lead to a consequential change in behavior. Absorbed into the human experience, they forever change how we perceive things.
-FN(The art market is a strange beast. For all practical purposes, I consider a photograph or a copy of a painting almost as valuable as the original, especially when one has to work hard to prove a meaningful difference)
+Artifacts produced in this manner get called "art", though it's worth discriminating between the process and the artifacts. Art _works_ are (imho) valueable not intrinsically, but for the message they carry -- especially for their potency in offering a new perspective of reality, in contrast to those embedded in a certain context and history. They might be so effective in reshaping the sensory experience that they automatically lead to a consequential change in behavior. Absorbed into the human experience, they forever change how we perceive things.[fn::The art market is a strange beast. For all practical purposes, I consider a photograph or a copy of a painting almost as valuable as the original, especially when one has to work hard to prove a meaningful difference]
 
 In this sense, the most beautiful composition would be meaningless (in the sense of not carrying a message) if it were generated "randomly" by a computer. The content of human value is not typically the artifact or the method, but the message it encodes, and the feeling it (intentionally) engenders in the receiver.
 
-(On the need for an audience)
 Essential to the practice of art is a give-and-take (art works and attention) between the artist and their audience. Technology might create new mediums with expressive freedoms, but if it also disintermediates the aboe relationship then it destroys the possibility of constructing art.
 
 Art, in this sense, involves indirect communication, sharing perceptions that might not easily be conveyed by other means.
@@ -32,8 +30,7 @@ The medium may be chosen for a combination of its affordances, and your proficie
 
 Sometimes the reification might be so subtle as to simply enable the creation of a mood/atmosphere for the listener to dwell in, which might invoke certain insights. I tend to use multiple media in this manner, especially books (for their intended message) & music (often the mood they create is not the primary target, but simply in service of some other line of thought).
 
-The expressive medium could be pretty much anything -- including engineering, economics, software, communities/organizations, etc, and ways of “playing” those media might involve anything from scientific research to starting a company to managing people & organizations. FN(Teaching a kid painting is no different, in this sense, from teaching a kid programming)
-FN(including tweaking your desktop environment or your editor (sharpening the tools you take pride in, in a generalized sense) to feel more ergonomic to your needs!)FN(scientific research, building businesses, governance, etc) FN(The idea of a "resource" was invented with the development of economics; re: Heidegger/Technology, re:Conviviality?)
+The expressive medium could be pretty much anything -- including engineering, economics, software, communities/organizations, etc, and ways of “playing” those media might involve anything from scientific research to starting a company to managing people & organizations.[fn::Teaching a kid painting is no different, in this sense, from teaching a kid programming]
 
 In this perspective, media are merely vessels -- a means to communicate -- and come and go as the circumstances of technology and society evolve. It's worth keeping separate any specific medium from the deeper idea of perception & communication.
 
