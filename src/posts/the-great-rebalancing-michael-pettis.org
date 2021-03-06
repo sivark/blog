@@ -1,7 +1,6 @@
 #+TITLE: The Great Rebalancing, by Michael Pettis
-#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="css/new.css" />
 #+AUTHOR: Siva Swaminathan
-#+DATE: June 2020
+#+DATE:<2020-06-30 Tue>
 #+OPTIONS: toc:nil
 
 (2013), so it is interesting to see how the book has aged.

@@ -1,329 +1,131 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-<!-- 2020-12-29 Tue 13:05 -->
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>What is art?</title>
-<meta name="generator" content="Org mode" />
-<meta name="author" content="Siva Swaminathan" />
-<style type="text/css">
- <!--/*--><![CDATA[/*><!--*/
-  .title  { text-align: center;
-             margin-bottom: .2em; }
-  .subtitle { text-align: center;
-              font-size: medium;
-              font-weight: bold;
-              margin-top:0; }
-  .todo   { font-family: monospace; color: red; }
-  .done   { font-family: monospace; color: green; }
-  .priority { font-family: monospace; color: orange; }
-  .tag    { background-color: #eee; font-family: monospace;
-            padding: 2px; font-size: 80%; font-weight: normal; }
-  .timestamp { color: #bebebe; }
-  .timestamp-kwd { color: #5f9ea0; }
-  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
-  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
-  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
-  .underline { text-decoration: underline; }
-  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
-  p.verse { margin-left: 3%; }
-  pre {
-    border: 1px solid #ccc;
-    box-shadow: 3px 3px 3px #eee;
-    padding: 8pt;
-    font-family: monospace;
-    overflow: auto;
-    margin: 1.2em;
-  }
-  pre.src {
-    position: relative;
-    overflow: auto;
-    padding-top: 1.2em;
-  }
-  pre.src:before {
-    display: none;
-    position: absolute;
-    background-color: white;
-    top: -10px;
-    right: 10px;
-    padding: 3px;
-    border: 1px solid black;
-  }
-  pre.src:hover:before { display: inline;}
-  /* Languages per Org manual */
-  pre.src-asymptote:before { content: 'Asymptote'; }
-  pre.src-awk:before { content: 'Awk'; }
-  pre.src-C:before { content: 'C'; }
-  /* pre.src-C++ doesn't work in CSS */
-  pre.src-clojure:before { content: 'Clojure'; }
-  pre.src-css:before { content: 'CSS'; }
-  pre.src-D:before { content: 'D'; }
-  pre.src-ditaa:before { content: 'ditaa'; }
-  pre.src-dot:before { content: 'Graphviz'; }
-  pre.src-calc:before { content: 'Emacs Calc'; }
-  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
-  pre.src-fortran:before { content: 'Fortran'; }
-  pre.src-gnuplot:before { content: 'gnuplot'; }
-  pre.src-haskell:before { content: 'Haskell'; }
-  pre.src-hledger:before { content: 'hledger'; }
-  pre.src-java:before { content: 'Java'; }
-  pre.src-js:before { content: 'Javascript'; }
-  pre.src-latex:before { content: 'LaTeX'; }
-  pre.src-ledger:before { content: 'Ledger'; }
-  pre.src-lisp:before { content: 'Lisp'; }
-  pre.src-lilypond:before { content: 'Lilypond'; }
-  pre.src-lua:before { content: 'Lua'; }
-  pre.src-matlab:before { content: 'MATLAB'; }
-  pre.src-mscgen:before { content: 'Mscgen'; }
-  pre.src-ocaml:before { content: 'Objective Caml'; }
-  pre.src-octave:before { content: 'Octave'; }
-  pre.src-org:before { content: 'Org mode'; }
-  pre.src-oz:before { content: 'OZ'; }
-  pre.src-plantuml:before { content: 'Plantuml'; }
-  pre.src-processing:before { content: 'Processing.js'; }
-  pre.src-python:before { content: 'Python'; }
-  pre.src-R:before { content: 'R'; }
-  pre.src-ruby:before { content: 'Ruby'; }
-  pre.src-sass:before { content: 'Sass'; }
-  pre.src-scheme:before { content: 'Scheme'; }
-  pre.src-screen:before { content: 'Gnu Screen'; }
-  pre.src-sed:before { content: 'Sed'; }
-  pre.src-sh:before { content: 'shell'; }
-  pre.src-sql:before { content: 'SQL'; }
-  pre.src-sqlite:before { content: 'SQLite'; }
-  /* additional languages in org.el's org-babel-load-languages alist */
-  pre.src-forth:before { content: 'Forth'; }
-  pre.src-io:before { content: 'IO'; }
-  pre.src-J:before { content: 'J'; }
-  pre.src-makefile:before { content: 'Makefile'; }
-  pre.src-maxima:before { content: 'Maxima'; }
-  pre.src-perl:before { content: 'Perl'; }
-  pre.src-picolisp:before { content: 'Pico Lisp'; }
-  pre.src-scala:before { content: 'Scala'; }
-  pre.src-shell:before { content: 'Shell Script'; }
-  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
-  /* additional language identifiers per "defun org-babel-execute"
-       in ob-*.el */
-  pre.src-cpp:before  { content: 'C++'; }
-  pre.src-abc:before  { content: 'ABC'; }
-  pre.src-coq:before  { content: 'Coq'; }
-  pre.src-groovy:before  { content: 'Groovy'; }
-  /* additional language identifiers from org-babel-shell-names in
-     ob-shell.el: ob-shell is the only babel language using a lambda to put
-     the execution function name together. */
-  pre.src-bash:before  { content: 'bash'; }
-  pre.src-csh:before  { content: 'csh'; }
-  pre.src-ash:before  { content: 'ash'; }
-  pre.src-dash:before  { content: 'dash'; }
-  pre.src-ksh:before  { content: 'ksh'; }
-  pre.src-mksh:before  { content: 'mksh'; }
-  pre.src-posh:before  { content: 'posh'; }
-  /* Additional Emacs modes also supported by the LaTeX listings package */
-  pre.src-ada:before { content: 'Ada'; }
-  pre.src-asm:before { content: 'Assembler'; }
-  pre.src-caml:before { content: 'Caml'; }
-  pre.src-delphi:before { content: 'Delphi'; }
-  pre.src-html:before { content: 'HTML'; }
-  pre.src-idl:before { content: 'IDL'; }
-  pre.src-mercury:before { content: 'Mercury'; }
-  pre.src-metapost:before { content: 'MetaPost'; }
-  pre.src-modula-2:before { content: 'Modula-2'; }
-  pre.src-pascal:before { content: 'Pascal'; }
-  pre.src-ps:before { content: 'PostScript'; }
-  pre.src-prolog:before { content: 'Prolog'; }
-  pre.src-simula:before { content: 'Simula'; }
-  pre.src-tcl:before { content: 'tcl'; }
-  pre.src-tex:before { content: 'TeX'; }
-  pre.src-plain-tex:before { content: 'Plain TeX'; }
-  pre.src-verilog:before { content: 'Verilog'; }
-  pre.src-vhdl:before { content: 'VHDL'; }
-  pre.src-xml:before { content: 'XML'; }
-  pre.src-nxml:before { content: 'XML'; }
-  /* add a generic configuration mode; LaTeX export needs an additional
-     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
-  pre.src-conf:before { content: 'Configuration File'; }
-
-  table { border-collapse:collapse; }
-  caption.t-above { caption-side: top; }
-  caption.t-bottom { caption-side: bottom; }
-  td, th { vertical-align:top;  }
-  th.org-right  { text-align: center;  }
-  th.org-left   { text-align: center;   }
-  th.org-center { text-align: center; }
-  td.org-right  { text-align: right;  }
-  td.org-left   { text-align: left;   }
-  td.org-center { text-align: center; }
-  dt { font-weight: bold; }
-  .footpara { display: inline; }
-  .footdef  { margin-bottom: 1em; }
-  .figure { padding: 1em; }
-  .figure p { text-align: center; }
-  .equation-container {
-    display: table;
-    text-align: center;
-    width: 100%;
-  }
-  .equation {
-    vertical-align: middle;
-  }
-  .equation-label {
-    display: table-cell;
-    text-align: right;
-    vertical-align: middle;
-  }
-  .inlinetask {
-    padding: 10px;
-    border: 2px solid gray;
-    margin: 10px;
-    background: #ffffcc;
-  }
-  #org-div-home-and-up
-   { text-align: right; font-size: 70%; white-space: nowrap; }
-  textarea { overflow-x: auto; }
-  .linenr { font-size: smaller }
-  .code-highlighted { background-color: #ffff00; }
-  .org-info-js_info-navigation { border-style: none; }
-  #org-info-js_console-label
-    { font-size: 10px; font-weight: bold; white-space: nowrap; }
-  .org-info-js_search-highlight
-    { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { width: 90%; }
-  /*]]>*/-->
-</style>
-<link rel="stylesheet" type="text/css" href="css/new.css" />
-<script type="text/javascript">
-// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
-<!--/*--><![CDATA[/*><!--*/
-     function CodeHighlightOn(elem, id)
-     {
-       var target = document.getElementById(id);
-       if(null != target) {
-         elem.classList.add("code-highlighted");
-         target.classList.add("code-highlighted");
-       }
-     }
-     function CodeHighlightOff(elem, id)
-     {
-       var target = document.getElementById(id);
-       if(null != target) {
-         elem.classList.remove("code-highlighted");
-         target.classList.remove("code-highlighted");
-       }
-     }
-    /*]]>*///-->
-// @license-end
-</script>
+  <title></title>
 </head>
 <body>
-<div id="content">
-<h1 class="title">What is art?</h1>
-<p>
-Art is not about paints and canvas, or instruments, or words, or body movements. Those are merely mediums for expression. The essence of art is about <b>seeing</b> (sensing, perceiving) something that others might not, and communicating &amp; sharing that, through whichever medium might be conveniently expressive.
-</p>
-
-<p>
-If the essence of art is sharing/communication, what is beauty? It is about the emotions it invokes in the receiver. Work that induces acute feelings (intentionally, not accidentally) could be appreciated as <b>beautiful</b> in the sense of effectively conveying a message.
-</p>
-
-<p>
-Sometimes, the message might simply be the mastery of a medium or form (including the human physical form), in which case the &ldquo;beauty&rdquo; might associate more intrinsically with just the method &amp; its expression, rather than with some extrinsic content.
-</p>
-
-<p>
-Typically, the most natural path for the emergence of a work of such beauty is a deep involvement between the person and the medium (the subject/person and the object/work), shaping each into a good fit for the other. It is worth noting that the deep involvement might be not directly in the output, but in the medium i.e. the doing of the work. At the same time, the doing has to be un-self-conscious.
-</p>
-
-<p>
-&#x2014;
-</p>
-
-<p>
-Artifacts produced in this manner get called &ldquo;art&rdquo;, though it&rsquo;s worth discriminating between the process and the artifacts. Art <span class="underline">works</span> are (imho) valueable not intrinsically, but for the message they carry &#x2013; especially for their potency in offering a new perspective of reality, in contrast to those embedded in a certain context and history. They might be so effective in reshaping the sensory experience that they automatically lead to a consequential change in behavior. Absorbed into the human experience, they forever change how we perceive things.<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>
-</p>
-
-<p>
-In this sense, the most beautiful composition would be meaningless (in the sense of not carrying a message) if it were generated &ldquo;randomly&rdquo; by a computer. The content of human value is not typically the artifact or the method, but the message it encodes, and the feeling it (intentionally) engenders in the receiver.
-</p>
-
-<p>
-Essential to the practice of art is a give-and-take (art works and attention) between the artist and their audience. Technology might create new mediums with expressive freedoms, but if it also disintermediates the aboe relationship then it destroys the possibility of constructing art.
-</p>
-
-<p>
-Art, in this sense, involves indirect communication, sharing perceptions that might not easily be conveyed by other means.
-</p>
-
-<p>
-&#x2014;
-</p>
-
-<p>
-It is often very hard to communicate ideas in abstract, and the best way to share is to actually reify the idea into something concrete &#x2013; using an apropos medium.
-The medium may be chosen for a combination of its affordances, and your proficiency/skill in <b>playing</b> with it.
-</p>
-
-<p>
-Sometimes the reification might be so subtle as to simply enable the creation of a mood/atmosphere for the listener to dwell in, which might invoke certain insights. I tend to use multiple media in this manner, especially books (for their intended message) &amp; music (often the mood they create is not the primary target, but simply in service of some other line of thought).
-</p>
-
-<p>
-The expressive medium could be pretty much anything &#x2013; including engineering, economics, software, communities/organizations, etc, and ways of “playing” those media might involve anything from scientific research to starting a company to managing people &amp; organizations.<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup>
-</p>
-
-<p>
-In this perspective, media are merely vessels &#x2013; a means to communicate &#x2013; and come and go as the circumstances of technology and society evolve. It&rsquo;s worth keeping separate any specific medium from the deeper idea of perception &amp; communication.
-</p>
-
-<p>
-Each medium distorts the message in its own manner, so much that one might often need to invent a new medium for a new thought/message. This is especially true with <span class="underline">language</span>, for its <span class="underline">affordances</span> (the concepts it affords; words/phrases) are like grooves/ruts of convenience, that tend to become patterns of thought.
-</p>
-
-<p>
-We often wear several layers of tinted galsses when we see the world, and radically new forms of perception often involve removing one of those, to see the world better.
-</p>
-
-<p>
-&#x2014;
-</p>
-
-<p>
-Every human activity, including life itself, is potentially a canvas on which you create art given your unique combination of constraints and freedom. This is a medium available to <b>everyone</b>, and it behooves us to indulge in this process in the spirit of <b>play</b> (the idea of `leela`). A life &ldquo;well lived&rdquo; may well be considered a work of art.
-</p>
-
-<p>
-<b>Play</b> is just practicing <b>expressive freedom</b> through some medium or the other, by typically by reifying some message of choice.
-</p>
-
-<p>
-The (main?) application of technology is, imho, to expand artistic freedom and agency &#x2013; to help people <span class="underline">get a grip</span> (affordances) on tools and media so they may express themselves artistically (including self-authoring).
-</p>
-
-
-<p>
-&#x2014;
-</p>
-
-<p>
-None of what I&rsquo;ve said might come as a revelation to anyone who&rsquo;s devoted many years to art, but as someone who has not, and has never consciously reflected on this question till recently, I find that this to be a potent insight to play with.
-</p>
-<div id="footnotes">
-<h2 class="footnotes">Footnotes: </h2>
-<div id="text-footnotes">
-
-<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">The art market is a strange beast. For all practical purposes, I consider a photograph or a copy of a painting almost as valuable as the original, especially when one has to work hard to prove a meaningful difference</p></div></div>
-
-<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara"><p class="footpara">Teaching a kid painting is no different, in this sense, from teaching a kid programming</p></div></div>
-
-
-</div>
-</div></div>
-<div id="postamble" class="status">
-<p class="date">Date: Dec 2020</p>
-<p class="author">Author: Siva Swaminathan</p>
-<p class="date">Created: 2020-12-29 Tue 13:05</p>
-</div>
+  <p>Art is not about paints and canvas, or instruments, or words,
+  or body movements. Those are merely mediums for expression. The
+  essence of art is about <b>seeing</b> (sensing, perceiving)
+  something that others might not, and communicating & sharing
+  that, through whichever medium might be conveniently
+  expressive.</p>
+  <p>If the essence of art is sharing/communication, what is
+  beauty? It is about the emotions it invokes in the receiver. Work
+  that induces acute feelings (intentionally, not accidentally)
+  could be appreciated as <b>beautiful</b> in the sense of
+  effectively conveying a message.</p>
+  <p>Sometimes, the message might simply be the mastery of a medium
+  or form (including the human physical form), in which case the
+  “beauty” might associate more intrinsically with just the method
+  & its expression, rather than with some extrinsic content.</p>
+  <p>Typically, the most natural path for the emergence of a work
+  of such beauty is a deep involvement between the person and the
+  medium (the subject/person and the object/work), shaping each
+  into a good fit for the other. It is worth noting that the deep
+  involvement might be not directly in the output, but in the
+  medium i.e. the doing of the work. At the same time, the doing
+  has to be un-self-conscious.</p>
+  <p>—</p>
+  <p>Artifacts produced in this manner get called “art”, though
+  it’s worth discriminating between the process and the artifacts.
+  Art <span class="underline">works</span> are (imho) valueable not
+  intrinsically, but for the message they carry – especially for
+  their potency in offering a new perspective of reality, in
+  contrast to those embedded in a certain context and history. They
+  might be so effective in reshaping the sensory experience that
+  they automatically lead to a consequential change in behavior.
+  Absorbed into the human experience, they forever change how we
+  perceive things.<sup><a id="fnr.1" class="footref" href=
+  "#fn.1">1</a></sup></p>
+  <p>In this sense, the most beautiful composition would be
+  meaningless (in the sense of not carrying a message) if it were
+  generated “randomly” by a computer. The content of human value is
+  not typically the artifact or the method, but the message it
+  encodes, and the feeling it (intentionally) engenders in the
+  receiver.</p>
+  <p>Essential to the practice of art is a give-and-take (art works
+  and attention) between the artist and their audience. Technology
+  might create new mediums with expressive freedoms, but if it also
+  disintermediates the aboe relationship then it destroys the
+  possibility of constructing art.</p>
+  <p>Art, in this sense, involves indirect communication, sharing
+  perceptions that might not easily be conveyed by other means.</p>
+  <p>—</p>
+  <p>It is often very hard to communicate ideas in abstract, and
+  the best way to share is to actually reify the idea into
+  something concrete – using an apropos medium. The medium may be
+  chosen for a combination of its affordances, and your
+  proficiency/skill in <b>playing</b> with it.</p>
+  <p>Sometimes the reification might be so subtle as to simply
+  enable the creation of a mood/atmosphere for the listener to
+  dwell in, which might invoke certain insights. I tend to use
+  multiple media in this manner, especially books (for their
+  intended message) & music (often the mood they create is not the
+  primary target, but simply in service of some other line of
+  thought).</p>
+  <p>The expressive medium could be pretty much anything –
+  including engineering, economics, software,
+  communities/organizations, etc, and ways of “playing” those media
+  might involve anything from scientific research to starting a
+  company to managing people & organizations.<sup><a id="fnr.2"
+  class="footref" href="#fn.2">2</a></sup></p>
+  <p>In this perspective, media are merely vessels – a means to
+  communicate – and come and go as the circumstances of technology
+  and society evolve. It’s worth keeping separate any specific
+  medium from the deeper idea of perception & communication.</p>
+  <p>Each medium distorts the message in its own manner, so much
+  that one might often need to invent a new medium for a new
+  thought/message. This is especially true with <span class=
+  "underline">language</span>, for its <span class=
+  "underline">affordances</span> (the concepts it affords;
+  words/phrases) are like grooves/ruts of convenience, that tend to
+  become patterns of thought.</p>
+  <p>We often wear several layers of tinted galsses when we see the
+  world, and radically new forms of perception often involve
+  removing one of those, to see the world better.</p>
+  <p>—</p>
+  <p>Every human activity, including life itself, is potentially a
+  canvas on which you create art given your unique combination of
+  constraints and freedom. This is a medium available to
+  <b>everyone</b>, and it behooves us to indulge in this process in
+  the spirit of <b>play</b> (the idea of `leela`). A life “well
+  lived” may well be considered a work of art.</p>
+  <p><b>Play</b> is just practicing <b>expressive freedom</b>
+  through some medium or the other, by typically by reifying some
+  message of choice.</p>
+  <p>The (main?) application of technology is, imho, to expand
+  artistic freedom and agency – to help people <span class=
+  "underline">get a grip</span> (affordances) on tools and media so
+  they may express themselves artistically (including
+  self-authoring).</p>
+  <p>—</p>
+  <p>None of what I’ve said might come as a revelation to anyone
+  who’s devoted many years to art, but as someone who has not, and
+  has never consciously reflected on this question till recently, I
+  find that this to be a potent insight to play with.</p>
+  <div id="footnotes">
+    <h2 class="footnotes">Footnotes:</h2>
+    <div id="text-footnotes">
+      <div class="footdef">
+        <sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup>
+        <div class="footpara">
+          <p class="footpara">The art market is a strange beast.
+          For all practical purposes, I consider a photograph or a
+          copy of a painting almost as valuable as the original,
+          especially when one has to work hard to prove a
+          meaningful difference</p>
+        </div>
+      </div>
+      <div class="footdef">
+        <sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup>
+        <div class="footpara">
+          <p class="footpara">Teaching a kid painting is no
+          different, in this sense, from teaching a kid
+          programming</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
