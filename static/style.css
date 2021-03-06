@@ -1,3 +1,7 @@
+/* Based on new.css
+ * https://github.com/xz/new.css
+ * */
+
 @import url('https://fonts.googleapis.com/css2?family=Proza+Libre&family=Montserrat&family=Roboto&family=Roboto+Slab&display=swap');
 
 :root {
@@ -117,7 +121,7 @@ h1 {
 	font-size: 2.25rem;
 	text-shadow: 0px 0px 1px var(--nc-tx-1);
 	border-bottom: 4px solid var(--nc-bg-2);
-	margin-bottom: 2.8em;
+	/* margin-bottom: 2.8em; */
 }
 
 h2 {
@@ -176,7 +180,6 @@ header {
 	/* This sets the right and left margins to cancel out the body's margins. It's width is still the same, but the background stretches across the page's width. */
 
 	margin: -2rem calc(0px - (50vw - 50%)) 2rem;
-
 	/* Shorthand for:
 
 	margin-top: -2rem;
@@ -204,6 +207,29 @@ header > *:first-child {
 header > *:last-child {
 	margin-bottom: 0;
 }
+
+footer {
+	background: var(--nc-bg-2);
+	border-bottom: 1px solid var(--nc-bg-3);
+	padding: 2rem 1.5rem;
+	
+	/* This sets the right and left margins to cancel out the body's margins. It's width is still the same, but the background stretches across the page's width. */
+
+	margin: 2rem calc(0px - (50vw - 50%)) -2rem;
+	/*  margin: -2rem calc(0px - (50vw - 50%)) 2rem; */
+
+	/* Shorthand for:
+
+	margin-top: -2rem;
+	margin-bottom: 2rem;
+
+	margin-left: calc(0px - (50vw - 50%));
+	margin-right: calc(0px - (50vw - 50%)); */
+	
+	padding-left: calc(50vw - 50%);
+	padding-right: calc(50vw - 50%);
+}
+
 
 a button,
 button,

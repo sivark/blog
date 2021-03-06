@@ -1,55 +1,148 @@
-<!doctype html>
-<html lang="en-us">
-  <head>
-    
-    <meta charset="utf-8">
-    <title>My personal weblorg - Home</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="author" content="John Coltrane" />
-    <meta name="description" content="my personal blog" />
-    <meta name="keywords" content="" />
-    <link rel="stylesheet" href="http://localhost:8000/static/style.css" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
-    
-  </head>
-  <body>
-    
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0"
+     xmlns:content="http://purl.org/rss/1.0/modules/content/"
+     xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:atom="http://www.w3.org/2005/Atom"
+     xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+     xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+     xmlns:georss="http://www.georss.org/georss"
+     xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+     xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>Simple Blog</title>
+    <atom:link
+      href="http://localhost:8000/feed.xml"
+      rel="self" type="application/rss+xml" />
+    <link>http://localhost:8000/index.html</link>
+    <description><![CDATA[]]></description>
+    <language>en</language>
+    <pubDate>Mon, 28 Dec 2020 00:00:00 -0800</pubDate>
+    <lastBuildDate>Sat, 06 Mar 2021 01:40:14 -0800</lastBuildDate>
+    <generator>weblorg 0.1.0 (https://emacs.love/weblorg)</generator>
+    <webMaster>web@master (Blog Author)</webMaster>
+    <image>
+      <url>http://localhost:8000/index.htmlmedia/img/8bitme.png</url>
+      <title>Blog Author</title>
+      <link>http://localhost:8000/index.html</link>
+    </image>
 
     
-    <header>
+    <item>
+      <title>What is art?</title>
+      <link>http://localhost:8000/what-is-art.html</link>
+      <author>Siva Swaminathan</author>
+      <guid isPermaLink="false">http://localhost:8000/what-is-art.html</guid>
+      <pubDate>Mon, 28 Dec 2020 00:00:00 -0800</pubDate>
+      <description><![CDATA[<p>
+Art is not about paints and canvas, or instruments, or words, or body movements. Those are merely mediums for expression. The essence of art is about <b>seeing</b> (sensing, perceiving) something that others might not, and communicating &amp; sharing that, through whichever medium might be conveniently expressive.
+</p>
 
-      <!--
-      <h1 class="logo">
-        <a href="http://localhost:8000/index.html">My personal weblorg</a>
-      </h1>
-      -->
+<p>
+If the essence of art is sharing/communication, what is beauty? It is about the emotions it invokes in the receiver. Work that induces acute feelings (intentionally, not accidentally) could be appreciated as <b>beautiful</b> in the sense of effectively conveying a message.
+</p>
 
-      <nav>
-          /
-          <a href="http://sivark.me">homepage</a>
-          /
-          <a href="http://localhost:8000/index.html">blog</a>
-          /
-          <!--
-          <a href="">about</a>
-          /-->
-      </nav>
-    </header>
+<p>
+Sometimes, the message might simply be the mastery of a medium or form (including the human physical form), in which case the "beauty" might associate more intrinsically with just the method &amp; its expression, rather than with some extrinsic content.
+</p>
+
+<p>
+Typically, the most natural path for the emergence of a work of such beauty is a deep involvement between the person and the medium (the subject/person and the object/work), shaping each into a good fit for the other. It is worth noting that the deep involvement might be not directly in the output, but in the medium i.e. the doing of the work. At the same time, the doing has to be un-self-conscious.
+</p>
+
+<p>
+&#x2014;
+</p>
+
+<p>
+Artifacts produced in this manner get called "art", though it's worth discriminating between the process and the artifacts. Art <span class="underline">works</span> are (imho) valueable not intrinsically, but for the message they carry &#x2013; especially for their potency in offering a new perspective of reality, in contrast to those embedded in a certain context and history. They might be so effective in reshaping the sensory experience that they automatically lead to a consequential change in behavior. Absorbed into the human experience, they forever change how we perceive things.<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>
+</p>
+
+<p>
+In this sense, the most beautiful composition would be meaningless (in the sense of not carrying a message) if it were generated "randomly" by a computer. The content of human value is not typically the artifact or the method, but the message it encodes, and the feeling it (intentionally) engenders in the receiver.
+</p>
+
+<p>
+Essential to the practice of art is a give-and-take (art works and attention) between the artist and their audience. Technology might create new mediums with expressive freedoms, but if it also disintermediates the aboe relationship then it destroys the possibility of constructing art.
+</p>
+
+<p>
+Art, in this sense, involves indirect communication, sharing perceptions that might not easily be conveyed by other means.
+</p>
+
+<p>
+&#x2014;
+</p>
+
+<p>
+It is often very hard to communicate ideas in abstract, and the best way to share is to actually reify the idea into something concrete &#x2013; using an apropos medium.
+The medium may be chosen for a combination of its affordances, and your proficiency/skill in <b>playing</b> with it.
+</p>
+
+<p>
+Sometimes the reification might be so subtle as to simply enable the creation of a mood/atmosphere for the listener to dwell in, which might invoke certain insights. I tend to use multiple media in this manner, especially books (for their intended message) &amp; music (often the mood they create is not the primary target, but simply in service of some other line of thought).
+</p>
+
+<p>
+The expressive medium could be pretty much anything &#x2013; including engineering, economics, software, communities/organizations, etc, and ways of “playing” those media might involve anything from scientific research to starting a company to managing people &amp; organizations.<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup>
+</p>
+
+<p>
+In this perspective, media are merely vessels &#x2013; a means to communicate &#x2013; and come and go as the circumstances of technology and society evolve. It's worth keeping separate any specific medium from the deeper idea of perception &amp; communication.
+</p>
+
+<p>
+Each medium distorts the message in its own manner, so much that one might often need to invent a new medium for a new thought/message. This is especially true with <span class="underline">language</span>, for its <span class="underline">affordances</span> (the concepts it affords; words/phrases) are like grooves/ruts of convenience, that tend to become patterns of thought.
+</p>
+
+<p>
+We often wear several layers of tinted galsses when we see the world, and radically new forms of perception often involve removing one of those, to see the world better.
+</p>
+
+<p>
+&#x2014;
+</p>
+
+<p>
+Every human activity, including life itself, is potentially a canvas on which you create art given your unique combination of constraints and freedom. This is a medium available to <b>everyone</b>, and it behooves us to indulge in this process in the spirit of <b>play</b> (the idea of `leela`). A life "well lived" may well be considered a work of art.
+</p>
+
+<p>
+<b>Play</b> is just practicing <b>expressive freedom</b> through some medium or the other, by typically by reifying some message of choice.
+</p>
+
+<p>
+The (main?) application of technology is, imho, to expand artistic freedom and agency &#x2013; to help people <span class="underline">get a grip</span> (affordances) on tools and media so they may express themselves artistically (including self-authoring).
+</p>
+
+
+<p>
+&#x2014;
+</p>
+
+<p>
+None of what I've said might come as a revelation to anyone who's devoted many years to art, but as someone who has not, and has never consciously reflected on this question till recently, I find that this to be a potent insight to play with.
+</p>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">The art market is a strange beast. For all practical purposes, I consider a photograph or a copy of a painting almost as valuable as the original, especially when one has to work hard to prove a meaningful difference</p></div></div>
+
+<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara"><p class="footpara">Teaching a kid painting is no different, in this sense, from teaching a kid programming</p></div></div>
+
+
+</div>
+</div>]]></description>
+    </item>
     
-
-    
-    <main id="main">
-      
-<article class="post">
-  <h1 class="post__title">
-    The Great Rebalancing, by Michael Pettis
-  </h1>
-  <section class="post__meta">
-    Jun 30, 2020
-  </section>
-  <section>
-    <p>
+    <item>
+      <title>The Great Rebalancing, by Michael Pettis</title>
+      <link>http://localhost:8000/the-great-rebalancing-by-michael-pettis.html</link>
+      <author>Siva Swaminathan</author>
+      <guid isPermaLink="false">http://localhost:8000/the-great-rebalancing-by-michael-pettis.html</guid>
+      <pubDate>Tue, 30 Jun 2020 00:00:00 -0700</pubDate>
+      <description><![CDATA[<p>
 (2013), so it is interesting to see how the book has aged.
 </p>
 
@@ -199,25 +292,9 @@ Private sector reluctance (hard to capture value), so likely government funded (
 
 
 </div>
-</div>
-  </section>
-</article>
-
-    </main>
-
-
-    
-    
-    <footer class="footer">
-      &copy; Sivaramakrishnan Swaminathan 2021
-      <div class="ack">
-        Made with &#x2665; by
-        <a href="https://emacs.love/weblorg" target="_blank">
-          weblorg
-        </a>
-      </div>
-    </footer>
+</div>]]></description>
+    </item>
     
 
-  </body>
-</html>
+  </channel>
+</rss>
