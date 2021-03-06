@@ -12,27 +12,27 @@
   <channel>
     <title>Simple Blog</title>
     <atom:link
-      href="http://localhost:8000/feed.xml"
+      href="http://sivark.me/blog/feed.xml"
       rel="self" type="application/rss+xml" />
-    <link>http://localhost:8000/index.html</link>
+    <link>http://sivark.me/blog/index.html</link>
     <description><![CDATA[]]></description>
     <language>en</language>
     <pubDate>Mon, 28 Dec 2020 00:00:00 -0800</pubDate>
-    <lastBuildDate>Sat, 06 Mar 2021 01:40:14 -0800</lastBuildDate>
+    <lastBuildDate>Sat, 06 Mar 2021 11:06:35 -0800</lastBuildDate>
     <generator>weblorg 0.1.0 (https://emacs.love/weblorg)</generator>
     <webMaster>web@master (Blog Author)</webMaster>
     <image>
-      <url>http://localhost:8000/index.htmlmedia/img/8bitme.png</url>
+      <url>http://sivark.me/blog/index.htmlmedia/img/8bitme.png</url>
       <title>Blog Author</title>
-      <link>http://localhost:8000/index.html</link>
+      <link>http://sivark.me/blog/index.html</link>
     </image>
 
     
     <item>
       <title>What is art?</title>
-      <link>http://localhost:8000/what-is-art.html</link>
+      <link>http://sivark.me/blog/what-is-art.html</link>
       <author>Siva Swaminathan</author>
-      <guid isPermaLink="false">http://localhost:8000/what-is-art.html</guid>
+      <guid isPermaLink="false">http://sivark.me/blog/what-is-art.html</guid>
       <pubDate>Mon, 28 Dec 2020 00:00:00 -0800</pubDate>
       <description><![CDATA[<p>
 Art is not about paints and canvas, or instruments, or words, or body movements. Those are merely mediums for expression. The essence of art is about <b>seeing</b> (sensing, perceiving) something that others might not, and communicating &amp; sharing that, through whichever medium might be conveniently expressive.
@@ -138,9 +138,9 @@ None of what I've said might come as a revelation to anyone who's devoted many y
     
     <item>
       <title>The Great Rebalancing, by Michael Pettis</title>
-      <link>http://localhost:8000/the-great-rebalancing-by-michael-pettis.html</link>
+      <link>http://sivark.me/blog/the-great-rebalancing-by-michael-pettis.html</link>
       <author>Siva Swaminathan</author>
-      <guid isPermaLink="false">http://localhost:8000/the-great-rebalancing-by-michael-pettis.html</guid>
+      <guid isPermaLink="false">http://sivark.me/blog/the-great-rebalancing-by-michael-pettis.html</guid>
       <pubDate>Tue, 30 Jun 2020 00:00:00 -0700</pubDate>
       <description><![CDATA[<p>
 (2013), so it is interesting to see how the book has aged.
