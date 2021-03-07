@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="utf-8">
+    <title>My personal weblorg - Home</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="John Coltrane" />
+    <meta name="description" content="my personal blog" />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="http://sivark.me/blog/static/style.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    
+  </head>
+  <body>
+    
+
+    
+    <header>
+
+      <!--
+      <h1 class="logo">
+        <a href="http://sivark.me/blog/index.html">My personal weblorg</a>
+      </h1>
+      -->
+
+      <nav>
+          /
+          <a href="http://sivark.me">homepage</a>
+          /
+          <a href="http://sivark.me/blog/index.html">blog</a>
+          /
+          <!--
+          <a href="">about</a>
+          /-->
+      </nav>
+    </header>
+    
+
+    
+    <main id="main">
+      
+<article class="post">
+  <h1 class="post__title">
+    Ergodicity Economics and von Neumann-Morgenstern utility
+  </h1>
+  <section class="post__meta">
+    Mar 07, 2021
+  </section>
+  <section>
+    <p>
+I have seen claims that the von Neumann Morgenstern utility theorem (vNM) grounding Expected Utility Theory (EUT) voids <a href="https://ergodicityeconomics.com/">Ergodicity Economics</a> (EE) and time averages, including appeals to authority about von Neumann being an expert on the idea of (non)ergodicity. I think that misses a subtlety.
+</p>
+
+<p>
+The <a href="https://en.wikipedia.org/wiki/Von_Neumann%E2%80%93Morgenstern_utility_theorem">vNM theorem</a> guarantees the existence of a utility function IFF four axioms (termed {completeness, transitivity, continuity, independence}) are satisfied. Quite reasonable on the face of it, but the theorem implicitly assumes the existence of a probability distribution, and doesn't say anything about where the probabilities come from. That choice is a separate <b>modeling assumption</b> when applying the vNM framework to a specific situation.
+</p>
+
+<p>
+Consider the simple experiment of repeated coin tosses, doubling or halving the agent's wealth on each turn<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>. <i>What probability distribution over the set of trajectories is appropriate to capture the agent's behavior?</i> Note that vNM has nothing to say about this &#x2013; leaving it up to the modeler to choose judiciously. That choice implicitly decides between time and ensemble averages (or whatever else kind of average).
+</p>
+
+<p>
+If we expect this game to be played a small number of times compared with the number of trajectories (eg: a billion = 2<sup>30</sup> &lt;&lt; 2<sup>100</sup>, for 100 sequential coin tosses), then the distribution of <i>"typical"</i> trajectories <a href="https://en.wikipedia.org/wiki/Concentration_of_measure"><i>concentrates</i></a> around the median case (expected number of H and T) with probability approaching one, leaving the agent almost no chance to probe the extreme scenarios (long strings of H or long strings of T). <i>This is a very different distribution, when compared with the ensemble probabilities of trajectories</i> and leads to time averages. This is basically the model underlying the <a href="https://en.wikipedia.org/wiki/Kelly_criterion">Kelly criterion</a>.
+</p>
+
+<p>
+IFF the observable (payoff) being studied is <i>ergodic</i> (not the <i>process</i>!), then it turns out that the measure on the distribution of payoffs does not concentrate, and computing time averages is equivalent to computing ensemble averages.
+</p>
+
+<p>
+EE is not in opposition with the vNM framework! Rather, <i>the point of EE is that one can avoid performing complicated gymnastics with utilities/payoffs to model behavior, if one is instead more judicious about the probabilities multiplying them</i>. That is the role played by time averages instead of ensemble averages.
+</p>
+
+<p>
+If one were only interested in modeling a single problem, the prescription of distribution is about as much input as a prescription of utilities &#x2013; they both beg the question equally, in a sense. The true value of EE comes from its potential <i>generalizability to modeling multiple problems with the same prescription of averaging</i> if it turns out that the prescription of time averages is sufficient to correctly model behaviour using simple/obvious utility functions, rather than cooking up a different utility function to model the behavior in each problem.
+</p>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">Somewhat like the <a href="https://en.wikipedia.org/wiki/St._Petersburg_paradox">St. Petersburg paradox</a>, but not quite.</p></div></div>
+
+
+</div>
+</div>
+  </section>
+</article>
+
+    </main>
+
+
+    
+    
+    <footer class="footer">
+      &copy; Sivaramakrishnan Swaminathan 2021
+      <div class="ack">
+        Made with &#x2665; by
+        <a href="https://emacs.love/weblorg" target="_blank">
+          weblorg
+        </a>
+      </div>
+    </footer>
+    
+
+  </body>
+</html>

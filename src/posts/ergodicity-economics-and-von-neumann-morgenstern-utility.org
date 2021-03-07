@@ -1,0 +1,18 @@
+#+TITLE: Ergodicity Economics and von Neumann-Morgenstern utility
+#+AUTHOR: Siva Swaminathan
+#+DATE: <2021-03-07 Sun>
+#+OPTIONS: toc:nil
+
+I have seen claims that the von Neumann Morgenstern utility theorem (vNM) grounding Expected Utility Theory (EUT) voids [[https://ergodicityeconomics.com/][Ergodicity Economics]] (EE) and time averages, including appeals to authority about von Neumann being an expert on the idea of (non)ergodicity. I think that misses a subtlety.
+
+The [[https://en.wikipedia.org/wiki/Von_Neumann%E2%80%93Morgenstern_utility_theorem][vNM theorem]] guarantees the existence of a utility function IFF four axioms (termed {completeness, transitivity, continuity, independence}) are satisfied. Quite reasonable on the face of it, but the theorem implicitly assumes the existence of a probability distribution, and doesn't say anything about where the probabilities come from. That choice is a separate *modeling assumption* when applying the vNM framework to a specific situation.
+
+Consider the simple experiment of repeated coin tosses, doubling or halving the agent's wealth on each turn[fn::Somewhat like the [[https://en.wikipedia.org/wiki/St._Petersburg_paradox][St. Petersburg paradox]], but not quite.]. /What probability distribution over the set of trajectories is appropriate to capture the agent's behavior?/ Note that vNM has nothing to say about this -- leaving it up to the modeler to choose judiciously. That choice implicitly decides between time and ensemble averages (or whatever else kind of average).
+
+If we expect this game to be played a small number of times compared with the number of trajectories (eg: a billion = 2^30 << 2^100, for 100 sequential coin tosses), then the distribution of /"typical"/ trajectories [[https://en.wikipedia.org/wiki/Concentration_of_measure][/concentrates/]] around the median case (expected number of H and T) with probability approaching one, leaving the agent almost no chance to probe the extreme scenarios (long strings of H or long strings of T). /This is a very different distribution, when compared with the ensemble probabilities of trajectories/ and leads to time averages. This is basically the model underlying the [[https://en.wikipedia.org/wiki/Kelly_criterion][Kelly criterion]].
+
+IFF the observable (payoff) being studied is /ergodic/ (not the /process/!), then it turns out that the measure on the distribution of payoffs does not concentrate, and computing time averages is equivalent to computing ensemble averages.
+
+EE is not in opposition with the vNM framework! Rather, /the point of EE is that one can avoid performing complicated gymnastics with utilities/payoffs to model behavior, if one is instead more judicious about the probabilities multiplying them/. That is the role played by time averages instead of ensemble averages.
+
+If one were only interested in modeling a single problem, the prescription of distribution is about as much input as a prescription of utilities -- they both beg the question equally, in a sense. The true value of EE comes from its potential /generalizability to modeling multiple problems with the same prescription of averaging/ if it turns out that the prescription of time averages is sufficient to correctly model behaviour using simple/obvious utility functions, rather than cooking up a different utility function to model the behavior in each problem.
