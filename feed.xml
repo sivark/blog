@@ -18,7 +18,7 @@
     <description><![CDATA[]]></description>
     <language>en</language>
     <pubDate>Sun, 07 Mar 2021 00:00:00 -0800</pubDate>
-    <lastBuildDate>Sun, 07 Mar 2021 13:04:17 -0800</lastBuildDate>
+    <lastBuildDate>Sun, 07 Mar 2021 13:13:48 -0800</lastBuildDate>
     <generator>weblorg 0.1.0 (https://emacs.love/weblorg)</generator>
     <webMaster>web@master (Blog Author)</webMaster>
     <image>
@@ -35,11 +35,11 @@
       <guid isPermaLink="false">http://sivark.me/blog/ergodicity-economics-and-von-neumann-morgenstern-utility.html</guid>
       <pubDate>Sun, 07 Mar 2021 00:00:00 -0800</pubDate>
       <description><![CDATA[<p>
-I have seen claims that the von Neumann Morgenstern utility theorem (vNM) grounding Expected Utility Theory (EUT) voids <a href="https://ergodicityeconomics.com/">Ergodicity Economics</a> (EE) and time averages, including appeals to authority about von Neumann being an expert on the idea of (non)ergodicity. I think that misses a subtlety. I have tried to avoid any use of "right" or "wrong", instead trying to emphasize the <i>"usefulness"</i> of modeling assumptions given the situation.
+I have seen claims that the von Neumann Morgenstern utility theorem (vNM) grounding Expected Utility Theory (EUT) voids <a href="https://ergodicityeconomics.com/">Ergodicity Economics</a> (EE) and time averages, including appeals to authority about von Neumann being an expert on the idea of (non)ergodicity. I think that misses a subtlety; in what follows I have tried to avoid any use of "right" or "wrong", instead trying to emphasize the <i>"usefulness"</i> of modeling assumptions given the situation.
 </p>
 
 <p>
-The <a href="https://en.wikipedia.org/wiki/Von_Neumann%E2%80%93Morgenstern_utility_theorem">vNM theorem</a> guarantees the existence of a utility function IFF four axioms (termed {completeness, transitivity, continuity, independence}) are satisfied. Quite reasonable on the face of it, but the theorem implicitly assumes the existence of a probability distribution, and doesn't say anything about where the probabilities come from. That choice is a separate <b>modeling assumption</b> when applying the vNM framework to a specific situation.
+The <a href="https://en.wikipedia.org/wiki/Von_Neumann%E2%80%93Morgenstern_utility_theorem">vNM theorem</a> guarantees the existence of a utility function IFF four axioms (termed {completeness, transitivity, continuity, independence}) are satisfied. Quite reasonable on the face of it, but the theorem implicitly assumes the existence of a probability distribution, and <i>doesn't say anything about where the probabilities come from</i>. That choice is a separate <b>modeling assumption</b> when applying the vNM framework to a specific situation, and presumably <i>a crucial implicit assumption underlying EUT</i>, as commonly used.
 </p>
 
 <p>
