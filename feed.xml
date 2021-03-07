@@ -18,7 +18,7 @@
     <description><![CDATA[]]></description>
     <language>en</language>
     <pubDate>Sun, 07 Mar 2021 00:00:00 -0800</pubDate>
-    <lastBuildDate>Sun, 07 Mar 2021 13:13:48 -0800</lastBuildDate>
+    <lastBuildDate>Sun, 07 Mar 2021 15:35:09 -0800</lastBuildDate>
     <generator>weblorg 0.1.0 (https://emacs.love/weblorg)</generator>
     <webMaster>web@master (Blog Author)</webMaster>
     <image>
@@ -43,7 +43,7 @@ The <a href="https://en.wikipedia.org/wiki/Von_Neumann%E2%80%93Morgenstern_utili
 </p>
 
 <p>
-Consider the simple experiment of repeated tosses of a fair coin, doubling or halving the agent's wealth on each turn<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>. <i>What probability distribution over the set of trajectories is appropriate to capture the agent's behavior?</i> Note that vNM has nothing to say about this &#x2013; leaving it up to the modeler to choose judiciously. That choice implicitly decides between time and ensemble averages (or whatever else kind of average).
+Consider the simple experiment of repeated tosses of a fair coin, increasing or decreasing the agent's wealth by \(10%\) on each turn<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>, i.e. <a href="https://en.wikipedia.org/wiki/Geometric_Brownian_motion">Geometric Brownian motion</a> (without the drift, for simplicity). <i>What probability distribution over the set of trajectories is appropriate to capture the agent's behavior?</i> Note that vNM has nothing to say about this &#x2013; leaving it up to the modeler to choose judiciously. That choice implicitly decides between time and ensemble averages (or whatever else kind of average).
 </p>
 
 <p>

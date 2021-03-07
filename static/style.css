@@ -96,7 +96,7 @@ body {
 	/* Main body text */
 	color: var(--nc-tx-2);
 	font-size: 1.03rem;
-	line-height: 1.5;
+	line-height: 2.0;
 	text-align: justify;
 }
 
@@ -109,8 +109,8 @@ body {
 h1,h2,h3,h4,h5,h6 {
 	line-height: 1.5;
 	color: var(--nc-tx-1);
-	padding-top: .875rem;
-	margin-bottom: .6rem;
+	padding-top: 1.875rem;
+	margin-bottom: 1.0rem;
 }
 
 h2, h3 {
