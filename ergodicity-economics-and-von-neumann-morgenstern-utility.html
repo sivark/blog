@@ -12,6 +12,19 @@
     <link rel="stylesheet" href="http://sivark.me/blog/static/style.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
     
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+    </script>
+    <script type="text/javascript" id="MathJax-script" async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+    </script>
   </head>
   <body>
     
@@ -50,7 +63,7 @@
   </section>
   <section>
     <p>
-I have seen claims that the von Neumann Morgenstern utility theorem (vNM) grounding Expected Utility Theory (EUT) voids <a href="https://ergodicityeconomics.com/">Ergodicity Economics</a> (EE) and time averages, including appeals to authority about von Neumann being an expert on the idea of (non)ergodicity. I think that misses a subtlety.
+I have seen claims that the von Neumann Morgenstern utility theorem (vNM) grounding Expected Utility Theory (EUT) voids <a href="https://ergodicityeconomics.com/">Ergodicity Economics</a> (EE) and time averages, including appeals to authority about von Neumann being an expert on the idea of (non)ergodicity. I think that misses a subtlety. I have tried to avoid any use of "right" or "wrong", instead trying to emphasize the <i>"usefulness"</i> of modeling assumptions given the situation.
 </p>
 
 <p>
@@ -58,17 +71,24 @@ The <a href="https://en.wikipedia.org/wiki/Von_Neumann%E2%80%93Morgenstern_utili
 </p>
 
 <p>
-Consider the simple experiment of repeated coin tosses, doubling or halving the agent's wealth on each turn<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>. <i>What probability distribution over the set of trajectories is appropriate to capture the agent's behavior?</i> Note that vNM has nothing to say about this &#x2013; leaving it up to the modeler to choose judiciously. That choice implicitly decides between time and ensemble averages (or whatever else kind of average).
+Consider the simple experiment of repeated tosses of a fair coin, doubling or halving the agent's wealth on each turn<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>. <i>What probability distribution over the set of trajectories is appropriate to capture the agent's behavior?</i> Note that vNM has nothing to say about this &#x2013; leaving it up to the modeler to choose judiciously. That choice implicitly decides between time and ensemble averages (or whatever else kind of average).
 </p>
 
 <p>
-If we expect this game to be played a small number of times compared with the number of trajectories (eg: a billion = 2<sup>30</sup> &lt;&lt; 2<sup>100</sup>, for 100 sequential coin tosses), then the distribution of <i>"typical"</i> trajectories <a href="https://en.wikipedia.org/wiki/Concentration_of_measure"><i>concentrates</i></a> around the median case (expected number of H and T) with probability approaching one, leaving the agent almost no chance to probe the extreme scenarios (long strings of H or long strings of T). <i>This is a very different distribution, when compared with the ensemble probabilities of trajectories</i> and leads to time averages. This is basically the model underlying the <a href="https://en.wikipedia.org/wiki/Kelly_criterion">Kelly criterion</a>.
+If we expect this game to be played a small number of times compared with the number of trajectories (eg: a billion = 2<sup>30</sup> &lt;&lt; 2<sup>100</sup>, for 100 sequential coin tosses), then the distribution of <i>"typical"</i> trajectories <a href="https://en.wikipedia.org/wiki/Concentration_of_measure"><i>concentrates</i></a> around the median case (expected number of H and T) with probability approaching one, leaving the agent almost no chance to probe the extreme scenarios (long strings of H or long strings of T). This concentrated measure which describes how the (available "small" number of) agents/plays will "probe" the trajectories and leads to what we call "time averages"<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup> is very different from the distribution corresponding to ensemble probabilities of trajectories, where each trajectory is equally likely (for a fair coin).
 </p>
 
 <p>
-IFF the observable (payoff) being studied is <i>ergodic</i> (not the <i>process</i>!), then it turns out that the measure on the distribution of payoffs does not concentrate, and computing time averages is equivalent to computing ensemble averages.
+The only way to realize a situation which circumvents this concentration of measure is to live in the regime where the number of (parallel) plays far exceeds the number of trajectories. In such a scenario, it will turn out that the distribution probed by the ensemble of agents/plays corresponds to what we call the "ensemble average"<sup><a id="fnr.3" class="footref" href="#fn.3">3</a></sup> among the trajectories.
 </p>
 
+<p>
+To be even more thorough, we care about the probability distribution not in the space of trajectories, but the induced distribution on the observable (i.e. the space of payoffs) &#x2013; which is the quantity we are actually averaging. These two distributions could look very different eg. in cases where a small set of trajectories in the ensemble have outsized (exponentially large) payoffs! IFF we happen to be in the latter situation (depending on the observable/payoff, and the process) we may call the {observable, process} combination  <i>"ergodic"</i>.
+</p>
+
+<div class="outline-2">
+<h2 id="ergodicity-and-economic-modeling"><span class="section-number-2">1</span> Ergodicity and economic modeling</h2>
+<div class="outline-text-2" id="text-1">
 <p>
 EE is not in opposition with the vNM framework! Rather, <i>the point of EE is that one can avoid performing complicated gymnastics with utilities/payoffs to model behavior, if one is instead more judicious about the probabilities multiplying them</i>. That is the role played by time averages instead of ensemble averages.
 </p>
@@ -76,11 +96,33 @@ EE is not in opposition with the vNM framework! Rather, <i>the point of EE is th
 <p>
 If one were only interested in modeling a single problem, the prescription of distribution is about as much input as a prescription of utilities &#x2013; they both beg the question equally, in a sense. The true value of EE comes from its potential <i>generalizability to modeling multiple problems with the same prescription of averaging</i> if it turns out that the prescription of time averages is sufficient to correctly model behaviour using simple/obvious utility functions, rather than cooking up a different utility function to model the behavior in each problem.
 </p>
+</div>
+</div>
+
+<div class="outline-2">
+<h2 id="ergodicity-and-physical-systems"><span class="section-number-2">2</span> Ergodicity and physical systems</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+We have all the pieces in place to understand the roots of ergodicity in physical systems, so we might as well touch on that. (This section is a digression from the economics discussion, and can be safely skipped by readers primarily interested in that.)
+</p>
+
+<p>
+The <a href="https://en.wikipedia.org/wiki/Ergodic_hypothesis">ergodic hypothesis</a> claims that (even) a single agent (i.e. a physical system in a given macrostate) will (over a reasonable time scale) uniformly explore the microstates in the ensemble corresponding to the macrostate (through natural dynamics).
+The only observables that can be probed by experiments on a single system (or a few systems) are time averages, but the ergodic hypothesis allows those to be equated with ensemble averages (which are far easier to compute). For this replacement to be a useful model (at least in non-pathological systems), we don't really need the system's trajectory to probe <i>all</i> the microstates, but merely to probe the phase space volume densely<sup><a id="fnr.4" class="footref" href="#fn.4">4</a></sup> and uniformly. Loosely speaking, chaotic dynamics can induce a dense sampling, while Liouville's theorem guarantees uniformity along the trajectory. There are caveats to that statement, whose subtleties I haven't fully mapped out yet; suffice to say that there are interesting examples where this doesn't trivially happen, such as the <a href="https://en.wikipedia.org/wiki/Fermi%E2%80%93Pasta%E2%80%93Ulam%E2%80%93Tsingou_problem">Fermi–Pasta–Ulam–Tsingou problem</a> or <a href="http://www.scholarpedia.org/article/Glassy_dynamics">glassy dynamics</a>.
+</p>
+</div>
+</div>
 <div id="footnotes">
 <h2 class="footnotes">Footnotes: </h2>
 <div id="text-footnotes">
 
 <div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">Somewhat like the <a href="https://en.wikipedia.org/wiki/St._Petersburg_paradox">St. Petersburg paradox</a>, but not quite.</p></div></div>
+
+<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara"><p class="footpara">The concentrated measure is basically the model underlying the <a href="https://en.wikipedia.org/wiki/Kelly_criterion">Kelly criterion</a>.</p></div></div>
+
+<div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3">3</a></sup> <div class="footpara"><p class="footpara">This is the commonly (implicitly) assumed situation in probability theory &#x2013; where the number of trials (far) exceeds the number of events underlying a random variable (validating a frequentist perspective) &#x2013; under which ensemble averaging turns out to be a meaningful/useful concept, because of the concentration driven by the law of large numbers.</p></div></div>
+
+<div class="footdef"><sup><a id="fn.4" class="footnum" href="#fnr.4">4</a></sup> <div class="footpara"><p class="footpara">Like the <a href="https://math.stackexchange.com/questions/1027970/what-does-it-mean-for-rational-numbers-to-be-dense-in-the-reals">rationals among the reals</a>.</p></div></div>
 
 
 </div>
