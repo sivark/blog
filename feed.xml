@@ -18,7 +18,7 @@
     <description><![CDATA[]]></description>
     <language>en</language>
     <pubDate>Sun, 07 Mar 2021 00:00:00 -0800</pubDate>
-    <lastBuildDate>Sun, 07 Mar 2021 21:52:20 -0800</lastBuildDate>
+    <lastBuildDate>Sat, 22 May 2021 00:16:38 -0700</lastBuildDate>
     <generator>weblorg 0.1.0 (https://emacs.love/weblorg)</generator>
     <webMaster>web@master (Blog Author)</webMaster>
     <image>
@@ -47,7 +47,7 @@ Consider the simple experiment of repeated tosses of a fair coin, increasing or 
 </p>
 
 <p>
-If we expect this game to be played a small number of times compared with the number of trajectories (eg: a billion \(\approx 2^{30} \gg 2^{100}\), for 100 sequential coin tosses), then the distribution of <i>"typical"</i> trajectories <a href="https://en.wikipedia.org/wiki/Concentration_of_measure"><i>concentrates</i></a> around the median case (expected number of H and T) with probability approaching one, leaving the agent almost no chance to probe the extreme scenarios (long strings of H or long strings of T). This concentrated measure which describes how the (available "small" number of) agents/plays will "probe" the trajectories and leads to what we call "time averages"<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup> is very different from the distribution corresponding to ensemble probabilities of trajectories, where each trajectory is equally likely (for a fair coin).
+If we expect this game to be played a small number of times compared with the number of trajectories (eg: a billion = \(2^{30} \ll 2^{100}\), for 100 sequential coin tosses), then the distribution of <i>"typical"</i> trajectories <a href="https://en.wikipedia.org/wiki/Concentration_of_measure"><i>concentrates</i></a> around the median case (expected number of H and T) with probability approaching one, leaving the agent almost no chance to probe the extreme scenarios (strings with mostly H or strings with mostly T). This concentrated measure &#x2013; which describes how the (available "small" number of) agents/plays will "probe" the trajectories, and leads to what we call "time averages"<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup> &#x2013; is very different from the distribution corresponding to ensemble probabilities of trajectories, where each trajectory is equally likely (for a fair coin).
 </p>
 
 <p>
@@ -216,7 +216,7 @@ None of what I've said might come as a revelation to anyone who's devoted many y
       <guid isPermaLink="false">http://sivark.me/blog/the-great-rebalancing-by-michael-pettis.html</guid>
       <pubDate>Tue, 30 Jun 2020 00:00:00 -0700</pubDate>
       <description><![CDATA[<p>
-(2013), so it is interesting to see how the book has aged.
+(2013), so it is interesting to see how the book has aged. This post is based primarily on the appendix elucidating the author's framework (which is what the author recommends starting with). 
 </p>
 
 <ul class="org-ul">
@@ -375,7 +375,7 @@ Private sector reluctance (hard to capture value), so likely government funded (
       <guid isPermaLink="false">http://sivark.me/blog/thoughts-on-a-fine-balance-by-rohinton-mistry.html</guid>
       <pubDate>Wed, 14 May 2014 00:00:00 -0700</pubDate>
       <description><![CDATA[<p>
-The book was needed some effort to get through the first third or so (took me a week!), while Mistry sets up his four characters and brings them together. After that, it's simply un-put-downable and I read the remaining two-thirds in one sitting. When I finished, it was 7am in the morning and I'd been reading all night!
+The book needed some effort to get through the first third or so (took me a week!), while Mistry sets up his four characters and brings them together. After that, it's simply un-put-downable and I read the remaining two-thirds in one sitting. When I finished, it was 7am in the morning and I'd been reading all night!
 </p>
 
 <blockquote>
@@ -402,7 +402,7 @@ It feels like a tragedy without any moral or lesson to learn. Almost every chara
 </p>
 
 <p>
-If I had to manufacture some meaning, I'd say that it gives me a hint of how incredibly privileged a life I lead, compared to a large number of people. An author doesn't always need to have an upshot for a book. It could be an honest <i>description</i> leaving the readers to make their own observations.
+An author doesn't always need to have an upshot for a book. It could be an honest <i>description</i> leaving the readers to make their own observations. But if I had to manufacture some meaning, I'd say that it gives me a hint of how incredibly privileged a life I lead, compared to a large number of people.
 </p>
 
 <blockquote>
