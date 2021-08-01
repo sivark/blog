@@ -17,8 +17,8 @@
     <link>http://sivark.me/blog/index.html</link>
     <description><![CDATA[]]></description>
     <language>en</language>
-    <pubDate>Sun, 07 Mar 2021 00:00:00 -0800</pubDate>
-    <lastBuildDate>Sat, 22 May 2021 00:16:38 -0700</lastBuildDate>
+    <pubDate>Sun, 01 Aug 2021 00:00:00 -0700</pubDate>
+    <lastBuildDate>Sun, 01 Aug 2021 12:33:42 -0700</lastBuildDate>
     <generator>weblorg 0.1.0 (https://emacs.love/weblorg)</generator>
     <webMaster>web@master (Blog Author)</webMaster>
     <image>
@@ -27,6 +27,124 @@
       <link>http://sivark.me/blog/index.html</link>
     </image>
 
+    
+    <item>
+      <title>Time crystals</title>
+      <link>http://sivark.me/blog/time-crystals.html</link>
+      <author>Siva Swaminathan</author>
+      <guid isPermaLink="false">http://sivark.me/blog/time-crystals.html</guid>
+      <pubDate>Sun, 01 Aug 2021 00:00:00 -0700</pubDate>
+      <description><![CDATA[<p>
+A friend shared with me this <a href="https://www.quantamagazine.org/first-time-crystal-built-using-googles-quantum-computer-20210730/">very nice Quanta magazine article about some recent work on an experimental realization of time crystals in Google's quantum computer</a>, and sought an explanation. Having not looked into time crystals before, this proved to be a fun Sunday morning exercise :-)
+</p>
+
+<p>
+I summarize my understanding below.
+</p>
+
+<div id="outline-container-what-is-a-crystal" class="outline-2">
+<h2 id="what-is-a-crystal"><span class="section-number-2">1</span> What is a crystal?</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Consider a "soup" of electrons and protons. Or, to be more realistic, (valence) electrons and nuclei+(non-valence electrons). One state of matter is a "gas" where all these lumps move around freely, where the spatial translation symmetry of physical laws is fully manifest.
+</p>
+
+<p>
+However, there can be occasions where these lumps decide to coordinate through their (complicated) long-range interactions (in this case electromagnetic, since they're all charged) such that the heavier lumps assemble into some regular periodic structure, and the lighter lumps float freely through the maze.
+</p>
+
+<p>
+If you try to characterize the positions of the heavy lumps by looking at their wavefunction / probability distribution, the auto-correlation function will peak at regular intervals. Likewise, the wavefunctions of the lighter lumps will naturally acquire the periodicity of the lattice, and correspond to Fourier modes with <b>specific frequencies</b>.
+</p>
+
+<p>
+This phenomenon &#x2013; where the "symmetry" of infinitesimal translations breaks down into just finite/discrete translations (modulo lattica spacing) &#x2013; is what we call a (spatial) "crystal".
+</p>
+
+<p>
+As an important technical detail, the phenomenon happens in thermal equilibrium.
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-what-is-a-time-crystal" class="outline-2">
+<h2 id="what-is-a-time-crystal"><span class="section-number-2">2</span> What is a time crystal?</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+By analogy with a (spatial) crystal, could we conjure a system whose natural behavior in time is not a placid ground state which is unchanging, but one which has a periodic nature which "comes back" to itself only after certain intervals (and do so for arbitrarily long periods)?
+</p>
+
+<p>
+A very naive caricature example of this would be oscillatory behavior in any two-state system. The reason this is not a satisfactory example is that because of the coupling to environmental dissipation, the population of excitations in the two state system will naturally (exponentially) decay to the ground state, over time.
+</p>
+
+<p>
+To prevent any exponential decay requires both the states to have the same energy i.e. the system must have two ground states. The simplest example is the double-well potential (W-shaped). The "Sombrero" that Akarsh mentioned is a generalization of this.
+</p>
+
+<p>
+In case you recall from elementary quantum mechanics, simple systems could exist in a superposition of states. But when you get to complex "many-body" systems with "disorder" (read: impurities/dirt/junk), it is extremely hard to maintain this coherence, and the system (arbitrarily) picks one of the two states. The only way for the system to get to the other state is by <b>tunneling</b> &#x2013; the probability of which is exponentially suppressed by the activation barrier &#x2013; even if the net energy change is zero.
+</p>
+
+<p>
+If the system could tunnel back-and-forth between the two (or many) states, then we would have behavior representative of a time crystal. It seems that this was proven to be technically not possible in thermal equilibrium, so the analogy between space &amp; time seems partially broken.
+</p>
+
+<p>
+Ok, so if not in "equilibrium", could a system at least be "driven" by some external mechanism (aka "Floquet systems") to exhibit the desired behavior? This turns out to be possible &#x2013; with different research groups constructing their own examples. One such example is using a laser to drive a system with two ground states.
+</p>
+</div>
+</div>
+
+<div id="outline-container-what-kind-of-weird-systems-have-two-ground-states" class="outline-2">
+<h2 id="what-kind-of-weird-systems-have-two-ground-states"><span class="section-number-2">3</span> What kind of weird systems have two ground states?</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Consider a bunch of interacting spins (commonly simplified as an Ising model). In samples with impurities (doped just the right way), even if the spins happen to be on a lattice, their interactions will have quite a bit of randomness rather than being regular and periodic. <b>Localization</b> is the phenomenon where due to the disorder, electrons can't freely flow through the lattice structure; so their eigenstates &#x2013; instead of being Fourier modes that are spread all over the lattice &#x2013; "localize" spatially.
+</p>
+
+<p>
+Such disordered systems often form states known as a <b>spin glass</b> (glassy/amorphous, as opposed to ordered/crystalling). The high-dimensional space of configurations of this system typically turns out to have an incredibly complicated landscape &#x2013; it is not fully understood, but believed to have many local minima and saddle points, leading to all kinds of interesting behavior &#x2013; including <b>memory</b>. (Aside: For this reason, spin glasses serve as fascinating models of high-dimensional systems "learning" to represent certain information, and there are many links to ML/optimization/etc.)
+</p>
+
+<p>
+Given that these systems have two global minima (start with one global minimum, and flip ALL the spins to get the other global minimum), and enough disorder to stabilize this property even when the system is driven (that is what allows them to have a "rugged" landscape of multiple local minima), they serve as great candidates to build a time crystal.
+</p>
+</div>
+</div>
+
+<div id="outline-container-how-can-we-actually-make-a-time-crystal-out-of-these-systems" class="outline-2">
+<h2 id="how-can-we-actually-make-a-time-crystal-out-of-these-systems"><span class="section-number-2">4</span> How can we actually make a time crystal out of these systems?</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+(Maybe a little too much detail; feel free to skip this section on a first read)
+</p>
+
+<p>
+We have two global minima (call them A &amp; B), but tunneling from one to the other is really really hard. But have heart &#x2013; any quantum superposition of these two global minima are also ground states of the system! In particular, we could take the symmetric/"A+B" and antisymmetric/"A-B" combinations, so that (in reverse) the original global minima are just combinations of the + &amp; - states. So, even if the original system settles in (say) A, we know that A can be represented as a superposition (A+B) + (A-B).
+</p>
+
+<p>
+When driven by a laser the energies of the + and - states will split (E+ &amp; E-), and the states ought to "oscillate" with different frequencies (w+ &amp; w-). Even when the actual system continues to exist in its ground state A ~ (A+B) + (A-B), certain measurable physical properties of the system will oscillate at the beat frequency (w+ - w-), and this will keep going forever. Even though this is "non-equilibrium" in that it requires being driven by a laser, this system doesn't really dissipate the laser energy &#x2013; over a complete cycle, it gives back what it takes. There, we have a time crystal!
+</p>
+</div>
+</div>
+
+<div id="outline-container-what-does-this-have-to-do-with-a-quantum-computer" class="outline-2">
+<h2 id="what-does-this-have-to-do-with-a-quantum-computer"><span class="section-number-2">5</span> What does this have to do with a quantum computer?</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+AFAIU, the relation is only incidental, as a matter of details. Ising spins (aka <b>qubits</b>) with controllable couplings happen to be a popular design framework for building quantum computers (recall the links between spin glass states &amp; optimization problems). If you judiciously choose particular random-ish values of these couplings, you can create a robust system with a pair of ground states (without having to worry about doping the substrate with just the right amount of disorder, etc). Situate these spins in a background of periodic EM fields (in this case, at microwave frequencies) and you have assembled a time crystal demo.
+</p>
+
+<p>
+The fact that a quantum computer is built not just with the goal of being able to "program" the couplings, but also being able to "read out" the qubit states makes it a perfect study tool where you can convincingly repeat the same experiment many many times &#x2013; while querying/probing the system after a different time interval in each repetition, in order to map out the evolving behavior. Do this thoroughly enough, and you can convincingly demonstrate that you've built a time crystal where you have pretty good control over all the pieces that went into the experiment.
+</p>
+</div>
+</div>
+]]></description>
+    </item>
     
     <item>
       <title>Ergodicity Economics and von Neumann-Morgenstern utility</title>
