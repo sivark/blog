@@ -27,7 +27,7 @@ By analogy with a (spatial) crystal, could we conjure a system whose natural beh
 
 A very naive caricature example of this would be oscillatory behavior in any two-state system. The reason this is not a satisfactory example is that because of the coupling to environmental dissipation, the population of excitations in the two state system will naturally (exponentially) decay to the ground state, over time.
 
-To prevent any exponential decay requires both the states to have the same energy i.e. the system must have two ground states. The simplest example is the double-well potential (W-shaped). The "Sombrero" that Akarsh mentioned is a generalization of this.
+To prevent any exponential decay requires both the states to have the same energy i.e. the system must have two ground states. The simplest example is the double-well potential (W-shaped).
 
 In case you recall from elementary quantum mechanics, simple systems could exist in a superposition of states. But when you get to complex "many-body" systems with "disorder" (read: impurities/dirt/junk), it is extremely hard to maintain this coherence, and the system (arbitrarily) picks one of the two states. The only way for the system to get to the other state is by *tunneling* -- the probability of which is exponentially suppressed by the activation barrier -- even if the net energy change is zero.
 
