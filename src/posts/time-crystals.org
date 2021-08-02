@@ -6,7 +6,7 @@
 
 A friend shared with me this [[https://www.quantamagazine.org/first-time-crystal-built-using-googles-quantum-computer-20210730/][very nice Quanta magazine article about some recent work on an experimental realization of time crystals in Google's quantum computer]], and sought an explanation. Having not looked into time crystals before, this proved to be a fun Sunday morning exercise :-)
 
-I summarize my understanding below.
+I summarize my understanding below. I don't fully understand the story yet, so take it with a grain of salt (pun unintended).
 
 * What is a crystal?
 
