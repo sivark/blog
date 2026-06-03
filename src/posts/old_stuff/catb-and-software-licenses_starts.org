@@ -1,0 +1,134 @@
+#+TITLE: Cathedrals, bazaars, and the clusterfuck/mess with software licenses
+
+Thoughts following up on
+[[http://lucumr.pocoo.org/2013/7/23/licensing/]] Excellent article.
+Whether one agrees with the opinion on Github's license selector
+interface, the blog post is worth reading, summarising the state of
+licensing affairs for FOSS projects.
+
+Based on rudimentary evidence from an analysis of some Github
+projects, there seems to be a strong trend towards "more free" licensing
+like the MIT or BSD licenses, and, more worryingly, the lack of a
+license for a large chunk of the code.
+
+(Why the situation isn't as rosy as some would like to believe...)
+
+We're not yet in a post-copyright world. You might claim that
+/eventually/ the world should get rid of copyright, but software (unlike
+art) can quickly become obsolete and useless. If your code isn't used
+for a decade or two, chances are that it's irrelevant to the developers
+of the day since the devices and the framework it was designed for would
+have become obsolete. So, the impact of software written /today/
+definitely depends on licensing matters.
+
+** Cathedral vs Bazaar
+
+It strikes me that this is a result of the contrast in
+[[http://www.catb.org/~esr/writings/cathedral-bazaar/cathedral-bazaar/][Cathedral/Bazaar]]
+styles of FOSS development that ESR wrote about, over a decade ago.
+
+Ideally, RMS would like a world without copyright where people have
+maximum freedom and access to the source code (or analogue) for
+everything. Failing that, given the situation today, he strongly
+believes in /using copyright to ensure freedom/. This function is
+conveniently headed by a monolithic cathedral (under GNU/FSF
+leadership), which can in some sense be considered the bastion of
+freedom. The cathedral has been painstaikingly constructed to be a
+fortress, with the GPL being dependable. As long as the concept of
+copyright is in practice, the cathedral will provide a sheler to those
+who seek to work with free software. By design, it is set up to protect
+people from a hostile environment. Recall that the late eighties and
+nineties when the GNU movement started and flourished was a pretty
+hostile environment for those seeking FOSS software.
+
+Otoh, The bazaar does not have as strong a foundation, and is vulnerable
+to bullies. When the big entity comes and starts trolling the little
+ones, there no cohesibemess or structure to the resilience, and the
+structure collapses.
+
+The remix-culture of today is bazaar-like and inherently dislikes the
+rigidity and bureaucracy associated with the cathedral. The "move fast
+and break things" philosophy probably engenders a lot of innovation (FN:
+and will that be shallow or deep? The shallow innovation boosts and
+gives impetus to the big/deep ones by adding bells and whistles and
+attracting more eyeballs. Twitteribootstrap is a not-too-deep but hugely
+empowering example.). That said, it builds a loose structure which is
+great in good times but might not last in a hostile situation, eg: if
+someone figures out a way to exploit all the unlicensed or improperly
+copyrighted code out there. The bazaar (like useful markets) takes a
+strong foundation and regulation to sustain. Cathedral-developed with
+its strong licensing framework (particularly the GPL) provides that
+platform. It's worth pausing for a minute to think whether something
+like twitter-bootstrap or ---- could have happened without the open
+source LAMP stack and if those might even have been possible without GCC
+and co. The GPL has played an important role in bringing us to this
+strong situation now, where /most programmers in this generation
+consider free software to be a given/ and cannot imagine a hostile
+world. It is worth remembering that this was not always the case, and
+will not necessarily be the case unless one fights for it.
+
+The other way this lala situation could turn sour is people suing each
+other. If there is no clear license, there is a possibility of mismatch
+in expectations between the (upstream) developer and others using the
+code (downstream). Then it might not take long for trolls to get hold of
+some software and start suing people (individuals and small groups) in
+what would effectively be a shakedown. The Github philosophy of
+/Keep-Calm-and-fork/ will be in deep shit and people might start staying
+avoiding foss as it would be filled with poorly-licensed landmines.
+
+Those who consider the GPL to reduce user freedom are missing the point.
+/The GPL is meant to be viral and infective, by design/. Consider that
+to be a tax on developers building on free software -- the tax of using
+GPL software is that you have you pass on your software to the public
+under GPL (very loosely; there are of course many more details and
+subtleties). It is meant to prevent
+moochers and leeches. Just like a state is to be managed, the taxes help
+ensure freedom for /everyone/. Without taxes, the haves can take care of
+themselves and exploit the have-nots. And without law and order, the
+some could recklessly exploit the others. It is difficult to have a
+civil society with the law of the jungle, however "free" the jungle
+might be. The GPL's notion of freedom is that of a civil society rather
+than the jungle. FN: Dont want to get into a debate on libertarian
+political philosophy here.
+
+Reminds me of this thought-provoking excerpt from "A man for all
+seasons" --
+http://whosehappiness.blogspot.com/2010/08/man-for-all-seasons-excerpt.html
+
+#+BEGIN_SRC
+  Alice More: Arrest him!
+  More: Why, what has he done?
+  Margaret More: He's bad!
+  More: There is no law against that.
+  Will Roper: There is! God's law!
+  More: Then God can arrest him.
+  Alice: While you talk, he's gone!
+  More: And go he should, if he was the Devil himself, until he broke the law!
+  Roper: So now you'd give the Devil benefit of law!
+  More: Yes. What would you do? Cut a great road through the law to get after the Devil?
+  Roper: I'd cut down every law in England to do that!
+  More: Oh? And when the last law was down, and the Devil turned 'round on you, where would you hide, Roper, the laws all being flat? This country's planted thick with laws from coast to coast– man's laws, not God's– and if you cut them down—and you're just the man to do it—do you really think you could stand upright in the winds that would blow then? Yes, I'd give the Devil benefit of law, for my own safety's sake. 
+#+END_SRC
+
+** The age of internet services
+
+The problem with moving to internet services.
+
+You have no control what they do with your data and what your user
+rights are. You are also not equipped to reproduce their service if it
+goes down, or if they suddenly try a shakedown (devil is in the EULA
+details).
+
+The whole point of the copyleft movement was to ensure that people
+couldn't leech off free software without also supporting it. This has
+worked tremendously well in practice. From this perspective, its not
+hard to see why Tivoization ought to be protected against.
+
+GPLv3 did not have the foresight to set itself up for the SAAS age (and
+I don't know if they could have forseen it in 2006/07), but it risks
+becoming irrelevant if it doesn't reorient itself within the next few
+years. It's worth checking out what fraction of /recent/ code is
+licensed under GPLv3. Going by rough statistics(ref?) it doesn't
+seem to be doing all that well. Given that most code has a fairly short
+lifespan, it's possible for the GPL and most GPLv3 code to lose
+effectiveness in promoting FOSS, within the next decade or so.

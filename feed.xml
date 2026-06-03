@@ -17,8 +17,8 @@
     <link>http://sivark.me/blogindex.html</link>
     <description><![CDATA[]]></description>
     <language>en</language>
-    <pubDate>Wed, 03 Jun 2026 00:00:00 +0530</pubDate>
-    <lastBuildDate>Thu, 04 Jun 2026 02:19:38 +0530</lastBuildDate>
+    <pubDate>Sun, 01 Aug 2021 00:00:00 +0530</pubDate>
+    <lastBuildDate>Tue, 09 Jun 2026 02:25:46 +0530</lastBuildDate>
     <generator>weblorg 0.1.0 (https://emacs.love/weblorg)</generator>
     <webMaster>web@master (Blog Author)</webMaster>
     <image>
@@ -27,17 +27,6 @@
       <link>http://sivark.me/blogindex.html</link>
     </image>
 
-    
-    <item>
-      <title>Eigenvectors as Archetypes</title>
-      <link>http://sivark.me/blogeigenvectors-as-archetypes.html</link>
-      <author>author@mail.com (Blog Author)</author>
-      <guid isPermaLink="false">http://sivark.me/blogeigenvectors-as-archetypes.html</guid>
-      
-        <pubDate>Wed, 03 Jun 2026 00:00:00 +0530</pubDate>
-      
-      <description><![CDATA[]]></description>
-    </item>
     
     <item>
       <title>Time crystals</title>
