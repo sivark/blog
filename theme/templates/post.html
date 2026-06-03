@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <article class="post">
+    <header>
+      <h1 class="post__title">{{ post.title }}</h1>
+      <div class="post__meta">{% if post.date %}{{ post.date | strftime("%b %d, %Y") }}{% endif %}</div>
+    </header>
+
+    <div class="post__content">
+      {{ post.html | safe }}
+    </div>
+  </article>
+{% endblock %}
