@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <title>AI assistants need adaptive conversational tempo to be good cognitive companions | Siva's weblorg</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Sivaramakrishnan Swaminathan" />
+    <meta name="description" content="Spilled on to the web, my ponderings have." />
+    <link rel="stylesheet" href="static/style.css" type="text/css" />
+    <script>
+    MathJax = {
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+      svg: { fontCache: 'global' }
+    };
+    </script>
+    <script type="text/javascript" id="MathJax-script" async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+    </script>
+  </head>
+  <body>
+    <header>
+      <nav>
+          <a href="http://sivark.me">Siva Swaminathan</a>
+          <span style="margin: 0 0.5rem; opacity: 0.3;">/</span>
+          <a href="index.html">Blog</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      
+  <article class="post">
+    <header>
+      <h1 class="post__title">AI assistants need adaptive conversational tempo to be good cognitive companions</h1>
+      <div class="post__meta">Aug 25, 2026</div>
+    </header>
+
+    <div class="post__content">
+      <p>
+When interacting with AI assistants, be it a coding agent or a chatbot, a short 1-2 sentence prompt often produces a wall of text that would take me several minutes to even read and orient myself, let alone fully understand.
+</p>
+
+<p>
+A hypothetical example:
+</p>
+
+<blockquote>
+<p>
+<b>User</b>: How about using a cache here?
+</p>
+
+<p>
+<b>Desirable response</b>: Okay, but before we commit to caching, let’s look at the distribution of queries. If we’re dominated by repeats, it could be a big win; if most queries are long-tail, we’d be adding complexity for little benefit.
+</p>
+
+<p>
+<b>Actual response</b>: Absolutely. A cache could reduce the repeated DB lookups. Here’s how I’d implement it, the tradeoffs, potential invalidation issues, and an example… (wall of text)
+</p>
+</blockquote>
+
+<p>
+The reason my original prompt was short was because I was in state of low cognitive complexity with regard to my understanding of the problem, or even perhaps low energy. I was only holding a small part of the problem in my head. A long and detailed response is a violent jolt trying to immediately yank me into a very different mind space, and makes for a jarring experience.
+</p>
+
+<p>
+Humans have the situational awareness to fluidly tune their conversational cadence and effort, segueing from small talk to deft rallying to deep and thoughtful responses.
+</p>
+<div id="outline-container-ai-as-cognitive-instrument-not-autonomous-worker" class="outline-2">
+<h2 id="ai-as-cognitive-instrument-not-autonomous-worker"><span class="section-number-2">1.</span> AI as cognitive instrument, not autonomous worker</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+What makes many problems challenging is not that the solution is hard, but ambiguity in what the problem precisely even is. Figuring out the problem (and then the solution) should be an iterative process of hypotheses, observations, and reframing. A cognitive companion AI should stay tightly coupled to your current state of understanding while offering affordances to steer, rather than running off and trying to prematurely “solve” the problem at the current level of understanding.
+</p>
+
+<p>
+Going back to the example at the start, these superficially similar prompts are completely different speech acts:
+</p>
+
+<ul class="org-ul">
+<li>“What about caching?” is a hypothesis</li>
+<li>“Research caching strategies for this system” is a research task.</li>
+<li>“Implement a cache here” is an execution task.</li>
+</ul>
+
+<p>
+So a helpful AI assistant shouldn’t take a tentative thought and prematurely turn it into a full blown task, whether a research task comparing designs, or a task to implement caching. The useful next move in this case is actually to suggest first looking at the distribution of queries, and the implications of introducing caching, in the context of broader project goals.
+</p>
+
+<p>
+Delegating execution is different from delegating authorship of the problem, and this distinction is a question of <i>agency</i>. AI agents currently tend to treat ambiguity as something it should resolve internally so it can act, but a cognitive instrument should instead surface the ambiguity and help the human decide on it. We don’t want our agents to “take ownership” of the problem before interactively resolving alignment on what actually needs to be solved, and what we value in the solution.
+</p>
+
+<p>
+<i>Good technology changes what the human can perceive, understand, and manipulate.</i>
+</p>
+
+<p>
+I don’t always want an answer machine; what I value most is an instrument that helps me move through the problem: ask better questions, and then perhaps help me answer them. This perspective has interesting implications for what “alignment” even means. If the AI first helps me explore and clarify what I want, rather than autonomously acting on an inferred objective, there is less scope for a fragile or dangerous interpretation of my value function.
+</p>
+</div>
+</div>
+<div id="outline-container-verbosity-creates-a-steering-tax" class="outline-2">
+<h2 id="verbosity-creates-a-steering-tax"><span class="section-number-2">2.</span> Verbosity creates a steering tax</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Consider the full system in closed-loop: I prompt the AI, it produces a response, I have to understand the response and then fire off the next prompt.
+</p>
+
+<p>
+Verbosity becomes a tax that slows down this loop, and drastically increases the cost of discovering that the AI has misunderstood me. It might even execute for minutes before checking back, and that makes the conversation much harder to steer. This is particularly damaging in situations where a deeper understanding is to be “unwrapped” iteratively, and the goal is to segue (at a tractable pace) to a state of deeper understanding than the one you started with.
+</p>
+</div>
+</div>
+<div id="outline-container-adaptive-tempo-not-global-conciseness" class="outline-2">
+<h2 id="adaptive-tempo-not-global-conciseness"><span class="section-number-2">3.</span> Adaptive tempo; not global conciseness</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+There needs to be an <i>impedance match</i> between the granularity of its responses and how much of the problem state is loaded into my mind at any given moment. It should meet me where I am, and slowly coax me along the path to greater understanding.
+</p>
+
+<p>
+Setting the agent persona to “be concise” is not helpful, even if we could somehow manage to get it to work. Part of the problem also is that having concise high-level discussion actually requires <i>more thinking</i> :-)
+</p>
+
+<p>
+As a general feature, a helpful collaborator should have a high dynamic range in the detail and depth of responses, and the ability to fluidly adapt that based on the needs of the current conversation.
+</p>
+</div>
+</div>
+<div id="outline-container-a-guess-for-why-this-happens-speculative" class="outline-2">
+<h2 id="a-guess-for-why-this-happens-speculative"><span class="section-number-2">4.</span> A guess for why this happens (speculative)</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+What would we have to change in the training/evaluation of AI assistants for them to optimize for the above? Is the origin of the problem that AI is optimized for task completion, and response quality within each turn, rather than interaction quality over the whole conversation?
+</p>
+
+<p>
+There is some literature showing that preference models can develop a bias towards elaborate responses. I wonder whether this reflects a deeper mismatch in the objective: we typically evaluate “Which response is better?” rather than “Which response makes the conversation better?”
+</p>
+
+<p>
+Also, naive implementations of “helpfulness” might have an anticipatory bias that rewards the assistant for doing more than actually intended. Often, what we need from our assistants is for them to not jump the gun, and instead guide us along the thinking path to help figure out what we’re trying to do.
+</p>
+
+<p>
+More broadly, I wonder whether training AI to “get things done” creates a deeper bias towards prematurely collapsing ambiguity into executable plans, before even aligning on the right question.
+</p>
+</div>
+</div>
+
+    </div>
+  </article>
+
+    </main>
+
+    <footer>
+      &copy; Sivaramakrishnan Swaminathan 2026
+      <div class="ack">
+        Synthesized via <a href="https://emacs.love/weblorg" target="_blank">weblorg</a>
+      </div>
+    </footer>
+  </body>
+</html>

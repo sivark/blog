@@ -1,0 +1,62 @@
+#+TITLE: AI assistants need adaptive conversational tempo to be good cognitive companions
+#+AUTHOR: Siva Swaminathan
+#+DATE: <2026-08-25 Tue>
+#+OPTIONS: toc:nil
+
+When interacting with AI assistants, be it a coding agent or a chatbot, a short 1-2 sentence prompt often produces a wall of text that would take me several minutes to even read and orient myself, let alone fully understand.
+
+A hypothetical example:
+
+#+BEGIN_QUOTE
+*User*: How about using a cache here?
+
+*Desirable response*: Okay, but before we commit to caching, let’s look at the distribution of queries. If we’re dominated by repeats, it could be a big win; if most queries are long-tail, we’d be adding complexity for little benefit.
+
+*Actual response*: Absolutely. A cache could reduce the repeated DB lookups. Here’s how I’d implement it, the tradeoffs, potential invalidation issues, and an example… (wall of text)
+#+END_QUOTE
+
+The reason my original prompt was short was because I was in state of low cognitive complexity with regard to my understanding of the problem, or even perhaps low energy. I was only holding a small part of the problem in my head. A long and detailed response is a violent jolt trying to immediately yank me into a very different mind space, and makes for a jarring experience.
+
+Humans have the situational awareness to fluidly tune their conversational cadence and effort, segueing from small talk to deft rallying to deep and thoughtful responses.
+
+* AI as cognitive instrument, not autonomous worker
+
+What makes many problems challenging is not that the solution is hard, but ambiguity in what the problem precisely even is. Figuring out the problem (and then the solution) should be an iterative process of hypotheses, observations, and reframing. A cognitive companion AI should stay tightly coupled to your current state of understanding while offering affordances to steer, rather than running off and trying to prematurely “solve” the problem at the current level of understanding.
+
+Going back to the example at the start, these superficially similar prompts are completely different speech acts:
+
+- “What about caching?” is a hypothesis
+- “Research caching strategies for this system” is a research task.
+- “Implement a cache here” is an execution task.
+
+So a helpful AI assistant shouldn’t take a tentative thought and prematurely turn it into a full blown task, whether a research task comparing designs, or a task to implement caching. The useful next move in this case is actually to suggest first looking at the distribution of queries, and the implications of introducing caching, in the context of broader project goals.
+
+Delegating execution is different from delegating authorship of the problem, and this distinction is a question of /agency/. AI agents currently tend to treat ambiguity as something it should resolve internally so it can act, but a cognitive instrument should instead surface the ambiguity and help the human decide on it. We don’t want our agents to “take ownership” of the problem before interactively resolving alignment on what actually needs to be solved, and what we value in the solution.
+
+/Good technology changes what the human can perceive, understand, and manipulate./
+
+I don’t always want an answer machine; what I value most is an instrument that helps me move through the problem: ask better questions, and then perhaps help me answer them. This perspective has interesting implications for what “alignment” even means. If the AI first helps me explore and clarify what I want, rather than autonomously acting on an inferred objective, there is less scope for a fragile or dangerous interpretation of my value function.
+
+* Verbosity creates a steering tax
+
+Consider the full system in closed-loop: I prompt the AI, it produces a response, I have to understand the response and then fire off the next prompt.
+
+Verbosity becomes a tax that slows down this loop, and drastically increases the cost of discovering that the AI has misunderstood me. It might even execute for minutes before checking back, and that makes the conversation much harder to steer. This is particularly damaging in situations where a deeper understanding is to be “unwrapped” iteratively, and the goal is to segue (at a tractable pace) to a state of deeper understanding than the one you started with.
+
+* Adaptive tempo; not global conciseness
+
+There needs to be an /impedance match/ between the granularity of its responses and how much of the problem state is loaded into my mind at any given moment. It should meet me where I am, and slowly coax me along the path to greater understanding.
+
+Setting the agent persona to “be concise” is not helpful, even if we could somehow manage to get it to work. Part of the problem also is that having concise high-level discussion actually requires /more thinking/ :-)
+
+As a general feature, a helpful collaborator should have a high dynamic range in the detail and depth of responses, and the ability to fluidly adapt that based on the needs of the current conversation.
+
+* A guess for why this happens (speculative)
+
+What would we have to change in the training/evaluation of AI assistants for them to optimize for the above? Is the origin of the problem that AI is optimized for task completion, and response quality within each turn, rather than interaction quality over the whole conversation?
+
+There is some literature showing that preference models can develop a bias towards elaborate responses. I wonder whether this reflects a deeper mismatch in the objective: we typically evaluate “Which response is better?” rather than “Which response makes the conversation better?”
+
+Also, naive implementations of “helpfulness” might have an anticipatory bias that rewards the assistant for doing more than actually intended. Often, what we need from our assistants is for them to not jump the gun, and instead guide us along the thinking path to help figure out what we’re trying to do.
+
+More broadly, I wonder whether training AI to “get things done” creates a deeper bias towards prematurely collapsing ambiguity into executable plans, before even aligning on the right question.

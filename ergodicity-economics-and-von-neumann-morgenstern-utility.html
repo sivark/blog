@@ -44,11 +44,11 @@ The <a href="https://en.wikipedia.org/wiki/Von_Neumann%E2%80%93Morgenstern_utili
 </p>
 
 <p>
-Consider the simple experiment of repeated tosses of a fair coin, increasing or decreasing the agent's wealth by \(10\%\) on each turn<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>, i.e. <a href="https://en.wikipedia.org/wiki/Geometric_Brownian_motion">Geometric Brownian motion</a> (without the drift, for simplicity). <i>What probability distribution over the set of trajectories is appropriate to capture the agent's behavior?</i> Note that vNM has nothing to say about this &#x2013; leaving it up to the modeler to choose judiciously. That choice implicitly decides between time and ensemble averages (or whatever else kind of average).
+Consider the simple experiment of repeated tosses of a fair coin, increasing or decreasing the agent's wealth by \(10\%\) on each turn<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>, i.e. <a href="https://en.wikipedia.org/wiki/Geometric_Brownian_motion">Geometric Brownian motion</a> (without the drift, for simplicity). <i>What probability distribution over the set of trajectories is appropriate to capture the agent's behavior?</i> Note that vNM has nothing to say about this &ndash; leaving it up to the modeler to choose judiciously. That choice implicitly decides between time and ensemble averages (or whatever else kind of average).
 </p>
 
 <p>
-If we expect this game to be played a small number of times compared with the number of trajectories (eg: a billion = \(2^{30} \ll 2^{100}\), for 100 sequential coin tosses), then the distribution of <i>"typical"</i> trajectories <a href="https://en.wikipedia.org/wiki/Concentration_of_measure"><i>concentrates</i></a> around the median case (expected number of H and T) with probability approaching one, leaving the agent almost no chance to probe the extreme scenarios (strings with mostly H or strings with mostly T). This concentrated measure &#x2013; which describes how the (available "small" number of) agents/plays will "probe" the trajectories, and leads to what we call "time averages"<sup><a id="fnr.2" class="footref" href="#fn.2" role="doc-backlink">2</a></sup> &#x2013; is very different from the distribution corresponding to ensemble probabilities of trajectories, where each trajectory is equally likely (for a fair coin).
+If we expect this game to be played a small number of times compared with the number of trajectories (eg: a billion = \(2^{30} \ll 2^{100}\), for 100 sequential coin tosses), then the distribution of <i>"typical"</i> trajectories <a href="https://en.wikipedia.org/wiki/Concentration_of_measure"><i>concentrates</i></a> around the median case (expected number of H and T) with probability approaching one, leaving the agent almost no chance to probe the extreme scenarios (strings with mostly H or strings with mostly T). This concentrated measure &ndash; which describes how the (available "small" number of) agents/plays will "probe" the trajectories, and leads to what we call "time averages"<sup><a id="fnr.2" class="footref" href="#fn.2" role="doc-backlink">2</a></sup> &ndash; is very different from the distribution corresponding to ensemble probabilities of trajectories, where each trajectory is equally likely (for a fair coin).
 </p>
 
 <p>
@@ -56,7 +56,7 @@ The only way to realize a situation which circumvents this concentration of meas
 </p>
 
 <p>
-To be even more thorough, we care about the probability distribution not in the space of trajectories, but the induced distribution on the observable (i.e. the space of payoffs) &#x2013; which is the quantity we are actually averaging. These two distributions could look very different eg. in cases where a small set of trajectories in the ensemble have outsized (exponentially large) payoffs! IFF we happen to be in the latter situation (depending on the observable/payoff, and the process) we may call the {observable, process} combination  <i>"ergodic"</i>.
+To be even more thorough, we care about the probability distribution not in the space of trajectories, but the induced distribution on the observable (i.e. the space of payoffs) &ndash; which is the quantity we are actually averaging. These two distributions could look very different eg. in cases where a small set of trajectories in the ensemble have outsized (exponentially large) payoffs! IFF we happen to be in the latter situation (depending on the observable/payoff, and the process) we may call the {observable, process} combination  <i>"ergodic"</i>.
 </p>
 <div id="outline-container-ergodicity-and-economic-modeling" class="outline-2">
 <h2 id="ergodicity-and-economic-modeling"><span class="section-number-2">1.</span> Ergodicity and economic modeling</h2>
@@ -66,7 +66,7 @@ EE is not in opposition with the vNM framework! Rather, <i>the point of EE is th
 </p>
 
 <p>
-If one were only interested in modeling a single problem, the prescription of distribution is about as much input as a prescription of utilities &#x2013; they both beg the question equally, in a sense. The true value of EE comes from its potential <i>generalizability to modeling multiple problems with the same prescription of averaging</i> if it turns out that the prescription of time averages is sufficient to correctly model behaviour using simple/obvious utility functions, rather than cooking up a different utility function to model the behavior in each problem.
+If one were only interested in modeling a single problem, the prescription of distribution is about as much input as a prescription of utilities &ndash; they both beg the question equally, in a sense. The true value of EE comes from its potential <i>generalizability to modeling multiple problems with the same prescription of averaging</i> if it turns out that the prescription of time averages is sufficient to correctly model behaviour using simple/obvious utility functions, rather than cooking up a different utility function to model the behavior in each problem.
 </p>
 </div>
 </div>
@@ -91,7 +91,7 @@ The only observables that can be probed by experiments on a single system (or a 
 
 <div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2" role="doc-backlink">2</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">The concentrated measure is basically the model underlying the <a href="https://en.wikipedia.org/wiki/Kelly_criterion">Kelly criterion</a>.</p></div></div>
 
-<div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3" role="doc-backlink">3</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">This is the commonly (implicitly) assumed situation in probability theory &#x2013; where the number of trials (far) exceeds the number of events underlying a random variable (validating a frequentist perspective) &#x2013; under which ensemble averaging turns out to be a meaningful/useful concept, because of the concentration driven by the law of large numbers.</p></div></div>
+<div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3" role="doc-backlink">3</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">This is the commonly (implicitly) assumed situation in probability theory &ndash; where the number of trials (far) exceeds the number of events underlying a random variable (validating a frequentist perspective) &ndash; under which ensemble averaging turns out to be a meaningful/useful concept, because of the concentration driven by the law of large numbers.</p></div></div>
 
 <div class="footdef"><sup><a id="fn.4" class="footnum" href="#fnr.4" role="doc-backlink">4</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">Like the <a href="https://math.stackexchange.com/questions/1027970/what-does-it-mean-for-rational-numbers-to-be-dense-in-the-reals">rationals among the reals</a>.</p></div></div>
 

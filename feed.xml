@@ -17,8 +17,8 @@
     <link>http://sivark.me/blogindex.html</link>
     <description><![CDATA[]]></description>
     <language>en</language>
-    <pubDate>Sun, 01 Aug 2021 00:00:00 +0530</pubDate>
-    <lastBuildDate>Tue, 09 Jun 2026 02:25:46 +0530</lastBuildDate>
+    <pubDate>Wed, 09 Sep 2026 00:00:00 +0530</pubDate>
+    <lastBuildDate>Mon, 28 Sep 2026 14:58:07 +0530</lastBuildDate>
     <generator>weblorg 0.1.0 (https://emacs.love/weblorg)</generator>
     <webMaster>web@master (Blog Author)</webMaster>
     <image>
@@ -27,6 +27,293 @@
       <link>http://sivark.me/blogindex.html</link>
     </image>
 
+    
+    <item>
+      <title>The spirit of research vs the solver mentality</title>
+      <link>http://sivark.me/blogthe-spirit-of-research-vs-the-solver-mentality.html</link>
+      <author>Siva Swaminathan</author>
+      <guid isPermaLink="false">http://sivark.me/blogthe-spirit-of-research-vs-the-solver-mentality.html</guid>
+      
+        <pubDate>Wed, 09 Sep 2026 00:00:00 +0530</pubDate>
+      
+      <description><![CDATA[<p>
+Sometimes being able to "hold a problem" and gaze into the abyss without rushing to solve it is central to coming up with deep insights instead of pedantic ones. Haste is bad practice when the real goal is to mine insights, particularly in research.
+</p>
+
+<p>
+To adapt JFK to capture the spirit of research, [we do things not because they are necessary] but because they are hard; because that goal will serve to organize and measure the best of our energies and skills, because that challenge is one that we are willing to accept.
+</p>
+
+<p>
+The longer arc of human progress doesn't work by hill-climbing, even though that might well power the day-to-day. For exactly that reason we created separate cocoons for intellectual work, away from the humdrum of operational activity. They're meant to be wombs to nurture nascent ideas.
+</p>
+
+<p>
+AI "research" is a strange mix of conference-driven CS lineage and Silicon Valley lineage (shaped by startup mentality, esp SaaS growth hacking), and has been having enormous success in progress of an instrumental nature (rather than insights of an epistemic nature). It feels jarring to see this culture invade our intellectual pockets with a harvesting mentality.
+</p>
+
+<p>
+To "solve" protein folding or fusion energy means something qualitatively very different compared to solving Navier-Stokes or P/NP or the incompleteness theorems. Conflating the two is a category error, downstream of a solver mentality.
+</p>
+]]></description>
+    </item>
+    
+    <item>
+      <title>On verifiability, specification, and automating knowledge work</title>
+      <link>http://sivark.me/blogon-verifiability-specification-and-automating-knowledge-work.html</link>
+      <author>Siva Swaminathan</author>
+      <guid isPermaLink="false">http://sivark.me/blogon-verifiability-specification-and-automating-knowledge-work.html</guid>
+      
+        <pubDate>Tue, 01 Sep 2026 00:00:00 +0530</pubDate>
+      
+      <description><![CDATA[<p>
+I've been reading some chatter about how everything that can be verified can easily be automated, and how this covers much of knowledge work (along with exhortations of how this should push AI services towards outcome-based pricing rather than token-based). I want to rebut the strong version of that claim by pointing out a neglected bit of nuance.
+</p>
+
+<p>
+To delegate something to be “solved”, you don't just need a verifier, but you need to be able to write it down <i>ex ante</i> in a (smart) contract before you kick off the work. But most knowledge work is under-specified, and can't be carved into discrete units with fully defined outcomes; discovery and scoping are intrinsic to it.
+</p>
+
+<p>
+This is what is underlying the common advice to get moving and avoid analysis paralysis. That's also why software gave up on waterfall and moved towards agile as software systems became more complex.
+</p>
+
+<p>
+In essence, there is sometimes no way to specify the goal / verifier <i>a priori</i> without first understanding how to solve the problem! This is related to the AI failure mode articulated in <a href="ai-assistants-need-adaptive-conversational-tempo-to-be-good-cognitive-companions.html">my previous post</a>, that it prematurely interprets your developing thoughts as fleshed-out task descriptions. I suspect AI gets trained towards this behavior because this is what is needed to “automate” work!
+</p>
+]]></description>
+    </item>
+    
+    <item>
+      <title>AI assistants need adaptive conversational tempo to be good cognitive companions</title>
+      <link>http://sivark.me/blogai-assistants-need-adaptive-conversational-tempo-to-be-good-cognitive-companions.html</link>
+      <author>Siva Swaminathan</author>
+      <guid isPermaLink="false">http://sivark.me/blogai-assistants-need-adaptive-conversational-tempo-to-be-good-cognitive-companions.html</guid>
+      
+        <pubDate>Tue, 25 Aug 2026 00:00:00 +0530</pubDate>
+      
+      <description><![CDATA[<p>
+When interacting with AI assistants, be it a coding agent or a chatbot, a short 1-2 sentence prompt often produces a wall of text that would take me several minutes to even read and orient myself, let alone fully understand.
+</p>
+
+<p>
+A hypothetical example:
+</p>
+
+<blockquote>
+<p>
+<b>User</b>: How about using a cache here?
+</p>
+
+<p>
+<b>Desirable response</b>: Okay, but before we commit to caching, let’s look at the distribution of queries. If we’re dominated by repeats, it could be a big win; if most queries are long-tail, we’d be adding complexity for little benefit.
+</p>
+
+<p>
+<b>Actual response</b>: Absolutely. A cache could reduce the repeated DB lookups. Here’s how I’d implement it, the tradeoffs, potential invalidation issues, and an example… (wall of text)
+</p>
+</blockquote>
+
+<p>
+The reason my original prompt was short was because I was in state of low cognitive complexity with regard to my understanding of the problem, or even perhaps low energy. I was only holding a small part of the problem in my head. A long and detailed response is a violent jolt trying to immediately yank me into a very different mind space, and makes for a jarring experience.
+</p>
+
+<p>
+Humans have the situational awareness to fluidly tune their conversational cadence and effort, segueing from small talk to deft rallying to deep and thoughtful responses.
+</p>
+<div id="outline-container-ai-as-cognitive-instrument-not-autonomous-worker" class="outline-2">
+<h2 id="ai-as-cognitive-instrument-not-autonomous-worker"><span class="section-number-2">1.</span> AI as cognitive instrument, not autonomous worker</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+What makes many problems challenging is not that the solution is hard, but ambiguity in what the problem precisely even is. Figuring out the problem (and then the solution) should be an iterative process of hypotheses, observations, and reframing. A cognitive companion AI should stay tightly coupled to your current state of understanding while offering affordances to steer, rather than running off and trying to prematurely “solve” the problem at the current level of understanding.
+</p>
+
+<p>
+Going back to the example at the start, these superficially similar prompts are completely different speech acts:
+</p>
+
+<ul class="org-ul">
+<li>“What about caching?” is a hypothesis</li>
+<li>“Research caching strategies for this system” is a research task.</li>
+<li>“Implement a cache here” is an execution task.</li>
+</ul>
+
+<p>
+So a helpful AI assistant shouldn’t take a tentative thought and prematurely turn it into a full blown task, whether a research task comparing designs, or a task to implement caching. The useful next move in this case is actually to suggest first looking at the distribution of queries, and the implications of introducing caching, in the context of broader project goals.
+</p>
+
+<p>
+Delegating execution is different from delegating authorship of the problem, and this distinction is a question of <i>agency</i>. AI agents currently tend to treat ambiguity as something it should resolve internally so it can act, but a cognitive instrument should instead surface the ambiguity and help the human decide on it. We don’t want our agents to “take ownership” of the problem before interactively resolving alignment on what actually needs to be solved, and what we value in the solution.
+</p>
+
+<p>
+<i>Good technology changes what the human can perceive, understand, and manipulate.</i>
+</p>
+
+<p>
+I don’t always want an answer machine; what I value most is an instrument that helps me move through the problem: ask better questions, and then perhaps help me answer them. This perspective has interesting implications for what “alignment” even means. If the AI first helps me explore and clarify what I want, rather than autonomously acting on an inferred objective, there is less scope for a fragile or dangerous interpretation of my value function.
+</p>
+</div>
+</div>
+<div id="outline-container-verbosity-creates-a-steering-tax" class="outline-2">
+<h2 id="verbosity-creates-a-steering-tax"><span class="section-number-2">2.</span> Verbosity creates a steering tax</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Consider the full system in closed-loop: I prompt the AI, it produces a response, I have to understand the response and then fire off the next prompt.
+</p>
+
+<p>
+Verbosity becomes a tax that slows down this loop, and drastically increases the cost of discovering that the AI has misunderstood me. It might even execute for minutes before checking back, and that makes the conversation much harder to steer. This is particularly damaging in situations where a deeper understanding is to be “unwrapped” iteratively, and the goal is to segue (at a tractable pace) to a state of deeper understanding than the one you started with.
+</p>
+</div>
+</div>
+<div id="outline-container-adaptive-tempo-not-global-conciseness" class="outline-2">
+<h2 id="adaptive-tempo-not-global-conciseness"><span class="section-number-2">3.</span> Adaptive tempo; not global conciseness</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+There needs to be an <i>impedance match</i> between the granularity of its responses and how much of the problem state is loaded into my mind at any given moment. It should meet me where I am, and slowly coax me along the path to greater understanding.
+</p>
+
+<p>
+Setting the agent persona to “be concise” is not helpful, even if we could somehow manage to get it to work. Part of the problem also is that having concise high-level discussion actually requires <i>more thinking</i> :-)
+</p>
+
+<p>
+As a general feature, a helpful collaborator should have a high dynamic range in the detail and depth of responses, and the ability to fluidly adapt that based on the needs of the current conversation.
+</p>
+</div>
+</div>
+<div id="outline-container-a-guess-for-why-this-happens-speculative" class="outline-2">
+<h2 id="a-guess-for-why-this-happens-speculative"><span class="section-number-2">4.</span> A guess for why this happens (speculative)</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+What would we have to change in the training/evaluation of AI assistants for them to optimize for the above? Is the origin of the problem that AI is optimized for task completion, and response quality within each turn, rather than interaction quality over the whole conversation?
+</p>
+
+<p>
+There is some literature showing that preference models can develop a bias towards elaborate responses. I wonder whether this reflects a deeper mismatch in the objective: we typically evaluate “Which response is better?” rather than “Which response makes the conversation better?”
+</p>
+
+<p>
+Also, naive implementations of “helpfulness” might have an anticipatory bias that rewards the assistant for doing more than actually intended. Often, what we need from our assistants is for them to not jump the gun, and instead guide us along the thinking path to help figure out what we’re trying to do.
+</p>
+
+<p>
+More broadly, I wonder whether training AI to “get things done” creates a deeper bias towards prematurely collapsing ambiguity into executable plans, before even aligning on the right question.
+</p>
+</div>
+</div>
+]]></description>
+    </item>
+    
+    <item>
+      <title>Visions and blindspots: the Midjourney scanner</title>
+      <link>http://sivark.me/blogvisions-and-blindspots-the-midjourney-scanner.html</link>
+      <author>Siva Swaminathan</author>
+      <guid isPermaLink="false">http://sivark.me/blogvisions-and-blindspots-the-midjourney-scanner.html</guid>
+      
+        <pubDate>Sat, 20 Jun 2026 00:00:00 +0530</pubDate>
+      
+      <description><![CDATA[<p>
+I ended up writing <a href="https://x.com/ergodicthought/status/2067827364277698929">a longform note on Twitter</a> following the <a href="https://www.midjourney.com/medical/blogpost">launch of the Midjourney ultrasound scanner</a>, but Substack feels like a better place for a slower and more thoughtful discourse. I might have more follow-ups with a more pointed analysis of the underlying ultrasound technology, or how this fits into the healthcare system. For now, I’m just replicating from Twitter my initial thoughts on the Midjourney tank scanner.
+</p>
+
+
+<div id="orgb725e3e" class="figure">
+<p><img src="static/midjourney-tank-scanner.png" alt="midjourney-tank-scanner.png" />
+</p>
+</div>
+
+<p>
+I finally got around to doing a deep dive on the Midjourney tech. Thinking through some of its implications made me feel like the online discourse isn’t quite focusing on the right things, and I wanted to share how I see it.
+</p>
+
+<hr />
+
+<p>
+Firstly, it’s great to see a sensing oriented take on AI in the <b>physical world</b>. There’s more to AI than the virtual world, and there’s more to physical AI than robotics! There’s a lot to be gained by intelligently co-designing hardware and the intelligence layer instead of shoveling pixels into transformers (which is getting expensive, I hear!), and I anticipate that Midjourney is bringing an AI angle to bear on this problem.
+</p>
+
+<p>
+Ultrasound is definitely the frontier for high-resolution, non-ionizing, continuous medical imaging, and also the ripest candidate for expanding usage beyond the hospital. 3D imaging is crucial, and will hopefully become table stakes for the future.
+</p>
+
+<p>
+Hospitals are a service-delivery bottleneck for healthcare, which forces our current system into an episodic and reactive pattern. We ignore issues till they become acute enough to warrant doctor attention. All this feels like the whole system is designed for scarcity: scarce expert attention and scarce diagnostic feedback. Even the typical doctor consultation is flying almost blind, with barely a few bits of information from a discussion focusing on what the patient <i>feels</i>. This feels ripe for disruption over the next decade, as technology breakthroughs flip scarcity into abundance.
+</p>
+
+<p>
+So I love that the Midjourney scanner doesn’t require a sonographer for data acquisition. If every photo needed a photographer, then we would never be taking so many photos. The point is not to replace experts (despite what Geoff Hinton might say; why would you ever <i>reduce</i> capacity at a bottleneck?!); there is a severe shortage of those skills, and there’s no way medical imaging will scale to a billion people if we needed a sonographer and a radiologist to participate on each scan.
+</p>
+
+<p>
+The compute/AI part of the story has definite tailwinds, so I’d like to focus on the hardware layer. The critical question is whether and how it can truly become a platform for transforming medicine.
+</p>
+
+<hr />
+
+<p>
+A ring of devices at 70cm diameter means much longer distances than even the deepest tissue imaging ultrasound is typically used for. Geometric 1/r<sup>2</sup> attenuation through water and exponential attenuation through tissue. Sensitivity is always the key question for any sensor. Picometer-level sensitivity sounds cool but a lot of the useful signal is going to be much much weaker, especially for functional imaging. I find their video a bit confusing on this point, and am not able to figure out the exact sensitivity.
+</p>
+
+<p>
+They could amplify the signal by insonifying with much higher intensity (and still be within safety limits, since the sound intensity would drop quite a bit before contacting the body), but CMUTs typically suffer from a low(er) ceiling on the acoustic power output.
+</p>
+
+<p>
+The challenge for achieving higher sensitivity is that those devices are way more expensive and bulky (roughly 150k USD &amp; 150Kg). It would be a real challenge to fit 40 of them around the tank! Let alone pay for them.
+</p>
+
+<p>
+Coming to the scan experience, it seems that scans currently take 20 minutes. I don’t want to carp about a prototype, so let’s focus on the eventual goal of 60 seconds. It’s going to be incredibly hard for a human to stand very still for a whole minute. Imaging at sub-mm resolution requires stillness at sub-mm resolution. Twitching, breathing, etc will interfere with the imaging. Even that little shudder as your body is immersed in water. Motion artifacts could in principle be corrected with algorithms, but that sounds like a pain in the ass to make robust. Curious to see what fidelity they can actually manage i.e. not just image resolution, but correctness.
+</p>
+
+<p>
+One might expect Midjourney to use generative AI models to compensate for the above. But the diagnostic value of medical images is all in the FINE DETAILS. An image with the liver in roughly the right place and with roughly the right shape is zero signal &ndash; since that’s true for almost every human being. The clinically useful information in an ultrasound image is in the texture and the pattern of speckle. To be useful, what the images really need is to separate certainty and uncertainty. A realistic looking image when the underlying biology is uncertain is actually dangerous! This is exactly the opposite of typical generative AI benchmarks &amp; usage.
+</p>
+
+<hr />
+
+<p>
+We definitely want a future with abundant medical imaging and un-metered healthcare guidance. But it’s historically been much easier to start with an approved clinical grade device and segue to outside-hospital use instead of starting with recreational use and convincing doctors and the FDA to take it seriously.
+</p>
+
+<p>
+That would require starting with higher image quality and fidelity, but those are fundamentally limited by the sensing architecture mostly just being an assemblage of low-hanging technical fruit i.e. not radically better than what was possible before. I get the sense they might have optimized for time-to-market and minimizing the technical risk, rather than ultimate quality of output. David Holz claimed in the launch video that image quality will improve over time (using the first MRI as a benchmark for comparison), but I don’t see how that is possible with <b>this hardware stack</b>.
+</p>
+
+<p>
+It’s great to not need a skilled operator, but&hellip; a scanning hub is just a hospital dressed in better vibes. It is just as much a systemic bottleneck. There are a lot more than 50k hospitals, and we are far from making medical imaging abundant. Wouldn’t it be way better if everyone could scan themselves at home, all the time?
+</p>
+
+<p>
+To make home use possible, the real clinical need is a flexible architecture that can scale <i>down</i> all the way from a full-body tomographic scan to a local ultrasound scan. That is an individual Butterfly device; but we already know that is not quite good enough for home use. The tank device scales it up into an all-or-nothing scan. Neither the user nor the doctor benefits from this form-factor; at best it has potential for collecting a population-scale full-body-ultrasound dataset.
+</p>
+
+<p>
+Even supposing that was the only goal, I still see two problems:
+</p>
+
+<ol class="org-ol">
+<li>Even for the purpose of a data corpus, all the medically interesting information in the corpus of scans is in the fine details which needs better sensing technology, as explained above.</li>
+<li>There is little benefit for the user from a scan, and lacking natural incentives for each individual scan makes it an uphill battle to get population-scale coverage beyond early adopters who might get a scan done out of curiosity.</li>
+</ol>
+
+<p>
+Lacking a clear theory for clinical relevance, I worry that the device will be perceived by doctors as frivolous use, and hence opposed for fear of over-diagnosis (scan the discourse for mentions of incidentaloma). Given what happened with WHOOP, not proactively preparing for the FDA would be <i>asking</i> for censure. Midjourney will need to convince the FDA on the risk-benefit calculus, and right now I don’t see anything substantial in the benefits column, at least from the launch blogpost.
+</p>
+
+<p>
+All this is not to say that Midjourney is wrong; only that it is unclear to me how they plan to be useful. I’m definitely bullish about applying more technology and AI to understand the human body, but it behooves us to think more carefully about the clinical relevance and user experience.
+</p>
+
+<hr />
+
+<p>
+AI could transform healthcare, but only if it has high-quality <i>context</i> to reason over, and the richest source for that context is medical imaging. Abundance requires diagnostic-grade image quality and a form factor that fits into daily life. That means co-designing the hardware and the intelligence layers from scratch, with clinical relevance as the north star. The sensing stack is where the real leverage sits, and it’s barely getting any air time in the current discussion. Sensing is the foundational problem to solve; all else is edifice.
+</p>
+]]></description>
+    </item>
     
     <item>
       <title>Time crystals</title>
@@ -59,7 +346,7 @@ If you try to characterize the positions of the heavy lumps by looking at their 
 </p>
 
 <p>
-This phenomenon &#x2013; where the "symmetry" of infinitesimal translations breaks down into just finite/discrete translations (modulo lattica spacing) &#x2013; is what we call a (spatial) "crystal".
+This phenomenon &ndash; where the "symmetry" of infinitesimal translations breaks down into just finite/discrete translations (modulo lattica spacing) &ndash; is what we call a (spatial) "crystal".
 </p>
 
 <p>
@@ -83,7 +370,7 @@ To prevent any exponential decay requires both the states to have the same energ
 </p>
 
 <p>
-In case you recall from elementary quantum mechanics, simple systems could exist in a superposition of states. But when you get to complex "many-body" systems with "disorder" (read: impurities/dirt/junk), it is extremely hard to maintain this coherence, and the system (arbitrarily) picks one of the two states. The only way for the system to get to the other state is by <b>tunneling</b> &#x2013; the probability of which is exponentially suppressed by the activation barrier &#x2013; even if the net energy change is zero.
+In case you recall from elementary quantum mechanics, simple systems could exist in a superposition of states. But when you get to complex "many-body" systems with "disorder" (read: impurities/dirt/junk), it is extremely hard to maintain this coherence, and the system (arbitrarily) picks one of the two states. The only way for the system to get to the other state is by <b>tunneling</b> &ndash; the probability of which is exponentially suppressed by the activation barrier &ndash; even if the net energy change is zero.
 </p>
 
 <p>
@@ -91,7 +378,7 @@ If the system could tunnel back-and-forth between the two (or many) states, then
 </p>
 
 <p>
-Ok, so if not in "equilibrium", could a system at least be "driven" by some external mechanism (aka "Floquet systems") to exhibit the desired behavior? This turns out to be possible &#x2013; with different research groups constructing their own examples. One such example is using a laser to drive a system with two ground states.
+Ok, so if not in "equilibrium", could a system at least be "driven" by some external mechanism (aka "Floquet systems") to exhibit the desired behavior? This turns out to be possible &ndash; with different research groups constructing their own examples. One such example is using a laser to drive a system with two ground states.
 </p>
 </div>
 </div>
@@ -99,11 +386,11 @@ Ok, so if not in "equilibrium", could a system at least be "driven" by some exte
 <h2 id="what-kind-of-weird-systems-have-two-ground-states"><span class="section-number-2">3.</span> What kind of weird systems have two ground states?</h2>
 <div class="outline-text-2" id="text-3">
 <p>
-Consider a bunch of interacting spins (commonly simplified as an Ising model). In samples with impurities (doped just the right way), even if the spins happen to be on a lattice, their interactions will have quite a bit of randomness rather than being regular and periodic. <b>Localization</b> is the phenomenon where due to the disorder, electrons can't freely flow through the lattice structure; so their eigenstates &#x2013; instead of being Fourier modes that are spread all over the lattice &#x2013; "localize" spatially.
+Consider a bunch of interacting spins (commonly simplified as an Ising model). In samples with impurities (doped just the right way), even if the spins happen to be on a lattice, their interactions will have quite a bit of randomness rather than being regular and periodic. <b>Localization</b> is the phenomenon where due to the disorder, electrons can't freely flow through the lattice structure; so their eigenstates &ndash; instead of being Fourier modes that are spread all over the lattice &ndash; "localize" spatially.
 </p>
 
 <p>
-Such disordered systems often form states known as a <b>spin glass</b> (glassy/amorphous, as opposed to ordered/crystalling). The high-dimensional space of configurations of this system typically turns out to have an incredibly complicated landscape &#x2013; it is not fully understood, but believed to have many local minima and saddle points, leading to all kinds of interesting behavior &#x2013; including <b>memory</b>. (Aside: For this reason, spin glasses serve as fascinating models of high-dimensional systems "learning" to represent certain information, and there are many links to ML/optimization/etc.)
+Such disordered systems often form states known as a <b>spin glass</b> (glassy/amorphous, as opposed to ordered/crystalling). The high-dimensional space of configurations of this system typically turns out to have an incredibly complicated landscape &ndash; it is not fully understood, but believed to have many local minima and saddle points, leading to all kinds of interesting behavior &ndash; including <b>memory</b>. (Aside: For this reason, spin glasses serve as fascinating models of high-dimensional systems "learning" to represent certain information, and there are many links to ML/optimization/etc.)
 </p>
 
 <p>
@@ -119,11 +406,11 @@ Given that these systems have two global minima (start with one global minimum, 
 </p>
 
 <p>
-We have two global minima (call them A &amp; B), but tunneling from one to the other is really really hard. But have heart &#x2013; any quantum superposition of these two global minima are also ground states of the system! In particular, we could take the symmetric/"A+B" and antisymmetric/"A-B" combinations, so that (in reverse) the original global minima are just combinations of the + &amp; - states. So, even if the original system settles in (say) A, we know that A can be represented as a superposition (A+B) + (A-B).
+We have two global minima (call them A &amp; B), but tunneling from one to the other is really really hard. But have heart &ndash; any quantum superposition of these two global minima are also ground states of the system! In particular, we could take the symmetric/"A+B" and antisymmetric/"A-B" combinations, so that (in reverse) the original global minima are just combinations of the + &amp; - states. So, even if the original system settles in (say) A, we know that A can be represented as a superposition (A+B) + (A-B).
 </p>
 
 <p>
-When driven by a laser the energies of the + and - states will split (E+ &amp; E-), and the states ought to "oscillate" with different frequencies (w+ &amp; w-). Even when the actual system continues to exist in its ground state A ~ (A+B) + (A-B), certain measurable physical properties of the system will oscillate at the beat frequency (w+ - w-), and this will keep going forever. Even though this is "non-equilibrium" in that it requires being driven by a laser, this system doesn't really dissipate the laser energy &#x2013; over a complete cycle, it gives back what it takes. There, we have a time crystal!
+When driven by a laser the energies of the + and - states will split (E+ &amp; E-), and the states ought to "oscillate" with different frequencies (w+ &amp; w-). Even when the actual system continues to exist in its ground state A ~ (A+B) + (A-B), certain measurable physical properties of the system will oscillate at the beat frequency (w+ - w-), and this will keep going forever. Even though this is "non-equilibrium" in that it requires being driven by a laser, this system doesn't really dissipate the laser energy &ndash; over a complete cycle, it gives back what it takes. There, we have a time crystal!
 </p>
 </div>
 </div>
@@ -135,7 +422,7 @@ AFAIU, the relation is only incidental, as a matter of details. Ising spins (aka
 </p>
 
 <p>
-The fact that a quantum computer is built not just with the goal of being able to "program" the couplings, but also being able to "read out" the qubit states makes it a perfect study tool where you can convincingly repeat the same experiment many many times &#x2013; while querying/probing the system after a different time interval in each repetition, in order to map out the evolving behavior. Do this thoroughly enough, and you can convincingly demonstrate that you've built a time crystal where you have pretty good control over all the pieces that went into the experiment.
+The fact that a quantum computer is built not just with the goal of being able to "program" the couplings, but also being able to "read out" the qubit states makes it a perfect study tool where you can convincingly repeat the same experiment many many times &ndash; while querying/probing the system after a different time interval in each repetition, in order to map out the evolving behavior. Do this thoroughly enough, and you can convincingly demonstrate that you've built a time crystal where you have pretty good control over all the pieces that went into the experiment.
 </p>
 </div>
 </div>
@@ -159,11 +446,11 @@ The <a href="https://en.wikipedia.org/wiki/Von_Neumann%E2%80%93Morgenstern_utili
 </p>
 
 <p>
-Consider the simple experiment of repeated tosses of a fair coin, increasing or decreasing the agent's wealth by \(10\%\) on each turn<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>, i.e. <a href="https://en.wikipedia.org/wiki/Geometric_Brownian_motion">Geometric Brownian motion</a> (without the drift, for simplicity). <i>What probability distribution over the set of trajectories is appropriate to capture the agent's behavior?</i> Note that vNM has nothing to say about this &#x2013; leaving it up to the modeler to choose judiciously. That choice implicitly decides between time and ensemble averages (or whatever else kind of average).
+Consider the simple experiment of repeated tosses of a fair coin, increasing or decreasing the agent's wealth by \(10\%\) on each turn<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>, i.e. <a href="https://en.wikipedia.org/wiki/Geometric_Brownian_motion">Geometric Brownian motion</a> (without the drift, for simplicity). <i>What probability distribution over the set of trajectories is appropriate to capture the agent's behavior?</i> Note that vNM has nothing to say about this &ndash; leaving it up to the modeler to choose judiciously. That choice implicitly decides between time and ensemble averages (or whatever else kind of average).
 </p>
 
 <p>
-If we expect this game to be played a small number of times compared with the number of trajectories (eg: a billion = \(2^{30} \ll 2^{100}\), for 100 sequential coin tosses), then the distribution of <i>"typical"</i> trajectories <a href="https://en.wikipedia.org/wiki/Concentration_of_measure"><i>concentrates</i></a> around the median case (expected number of H and T) with probability approaching one, leaving the agent almost no chance to probe the extreme scenarios (strings with mostly H or strings with mostly T). This concentrated measure &#x2013; which describes how the (available "small" number of) agents/plays will "probe" the trajectories, and leads to what we call "time averages"<sup><a id="fnr.2" class="footref" href="#fn.2" role="doc-backlink">2</a></sup> &#x2013; is very different from the distribution corresponding to ensemble probabilities of trajectories, where each trajectory is equally likely (for a fair coin).
+If we expect this game to be played a small number of times compared with the number of trajectories (eg: a billion = \(2^{30} \ll 2^{100}\), for 100 sequential coin tosses), then the distribution of <i>"typical"</i> trajectories <a href="https://en.wikipedia.org/wiki/Concentration_of_measure"><i>concentrates</i></a> around the median case (expected number of H and T) with probability approaching one, leaving the agent almost no chance to probe the extreme scenarios (strings with mostly H or strings with mostly T). This concentrated measure &ndash; which describes how the (available "small" number of) agents/plays will "probe" the trajectories, and leads to what we call "time averages"<sup><a id="fnr.2" class="footref" href="#fn.2" role="doc-backlink">2</a></sup> &ndash; is very different from the distribution corresponding to ensemble probabilities of trajectories, where each trajectory is equally likely (for a fair coin).
 </p>
 
 <p>
@@ -171,7 +458,7 @@ The only way to realize a situation which circumvents this concentration of meas
 </p>
 
 <p>
-To be even more thorough, we care about the probability distribution not in the space of trajectories, but the induced distribution on the observable (i.e. the space of payoffs) &#x2013; which is the quantity we are actually averaging. These two distributions could look very different eg. in cases where a small set of trajectories in the ensemble have outsized (exponentially large) payoffs! IFF we happen to be in the latter situation (depending on the observable/payoff, and the process) we may call the {observable, process} combination  <i>"ergodic"</i>.
+To be even more thorough, we care about the probability distribution not in the space of trajectories, but the induced distribution on the observable (i.e. the space of payoffs) &ndash; which is the quantity we are actually averaging. These two distributions could look very different eg. in cases where a small set of trajectories in the ensemble have outsized (exponentially large) payoffs! IFF we happen to be in the latter situation (depending on the observable/payoff, and the process) we may call the {observable, process} combination  <i>"ergodic"</i>.
 </p>
 <div id="outline-container-ergodicity-and-economic-modeling" class="outline-2">
 <h2 id="ergodicity-and-economic-modeling"><span class="section-number-2">1.</span> Ergodicity and economic modeling</h2>
@@ -181,7 +468,7 @@ EE is not in opposition with the vNM framework! Rather, <i>the point of EE is th
 </p>
 
 <p>
-If one were only interested in modeling a single problem, the prescription of distribution is about as much input as a prescription of utilities &#x2013; they both beg the question equally, in a sense. The true value of EE comes from its potential <i>generalizability to modeling multiple problems with the same prescription of averaging</i> if it turns out that the prescription of time averages is sufficient to correctly model behaviour using simple/obvious utility functions, rather than cooking up a different utility function to model the behavior in each problem.
+If one were only interested in modeling a single problem, the prescription of distribution is about as much input as a prescription of utilities &ndash; they both beg the question equally, in a sense. The true value of EE comes from its potential <i>generalizability to modeling multiple problems with the same prescription of averaging</i> if it turns out that the prescription of time averages is sufficient to correctly model behaviour using simple/obvious utility functions, rather than cooking up a different utility function to model the behavior in each problem.
 </p>
 </div>
 </div>
@@ -206,7 +493,7 @@ The only observables that can be probed by experiments on a single system (or a 
 
 <div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2" role="doc-backlink">2</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">The concentrated measure is basically the model underlying the <a href="https://en.wikipedia.org/wiki/Kelly_criterion">Kelly criterion</a>.</p></div></div>
 
-<div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3" role="doc-backlink">3</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">This is the commonly (implicitly) assumed situation in probability theory &#x2013; where the number of trials (far) exceeds the number of events underlying a random variable (validating a frequentist perspective) &#x2013; under which ensemble averaging turns out to be a meaningful/useful concept, because of the concentration driven by the law of large numbers.</p></div></div>
+<div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3" role="doc-backlink">3</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">This is the commonly (implicitly) assumed situation in probability theory &ndash; where the number of trials (far) exceeds the number of events underlying a random variable (validating a frequentist perspective) &ndash; under which ensemble averaging turns out to be a meaningful/useful concept, because of the concentration driven by the law of large numbers.</p></div></div>
 
 <div class="footdef"><sup><a id="fn.4" class="footnum" href="#fnr.4" role="doc-backlink">4</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">Like the <a href="https://math.stackexchange.com/questions/1027970/what-does-it-mean-for-rational-numbers-to-be-dense-in-the-reals">rationals among the reals</a>.</p></div></div>
 
@@ -240,11 +527,11 @@ Typically, the most natural path for the emergence of a work of such beauty is a
 </p>
 
 <p>
-&#x2014;
+&mdash;
 </p>
 
 <p>
-Artifacts produced in this manner get called "art", though it's worth discriminating between the process and the artifacts. Art <span class="underline">works</span> are (imho) valueable not intrinsically, but for the message they carry &#x2013; especially for their potency in offering a new perspective of reality, in contrast to those embedded in a certain context and history. They might be so effective in reshaping the sensory experience that they automatically lead to a consequential change in behavior. Absorbed into the human experience, they forever change how we perceive things.<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>
+Artifacts produced in this manner get called "art", though it's worth discriminating between the process and the artifacts. Art <span class="underline">works</span> are (imho) valueable not intrinsically, but for the message they carry &ndash; especially for their potency in offering a new perspective of reality, in contrast to those embedded in a certain context and history. They might be so effective in reshaping the sensory experience that they automatically lead to a consequential change in behavior. Absorbed into the human experience, they forever change how we perceive things.<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>
 </p>
 
 <p>
@@ -260,11 +547,11 @@ Art, in this sense, involves indirect communication, sharing perceptions that mi
 </p>
 
 <p>
-&#x2014;
+&mdash;
 </p>
 
 <p>
-It is often very hard to communicate ideas in abstract, and the best way to share is to actually reify the idea into something concrete &#x2013; using an apropos medium.
+It is often very hard to communicate ideas in abstract, and the best way to share is to actually reify the idea into something concrete &ndash; using an apropos medium.
 The medium may be chosen for a combination of its affordances, and your proficiency/skill in <b>playing</b> with it.
 </p>
 
@@ -273,11 +560,11 @@ Sometimes the reification might be so subtle as to simply enable the creation of
 </p>
 
 <p>
-The expressive medium could be pretty much anything &#x2013; including engineering, economics, software, communities/organizations, etc, and ways of “playing” those media might involve anything from scientific research to starting a company to managing people &amp; organizations.<sup><a id="fnr.2" class="footref" href="#fn.2" role="doc-backlink">2</a></sup>
+The expressive medium could be pretty much anything &ndash; including engineering, economics, software, communities/organizations, etc, and ways of “playing” those media might involve anything from scientific research to starting a company to managing people &amp; organizations.<sup><a id="fnr.2" class="footref" href="#fn.2" role="doc-backlink">2</a></sup>
 </p>
 
 <p>
-In this perspective, media are merely vessels &#x2013; a means to communicate &#x2013; and come and go as the circumstances of technology and society evolve. It's worth keeping separate any specific medium from the deeper idea of perception &amp; communication.
+In this perspective, media are merely vessels &ndash; a means to communicate &ndash; and come and go as the circumstances of technology and society evolve. It's worth keeping separate any specific medium from the deeper idea of perception &amp; communication.
 </p>
 
 <p>
@@ -289,7 +576,7 @@ We often wear several layers of tinted galsses when we see the world, and radica
 </p>
 
 <p>
-&#x2014;
+&mdash;
 </p>
 
 <p>
@@ -301,12 +588,12 @@ Every human activity, including life itself, is potentially a canvas on which yo
 </p>
 
 <p>
-The (main?) application of technology is, imho, to expand artistic freedom and agency &#x2013; to help people <span class="underline">get a grip</span> (affordances) on tools and media so they may express themselves artistically (including self-authoring).
+The (main?) application of technology is, imho, to expand artistic freedom and agency &ndash; to help people <span class="underline">get a grip</span> (affordances) on tools and media so they may express themselves artistically (including self-authoring).
 </p>
 
 
 <p>
-&#x2014;
+&mdash;
 </p>
 
 <p>
@@ -348,14 +635,14 @@ None of what I've said might come as a revelation to anyone who's devoted many y
 <h2 id="on-production-surpluses-and-income-inequality-appendix"><span class="section-number-2">1.</span> On production surpluses and income inequality (appendix)</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
-<li>Age of mass production &amp; mass consumption. Lacking capital for mass consumption, non-savers reduce consumption, so there's no return for savers investing capital to boost production &#x2013; unless consumers take on debt. So, <i>rising income inequality forces up the savings rate</i> since rich people can't/don't consume proportional to wealth (or redistribute for others to consume). If credit cannot surge enough, another consequence is rising unemployment (decreased production to match decreased demand) (This is what triggered New Deal policy making, as a response to Gilded Age inequality &#x2013; Marriner Eccles FRB Chairman 1932-1948).</li>
+<li>Age of mass production &amp; mass consumption. Lacking capital for mass consumption, non-savers reduce consumption, so there's no return for savers investing capital to boost production &ndash; unless consumers take on debt. So, <i>rising income inequality forces up the savings rate</i> since rich people can't/don't consume proportional to wealth (or redistribute for others to consume). If credit cannot surge enough, another consequence is rising unemployment (decreased production to match decreased demand) (This is what triggered New Deal policy making, as a response to Gilded Age inequality &ndash; Marriner Eccles FRB Chairman 1932-1948).</li>
 <li>If household income (as a fraction of GDP) shrinks, then households retain (and therefore consume) a smaller fraction of their productivity.</li>
 <li>Pettis argues that different policies in Germany &amp; China which transfer money from households (suppress consumption) to producers (boost production) have similar effects.
 <ul class="org-ul">
 <li>In Germany, agreement circa ~2000 to restrain wage growth lower than productivity. German euro is "undervalued" in relation to Spain, Italy, France having "overvalued" euro.</li>
 <li>In China, caused by a combination of large (rural) unemployment rate (and export-focused policies?). Undervalued yuan since 1994, and artificially low interest rates.</li>
 </ul></li>
-<li>If there are available avenues for productive investment (i.e. capital is the limiting factor determining growth i.e. "capital-ism"), inequality is a good eay of financing them &#x2013; since the rich will likely invest marginal gains, compared to the poor who will likely consume marginal gains. (Many developing countries suffer because of insufficient savings to bootstrap productive investments, simultaneously creating jobs).</li>
+<li>If there are available avenues for productive investment (i.e. capital is the limiting factor determining growth i.e. "capital-ism"), inequality is a good eay of financing them &ndash; since the rich will likely invest marginal gains, compared to the poor who will likely consume marginal gains. (Many developing countries suffer because of insufficient savings to bootstrap productive investments, simultaneously creating jobs).</li>
 <li>Productivity improvements could result in increasing incomes or inequality (empirical analysis: Piketty's r-vs-g). When productivity improvements are sufficiently high (the target of juicy investment opportunities i.e. low-hanging fruit), household quality-of-life increases even when inequality does (can now consume more per unit income, so okay if incomes don't grow as much, esp. as a fraction of GDP), and the increased inequality is used to sponsor the next round of productivity improvements. This is the crux of the "trickle down" theory (where capitalists are mythologized as "job creators" leading progress; the phase the US "elite" believe themselves to be in).</li>
 </ul>
 </div>
@@ -367,12 +654,12 @@ As an immediate consequence, productive investment must rise with savings, or it
 </p>
 <ul class="org-ul">
 <li>But (as Eccles pointed out) since the purpose of investment today is (to profit off) increased consumption tomorrow, productive investment will only happen if inequality were not permanent (and about to reverse). So, unlikely to get increase in productive investment.</li>
-<li>Over short time periods, increasing inequality can be "buffered" by increasing inventory &#x2013; but likely people will not stupidly continue that over long periods.</li>
-<li>Too much capital, and not enough investing opportunities, so interest rates will naturally fall &#x2013; and suddenly cheap capital will likely lead to speculative asset bubbles! Example unproductive investments:
+<li>Over short time periods, increasing inequality can be "buffered" by increasing inventory &ndash; but likely people will not stupidly continue that over long periods.</li>
+<li>Too much capital, and not enough investing opportunities, so interest rates will naturally fall &ndash; and suddenly cheap capital will likely lead to speculative asset bubbles! Example unproductive investments:
 <ul class="org-ul">
 <li>Infrastructure: unused {lavish buildings, swanky airports, highways, hosting a mega sporting event, etc}. Pettis claims: Arizona housing tracts, Dublin apartments, Spanish airports, Chinese ghost cities, etc.</li>
 <li>Financial assets: overvalued securities.</li>
-<li>Investment in zero-sum games (eg: Softbank &#x2013; WeWork and Uber; What about SuperPACs &#x2013; too small in scale?)</li>
+<li>Investment in zero-sum games (eg: Softbank &ndash; WeWork and Uber; What about SuperPACs &ndash; too small in scale?)</li>
 </ul></li>
 </ul>
 </div>
@@ -412,7 +699,7 @@ Needs transfer of wealth from the rich to the poor. (eg: redistributive taxation
 <ul class="org-ul">
 <li>Summary table of possible equilibrating responses to increased savings from income inequality.
 <ul class="org-ul">
-<li>Of the six options, only "sustainable"<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup> ones are to put savings towards productive investments, or unemployment (or welfare &#x2013; either by the rich, or through the government with VERY HIGH marginal tax rates, which is one of the sub-cases of "linear consumption").</li>
+<li>Of the six options, only "sustainable"<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup> ones are to put savings towards productive investments, or unemployment (or welfare &ndash; either by the rich, or through the government with VERY HIGH marginal tax rates, which is one of the sub-cases of "linear consumption").</li>
 <li>In the current political climate (welfare unlikely), if productive investments don't absorb savings, the only macroeconomic solution is unemployment.</li>
 </ul></li>
 <li>In the intermediate term, unsustainable possibilities include debt-fueled consumption, but that will likely increase debt beyond serviceable levels, so unlikely to continue.
@@ -445,7 +732,7 @@ Private sector reluctance (hard to capture value), so likely government funded (
 <div class="outline-text-3" id="text-1-5">
 <blockquote>
 <p>
-<i>"It is utterly impossible, as this country has demonstrated again and again, for the rich to save as much as they have been trying to save, and save anything that is worth saving. They can save idle factories and useless railroad coaches; they can save empty office buildings and closed banks; they can save paper evidences of foreign loans; but as a class they cannot save anything that is worth saving, above and beyond the amount that is made profitable by the increase of consumer buying. It is for the interests of the well-to-do &#x2013; to protect them from the results of their own folly &#x2013; that we should take from them a sufficient amount of their surplus to enable consumers to consume and business to operate at a profit. This is not “soaking the rich”; it is saving the rich. Incidentally, it is the only way to assure them the serenity and security which they do not have at the present moment."</i>  (Marriner Eccles testimony to the US Congress, 1933)
+<i>"It is utterly impossible, as this country has demonstrated again and again, for the rich to save as much as they have been trying to save, and save anything that is worth saving. They can save idle factories and useless railroad coaches; they can save empty office buildings and closed banks; they can save paper evidences of foreign loans; but as a class they cannot save anything that is worth saving, above and beyond the amount that is made profitable by the increase of consumer buying. It is for the interests of the well-to-do &ndash; to protect them from the results of their own folly &ndash; that we should take from them a sufficient amount of their surplus to enable consumers to consume and business to operate at a profit. This is not “soaking the rich”; it is saving the rich. Incidentally, it is the only way to assure them the serenity and security which they do not have at the present moment."</i>  (Marriner Eccles testimony to the US Congress, 1933)
 </p>
 </blockquote>
 </div>
@@ -456,14 +743,14 @@ Private sector reluctance (hard to capture value), so likely government funded (
 <ul class="org-ul">
 <li><i>FRB further injecting "liquidity" into capital markets is akin to pouring fuel on the fire, because it's all meant to go towards investment!</i> Also, perversely, generating debt to fuel investment is effectively claiming that inequality is <i>"not high enough"</i> to produce the necessary investment, for the given consumption level!</li>
 <li>Note: <b>The same likely applies even if the inequality is driven by technology/automation, and in fact explains the imperial dynamics of the industrial revolution quite well!</b></li>
-<li>PS: Apart from inequality, population dynamics also contribute to the dynamics of savings. Young and old people weigh heavily on the consumption, while middle-aged people weigh heavily on savings&#x2026; either for retirement, or to fuel consumption of the other two groups under their umbrella. An excess of savings-age population (unwilling to retire) will also likely cause complications.</li>
+<li>PS: Apart from inequality, population dynamics also contribute to the dynamics of savings. Young and old people weigh heavily on the consumption, while middle-aged people weigh heavily on savings&hellip; either for retirement, or to fuel consumption of the other two groups under their umbrella. An excess of savings-age population (unwilling to retire) will also likely cause complications.</li>
 <li>Unemployment in high-savings regions is reminiscent of the Maxwell construction for phase mixtures, stabilizing otherwise metastable states. (Employment being the order parameter; savings among employed must match consumption among unemployed)</li>
-<li>Alternate solution to "unemployment" &#x2013; instead of reducing the number of employed people, reduce the per-capita working hours.</li>
+<li>Alternate solution to "unemployment" &ndash; instead of reducing the number of employed people, reduce the per-capita working hours.</li>
 <li>Basically, the rest of the world refuses to act as the "bank" for the thrifty, allowing them to run up large and sustained surpluses, because that is a hard promise to keep.</li>
 <li>The savings glut from US inequality combined with the savings glut from China has been a double whammy on the Rust Belt[fn::which is exactly where unemployment hit first! Only, the Republicans &amp; progressive Democrats disagree on which of the two sources of savings glut to squeeze, while the moderate Democrats are stuck) (and rural US more broadly).</li>
 <li>Done well, healthcare welfare might be one form of wealth redistribution which is very difficult to export away to China (largely a service industry, and most value of drugs captured in the US). Likewise education, since American students don't go abroad for college. (<i>I don't mean loans, unless they're loans that are meant to be forgiven</i>). This would reduce (structural) inequality, by pipint (rich people) savings towards (poor people) consumption; any improvement in productive capacity from improved health or capabilities is a bonus.</li>
 <li>Applications to India? Sainath has mentioned that since the opening up of India's economy, India has had <b>massive</b> inequality growth. How does that affect unemployment, and trade deficits? Also, the propensity to buy gold contributes to the deficitr</li>
-<li>Applications to intra-US politics &#x2013; rural(central)-vs-urban(bicoastal)?</li>
+<li>Applications to intra-US politics &ndash; rural(central)-vs-urban(bicoastal)?</li>
 <li>Why do religions forbid lending with interest?</li>
 <li>We saw a use of this perspective to analyze the industrial revolution and imperialism. What about analyzing automation?</li>
 </ul>
@@ -505,11 +792,11 @@ The book needed some effort to get through the first third or so (took me a week
 
 
 <p>
-It's impossible not to feel overwhelmed by the absolutely heart-wrenching tale. I feel devastated and bitter. 1984 is the only other book which affected me like this. Wretched story but sublime writing&#x2026; it feels effortless and poignant at the same time. I typically read to seek escape, but this is <i>so</i> not the kind of book for that. I definitely wasn't prepared for this.
+It's impossible not to feel overwhelmed by the absolutely heart-wrenching tale. I feel devastated and bitter. 1984 is the only other book which affected me like this. Wretched story but sublime writing&hellip; it feels effortless and poignant at the same time. I typically read to seek escape, but this is <i>so</i> not the kind of book for that. I definitely wasn't prepared for this.
 </p>
 
 <p>
-The book had some fine humour &#x2013; spontaneous and witty and made me really laugh. It shows how people in the direst situations are still capable of laughing genuinely. And smile and hope. And just when you think that the glimmer of hope will lead to sunrise, Mistry pulls out the rug from under your feet and leaves you with a cold and treacherous dawn followed by sunshine as normal, which seems particularly cruel since it does little to shine light on the protagonist's lives, almost as if it were a matter-of-fact occurrence and their suffering was nobody's concern.
+The book had some fine humour &ndash; spontaneous and witty and made me really laugh. It shows how people in the direst situations are still capable of laughing genuinely. And smile and hope. And just when you think that the glimmer of hope will lead to sunrise, Mistry pulls out the rug from under your feet and leaves you with a cold and treacherous dawn followed by sunshine as normal, which seems particularly cruel since it does little to shine light on the protagonist's lives, almost as if it were a matter-of-fact occurrence and their suffering was nobody's concern.
 </p>
 
 <p>
@@ -517,7 +804,7 @@ The author has produced something so stunning that I feel thoroughly inadequate 
 </p>
 
 <p>
-It feels like a tragedy without any moral or lesson to learn. Almost every character in the book is a good and sincere person (limited by a perspective based on their circumstances) but fickle fate wrings them through misery for no obvious reason &#x2013; to the extent that their fight almost seems futile. It conveys the hopelessness and powerlessness felt by the protagonists &#x2013; which denies you any possible sense of catharsis. Everything seems bleak, with no hope for redemption.
+It feels like a tragedy without any moral or lesson to learn. Almost every character in the book is a good and sincere person (limited by a perspective based on their circumstances) but fickle fate wrings them through misery for no obvious reason &ndash; to the extent that their fight almost seems futile. It conveys the hopelessness and powerlessness felt by the protagonists &ndash; which denies you any possible sense of catharsis. Everything seems bleak, with no hope for redemption.
 </p>
 
 <p>
@@ -526,7 +813,7 @@ An author doesn't always need to have an upshot for a book. It could be an hones
 
 <blockquote>
 <p>
-<i>"You fellows are amazing&#x2026; Everything happens to you only. Each time you come here, you have a new adventure story to entertain us"</i>
+<i>"You fellows are amazing&hellip; Everything happens to you only. Each time you come here, you have a new adventure story to entertain us"</i>
 </p>
 </blockquote>
 

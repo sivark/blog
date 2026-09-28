@@ -1,0 +1,57 @@
+#+TITLE: Visions and blindspots: the Midjourney scanner
+#+AUTHOR: Siva Swaminathan
+#+DATE: <2026-06-20 Sat>
+#+OPTIONS: toc:nil
+
+I ended up writing [[https://x.com/ergodicthought/status/2067827364277698929][a longform note on Twitter]] following the [[https://www.midjourney.com/medical/blogpost][launch of the Midjourney ultrasound scanner]], but Substack feels like a better place for a slower and more thoughtful discourse. I might have more follow-ups with a more pointed analysis of the underlying ultrasound technology, or how this fits into the healthcare system. For now, I’m just replicating from Twitter my initial thoughts on the Midjourney tank scanner.
+
+[[file:static/midjourney-tank-scanner.png]]
+
+I finally got around to doing a deep dive on the Midjourney tech. Thinking through some of its implications made me feel like the online discourse isn’t quite focusing on the right things, and I wanted to share how I see it.
+
+-----
+
+Firstly, it’s great to see a sensing oriented take on AI in the *physical world*. There’s more to AI than the virtual world, and there’s more to physical AI than robotics! There’s a lot to be gained by intelligently co-designing hardware and the intelligence layer instead of shoveling pixels into transformers (which is getting expensive, I hear!), and I anticipate that Midjourney is bringing an AI angle to bear on this problem.
+
+Ultrasound is definitely the frontier for high-resolution, non-ionizing, continuous medical imaging, and also the ripest candidate for expanding usage beyond the hospital. 3D imaging is crucial, and will hopefully become table stakes for the future.
+
+Hospitals are a service-delivery bottleneck for healthcare, which forces our current system into an episodic and reactive pattern. We ignore issues till they become acute enough to warrant doctor attention. All this feels like the whole system is designed for scarcity: scarce expert attention and scarce diagnostic feedback. Even the typical doctor consultation is flying almost blind, with barely a few bits of information from a discussion focusing on what the patient /feels/. This feels ripe for disruption over the next decade, as technology breakthroughs flip scarcity into abundance.
+
+So I love that the Midjourney scanner doesn’t require a sonographer for data acquisition. If every photo needed a photographer, then we would never be taking so many photos. The point is not to replace experts (despite what Geoff Hinton might say; why would you ever /reduce/ capacity at a bottleneck?!); there is a severe shortage of those skills, and there’s no way medical imaging will scale to a billion people if we needed a sonographer and a radiologist to participate on each scan.
+
+The compute/AI part of the story has definite tailwinds, so I’d like to focus on the hardware layer. The critical question is whether and how it can truly become a platform for transforming medicine.
+
+-----
+
+A ring of devices at 70cm diameter means much longer distances than even the deepest tissue imaging ultrasound is typically used for. Geometric 1/r^2 attenuation through water and exponential attenuation through tissue. Sensitivity is always the key question for any sensor. Picometer-level sensitivity sounds cool but a lot of the useful signal is going to be much much weaker, especially for functional imaging. I find their video a bit confusing on this point, and am not able to figure out the exact sensitivity.
+
+They could amplify the signal by insonifying with much higher intensity (and still be within safety limits, since the sound intensity would drop quite a bit before contacting the body), but CMUTs typically suffer from a low(er) ceiling on the acoustic power output.
+
+The challenge for achieving higher sensitivity is that those devices are way more expensive and bulky (roughly 150k USD & 150Kg). It would be a real challenge to fit 40 of them around the tank! Let alone pay for them.
+
+Coming to the scan experience, it seems that scans currently take 20 minutes. I don’t want to carp about a prototype, so let’s focus on the eventual goal of 60 seconds. It’s going to be incredibly hard for a human to stand very still for a whole minute. Imaging at sub-mm resolution requires stillness at sub-mm resolution. Twitching, breathing, etc will interfere with the imaging. Even that little shudder as your body is immersed in water. Motion artifacts could in principle be corrected with algorithms, but that sounds like a pain in the ass to make robust. Curious to see what fidelity they can actually manage i.e. not just image resolution, but correctness.
+
+One might expect Midjourney to use generative AI models to compensate for the above. But the diagnostic value of medical images is all in the FINE DETAILS. An image with the liver in roughly the right place and with roughly the right shape is zero signal -- since that’s true for almost every human being. The clinically useful information in an ultrasound image is in the texture and the pattern of speckle. To be useful, what the images really need is to separate certainty and uncertainty. A realistic looking image when the underlying biology is uncertain is actually dangerous! This is exactly the opposite of typical generative AI benchmarks & usage.
+
+-----
+
+We definitely want a future with abundant medical imaging and un-metered healthcare guidance. But it’s historically been much easier to start with an approved clinical grade device and segue to outside-hospital use instead of starting with recreational use and convincing doctors and the FDA to take it seriously.
+
+That would require starting with higher image quality and fidelity, but those are fundamentally limited by the sensing architecture mostly just being an assemblage of low-hanging technical fruit i.e. not radically better than what was possible before. I get the sense they might have optimized for time-to-market and minimizing the technical risk, rather than ultimate quality of output. David Holz claimed in the launch video that image quality will improve over time (using the first MRI as a benchmark for comparison), but I don’t see how that is possible with *this hardware stack*.
+
+It’s great to not need a skilled operator, but... a scanning hub is just a hospital dressed in better vibes. It is just as much a systemic bottleneck. There are a lot more than 50k hospitals, and we are far from making medical imaging abundant. Wouldn’t it be way better if everyone could scan themselves at home, all the time?
+
+To make home use possible, the real clinical need is a flexible architecture that can scale /down/ all the way from a full-body tomographic scan to a local ultrasound scan. That is an individual Butterfly device; but we already know that is not quite good enough for home use. The tank device scales it up into an all-or-nothing scan. Neither the user nor the doctor benefits from this form-factor; at best it has potential for collecting a population-scale full-body-ultrasound dataset.
+
+Even supposing that was the only goal, I still see two problems:
+
+1. Even for the purpose of a data corpus, all the medically interesting information in the corpus of scans is in the fine details which needs better sensing technology, as explained above.
+2. There is little benefit for the user from a scan, and lacking natural incentives for each individual scan makes it an uphill battle to get population-scale coverage beyond early adopters who might get a scan done out of curiosity.
+
+Lacking a clear theory for clinical relevance, I worry that the device will be perceived by doctors as frivolous use, and hence opposed for fear of over-diagnosis (scan the discourse for mentions of incidentaloma). Given what happened with WHOOP, not proactively preparing for the FDA would be /asking/ for censure. Midjourney will need to convince the FDA on the risk-benefit calculus, and right now I don’t see anything substantial in the benefits column, at least from the launch blogpost.
+
+All this is not to say that Midjourney is wrong; only that it is unclear to me how they plan to be useful. I’m definitely bullish about applying more technology and AI to understand the human body, but it behooves us to think more carefully about the clinical relevance and user experience.
+
+-----
+
+AI could transform healthcare, but only if it has high-quality /context/ to reason over, and the richest source for that context is medical imaging. Abundance requires diagnostic-grade image quality and a form factor that fits into daily life. That means co-designing the hardware and the intelligence layers from scratch, with clinical relevance as the north star. The sensing stack is where the real leverage sits, and it’s barely getting any air time in the current discussion. Sensing is the foundational problem to solve; all else is edifice.

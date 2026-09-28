@@ -1,0 +1,14 @@
+#+TITLE: The spirit of research vs the solver mentality
+#+AUTHOR: Siva Swaminathan
+#+DATE: <2026-09-09 Wed>
+#+OPTIONS: toc:nil
+
+Sometimes being able to "hold a problem" and gaze into the abyss without rushing to solve it is central to coming up with deep insights instead of pedantic ones. Haste is bad practice when the real goal is to mine insights, particularly in research.
+
+To adapt JFK to capture the spirit of research, [we do things not because they are necessary] but because they are hard; because that goal will serve to organize and measure the best of our energies and skills, because that challenge is one that we are willing to accept.
+
+The longer arc of human progress doesn't work by hill-climbing, even though that might well power the day-to-day. For exactly that reason we created separate cocoons for intellectual work, away from the humdrum of operational activity. They're meant to be wombs to nurture nascent ideas.
+
+AI "research" is a strange mix of conference-driven CS lineage and Silicon Valley lineage (shaped by startup mentality, esp SaaS growth hacking), and has been having enormous success in progress of an instrumental nature (rather than insights of an epistemic nature). It feels jarring to see this culture invade our intellectual pockets with a harvesting mentality.
+
+To "solve" protein folding or fusion energy means something qualitatively very different compared to solving Navier-Stokes or P/NP or the incompleteness theorems. Conflating the two is a category error, downstream of a solver mentality.
