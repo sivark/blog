@@ -1,4 +1,4 @@
-#+TITLE: The spirit of research vs the solver mentality
+#+TITLE: Solvers, seers, and the spirit of research
 #+AUTHOR: Siva Swaminathan
 #+DATE: <2026-09-09 Wed>
 #+OPTIONS: toc:nil
