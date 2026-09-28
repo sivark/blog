@@ -1,13 +1,15 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1 style="font-size: 1rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--accent); margin-bottom: 3rem;">Posts</h1>
+  <div class="section-label mb-8">Posts</div>
 
   <ul class="posts">
     {% for post in posts %}
-      <li class="post-title">
-        <a href="{{ post.slug }}.html">{{ post.title }}</a>
-        <div class="post-date">{% if post.date %}{{ post.date | strftime("%b %d, %Y") }}{% endif %}</div>
+      <li class="post-item group">
+        {% if post.date %}<div class="post-date">{{ post.date | strftime("%b %d, %Y") }}</div>{% endif %}
+        <h2 class="post-title">
+          <a href="{{ post.slug }}.html">{{ post.title }}</a>
+        </h2>
       </li>
     {% endfor %}
   </ul>

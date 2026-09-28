@@ -1,159 +1,32 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=EB+Garamond:ital,wght@0,400;0,700;1,400&display=swap');
+/* Blog-specific article styling */
 
-:root {
-    /* Heritage (Light) - Exact match for sivark.me */
-    --bg-paper: #f7f2e8;
-    --text-primary: #0f172a;
-    --text-secondary: #475569;
-    --accent: #8b4513; /* Tobacco */
-    --border: #e2e8f0;
-}
-
-@media (prefers-color-scheme: dark) {
-    :root {
-        /* Imperial Slate (Dark) - Exact match for sivark.me */
-        --bg-paper: #1a1c1e;
-        --text-primary: #f8fafc;
-        --text-secondary: #94a3b8;
-        --accent: #c29b6d; /* Bronze */
-        --border: #1e293b;
-    }
-}
-
-/* Base Styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    background-color: var(--bg-paper);
-}
-
-body {
-    background-color: var(--bg-paper);
-    color: var(--text-primary);
+/* Headings */
+h1, h2, h3, h4, .serif-body, .post-body {
     font-family: 'EB Garamond', serif;
-    font-size: 1.25rem;
-    line-height: 1.75;
-    -webkit-font-smoothing: antialiased;
-    position: relative;
-    min-height: 100vh;
-    text-align: justify;
 }
 
-/* Ricepaper/Fog Texture Overlay - Exact match for sivark.me */
-body::before {
-    content: "";
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    z-index: 50;
-    pointer-events: none;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-    filter: grayscale(100%) contrast(250%) brightness(95%);
-    mix-blend-mode: multiply;
-    opacity: 0.2;
+/* Post Detail View */
+.post-title-main {
+    font-size: 2.5rem;
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
 }
 
-@media (prefers-color-scheme: dark) {
-    body::before {
-        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='fogFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.4' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.5 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23fogFilter)'/%3E%3C/svg%3E");
-        filter: brightness(1.1) contrast(150%);
-        mix-blend-mode: overlay;
-        opacity: 0.5;
+@media (min-width: 768px) {
+    .post-title-main {
+        font-size: 3.5rem;
     }
 }
 
-/* Layout */
-header, footer, #main {
-    max-width: 56.2rem;
-    margin: 0 auto;
-    padding: 2rem;
-    position: relative;
-    z-index: 1;
+.post-body {
+    font-size: 1.25rem;
+    line-height: 1.85;
 }
 
-header {
-    border-bottom: 2px solid var(--text-primary);
-    margin-top: 2rem;
-    margin-bottom: 4rem;
-    padding-bottom: 1rem;
+.post-body p {
+    margin-bottom: 1.75rem;
 }
-
-footer {
-    border-top: 1px solid var(--border);
-    margin-top: 6rem;
-    padding-top: 2rem;
-    padding-bottom: 4rem;
-    font-family: 'Inter', sans-serif;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    color: var(--text-secondary);
-    text-align: center;
-}
-
-/* Navigation */
-nav {
-    font-family: 'Inter', sans-serif;
-    font-weight: 800;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    color: var(--accent);
-    margin-bottom: 1rem;
-}
-
-nav a {
-    color: var(--accent);
-    text-decoration: none;
-    transition: color 0.2s;
-    border-bottom: 1px solid transparent;
-}
-
-nav a:hover {
-    color: var(--text-primary);
-    border-bottom-color: var(--text-primary);
-}
-
-.site-identity {
-    margin-bottom: 2rem;
-}
-
-.site-title a {
-    font-size: 2.5rem;
-    font-weight: 800;
-    color: var(--text-primary);
-    border-bottom: none;
-    text-transform: none;
-    letter-spacing: -0.02em;
-}
-
-.site-subtitle {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: var(--text-secondary);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-top: -0.5rem;
-}
-
-/* Typography */
-h1, h2, h3, h4 {
-    font-weight: 700;
-    line-height: 1.2;
-    margin-top: 3rem;
-    margin-bottom: 1.5rem;
-    color: var(--text-primary);
-}
-
-h1 { font-size: 3rem; margin-top: 0; }
-h2 { font-size: 2.25rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
-h3 { font-size: 1.75rem; font-style: italic; }
-
-p { margin-bottom: 2rem; }
 
 /* Links */
 a {
@@ -167,140 +40,50 @@ a:hover {
     border-bottom-color: var(--accent);
 }
 
-/* Post Specifics */
-.post__title {
-    font-size: 3.5rem;
-    margin-bottom: 0.5rem;
-    line-height: 1.1;
-}
-
-.post__meta {
-    font-family: 'Inter', sans-serif;
-    text-transform: uppercase;
-    font-size: 0.75rem;
-    letter-spacing: 0.15em;
-    font-weight: 800;
-    color: var(--accent);
-    margin-bottom: 3rem;
-}
-
 /* Blockquotes */
 blockquote {
     font-style: italic;
-    border-left: 3px solid var(--accent);
+    border-left: 2px solid var(--accent);
     padding-left: 1.5rem;
-    margin: 3rem 0;
-    color: var(--text-secondary);
+    margin: 2.5rem 0;
+    color: #475569;
 }
 
-/* Technical Sections */
+.dark blockquote {
+    color: #94a3b8;
+}
+
+/* Technical Sections / Code */
 code, pre {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter', monospace;
     font-size: 0.95rem;
     line-height: 1.6;
 }
 
 pre {
-    background: rgba(0,0,0,0.03);
+    background: rgba(0, 0, 0, 0.03);
     padding: 1.5rem;
     border-radius: 0.75rem;
     overflow-x: auto;
-    border: 1px solid var(--border);
+    border: 1px solid #e2e8f0;
     margin: 2.5rem 0;
 }
 
-@media (prefers-color-scheme: dark) {
-    pre { background: rgba(255,255,255,0.05); }
+.dark pre {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: #334155;
 }
 
 code {
-    background: rgba(139, 69, 19, 0.1);
+    background: rgba(139, 69, 19, 0.09);
     color: var(--accent);
     padding: 0.2rem 0.4rem;
     border-radius: 0.3rem;
     font-weight: 600;
 }
 
-@media (prefers-color-scheme: dark) {
-    code { background: rgba(194, 155, 109, 0.1); }
-}
-
-/* Index Page (Posts list) */
-.posts {
-    list-style: none;
-    padding: 0;
-}
-
-.post-title {
-    margin-bottom: 2rem;
-}
-
-.post-title a {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: var(--text-primary);
-    line-height: 1.2;
-    border-bottom: none;
-}
-
-.post-title a:hover {
-    color: var(--accent);
-}
-
-.post-date {
-    font-family: 'Inter', sans-serif;
-    text-transform: uppercase;
-    font-size: 0.75rem;
-    letter-spacing: 0.15em;
-    font-weight: 800;
-    color: var(--accent);
-    margin-top: 0.25rem;
-}
-
-/* Weblorg specific acknowledgment in footer */
-.ack {
-    margin-top: 1.5rem;
-    font-size: 0.65rem;
-    opacity: 0.8;
-}
-
-/* Footnotes */
-#footnotes {
-    margin-top: 6rem;
-    border-top: 2px solid var(--text-primary);
-    padding-top: 2rem;
-}
-
-.footnotes {
-    font-size: 1.5rem;
-    margin-bottom: 1.5rem;
-}
-
-.footref {
-    vertical-align: super;
-    font-size: 0.8rem;
-    margin-left: 0.2rem;
-    border-bottom: none;
-}
-
-.footdef {
-    font-size: 1.1rem;
-    color: var(--text-secondary);
-    margin-bottom: 1.5rem;
-    display: flex;
-    gap: 1rem;
-}
-
-.footdef sup {
-    flex-shrink: 0;
-}
-
-/* Images */
-img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 0.75rem;
-    margin: 2rem 0;
+.dark code {
+    background: rgba(194, 155, 109, 0.12);
 }
 
 /* Lists */
@@ -313,7 +96,56 @@ li {
     margin-bottom: 0.5rem;
 }
 
-/* Support for Org-mode specific classes if any */
-.outline-2 {
-    margin-top: 4rem;
+/* Images */
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.75rem;
+    margin: 2rem 0;
 }
+
+/* Footnotes */
+#footnotes {
+    margin-top: 5rem;
+    border-top: 2px solid #0f172a;
+    padding-top: 2rem;
+}
+
+.dark #footnotes {
+    border-top-color: #334155;
+}
+
+.footnotes {
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.footref {
+    vertical-align: super;
+    font-size: 0.8rem;
+    margin-left: 0.2rem;
+    border-bottom: none;
+}
+
+.footdef {
+    font-size: 1.1rem;
+    color: #475569;
+    margin-bottom: 1.25rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.dark footdef {
+    color: #94a3b8;
+}
+
+.footdef sup {
+    flex-shrink: 0;
+}
+
+.outline-2 {
+    margin-top: 3.5rem;
+}
+
+
+

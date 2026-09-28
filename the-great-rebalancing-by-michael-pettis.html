@@ -1,11 +1,55 @@
 <!doctype html>
-<html lang="en-us">
+<html lang="en" class="scroll-smooth">
   <head>
     <meta charset="utf-8">
-    <title>The Great Rebalancing, by Michael Pettis | Siva's weblorg</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>The Great Rebalancing, by Michael Pettis | Siva Swaminathan</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Sivaramakrishnan Swaminathan" />
     <meta name="description" content="Spilled on to the web, my ponderings have." />
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+    <style type="text/tailwindcss">
+        @theme {
+            --color-paper: var(--bg-light);
+            --color-midnight: var(--bg-dark);
+        }
+        @variant dark (&:where(.dark, .dark *));
+    </style>
+    <script>
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+    <style>
+        :root { --bg-light: #f7f2e8; --bg-dark: #f7f2e8; --accent: #8b4513; }
+        .dark { --bg-light: #1a1c1e; --bg-dark: #1a1c1e; --accent: #c29b6d; }
+
+        body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; transition: background-color 0.4s ease, color 0.4s ease; }
+        
+        /* UNIFIED SERIF: EB Garamond for everything editorial */
+        h1, h2, h3, h4, .serif-body, .post-body { font-family: 'EB Garamond', serif; }
+        
+        .text-accent { color: var(--accent); }
+        .border-accent { border-color: var(--accent); }
+        .bg-accent { background-color: var(--accent); }
+        .decoration-accent { text-decoration-color: var(--accent); }
+
+        body::before {
+            content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 50; pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            filter: grayscale(100%) contrast(250%) brightness(95%); mix-blend-mode: multiply; opacity: 0.2;
+        }
+        .dark body::before { 
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='fogFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.4' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.5 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23fogFilter)'/%3E%3C/svg%3E");
+            filter: brightness(1.1) contrast(150%); mix-blend-mode: overlay; opacity: 0.5; 
+        }
+        
+        .section-label { letter-spacing: 0.15em; text-transform: uppercase; font-size: 0.8rem; font-weight: 800; }
+        .content-fade { animation: fadeIn 0.8s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
     <link rel="stylesheet" href="static/style.css" type="text/css" />
     <script>
     MathJax = {
@@ -17,24 +61,29 @@
       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
     </script>
   </head>
-  <body>
-    <header>
-      <nav>
-          <a href="http://sivark.me">Siva Swaminathan</a>
-          <span style="margin: 0 0.5rem; opacity: 0.3;">/</span>
-          <a href="index.html">Blog</a>
-      </nav>
-    </header>
+  <body class="bg-paper text-slate-900 dark:text-slate-200 selection:bg-accent selection:text-black">
+    <div class="max-w-5xl mx-auto px-6 py-10 md:py-16 content-fade relative">
+      <header class="border-b-2 border-slate-900 dark:border-slate-700 pb-8 mb-12 relative flex justify-between items-center">
+        <nav class="flex items-center gap-3 text-[12px] font-bold uppercase tracking-[0.2em]">
+          <a href="http://sivark.me" class="text-accent hover:text-black dark:hover:text-white transition-colors">Siva Swaminathan</a>
+          <span class="text-slate-400 dark:text-slate-600">/</span>
+          <a href="index.html" class="text-slate-900 dark:text-white">Blog</a>
+        </nav>
+        <button id="theme-toggle" type="button" aria-label="Toggle theme" class="p-3 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all">
+          <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 fill-current text-yellow-500" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 fill-current text-slate-700 dark:text-slate-300" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+        </button>
+      </header>
 
-    <main id="main">
-      
+      <main id="main">
+        
   <article class="post">
-    <header>
-      <h1 class="post__title">The Great Rebalancing, by Michael Pettis</h1>
-      <div class="post__meta">Jun 30, 2020</div>
+    <header class="post-header">
+      <div class="post-meta">Jun 30, 2020</div>
+      <h1 class="post-title-main">The Great Rebalancing, by Michael Pettis</h1>
     </header>
 
-    <div class="post__content">
+    <div class="post-body">
       <p>
 (2013), so it is interesting to see how the book has aged. This post is based primarily on the appendix elucidating the author's framework (which is what the author recommends starting with). 
 </p>
@@ -188,13 +237,32 @@ Private sector reluctance (hard to capture value), so likely government funded (
     </div>
   </article>
 
-    </main>
+      </main>
 
-    <footer>
-      &copy; Sivaramakrishnan Swaminathan 2026
-      <div class="ack">
-        Synthesized via <a href="https://emacs.love/weblorg" target="_blank">weblorg</a>
-      </div>
-    </footer>
+      <footer class="mt-24 pt-8 border-t border-slate-200 dark:border-slate-800 text-[11px] uppercase tracking-[0.2em] font-bold text-slate-400 dark:text-slate-500 text-center">
+        <div>&copy; 2026 Sivaramakrishnan Swaminathan</div>
+      </footer>
+    </div>
+
+    <script>
+      var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+      var themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+      function updateToggleIcons() {
+        var isDark = document.documentElement.classList.contains('dark');
+        if (themeToggleLightIcon && themeToggleDarkIcon) {
+          themeToggleLightIcon.classList.toggle('hidden', !isDark);
+          themeToggleDarkIcon.classList.toggle('hidden', isDark);
+        }
+      }
+      var themeToggleBtn = document.getElementById('theme-toggle');
+      if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', function() {
+          var isDark = document.documentElement.classList.toggle('dark');
+          localStorage.setItem('color-theme', isDark ? 'dark' : 'light');
+          updateToggleIcons();
+        });
+      }
+      updateToggleIcons();
+    </script>
   </body>
 </html>
