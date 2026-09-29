@@ -1,6 +1,7 @@
 #+TITLE: The Great Rebalancing, by Michael Pettis
 #+AUTHOR: Siva Swaminathan
 #+DATE:<2020-06-30 Tue>
+#+FILETAGS: :books:economics:
 #+OPTIONS: toc:nil
 
 (2013), so it is interesting to see how the book has aged. This post is based primarily on the appendix elucidating the author's framework (which is what the author recommends starting with). 

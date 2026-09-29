@@ -2,9 +2,23 @@
 
 {% block content %}
   <article class="post">
-    <header class="post-header">
-      {% if post.date %}<div class="post-meta">{{ post.date | strftime("%b %d, %Y") }}</div>{% endif %}
-      <h1 class="post-title-main">{{ post.title }}</h1>
+    <header class="post-header mb-10 pb-6 border-b border-slate-200 dark:border-slate-800">
+      <div class="flex flex-wrap items-center gap-3 text-xs font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-4">
+        {% if post.date %}
+          <time datetime="{{ post.date | strftime("%Y-%m-%d") }}">{{ post.date | strftime("%b %d, %Y") }}</time>
+        {% endif %}
+        {% if post.filetags %}
+          {% if post.date %}<span class="text-slate-300 dark:text-slate-700">•</span>{% endif %}
+          <div class="flex flex-wrap gap-1.5 items-center">
+            {% for tag in post.filetags %}
+              <a href="index.html#tag={{ tag }}" class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium tracking-normal lowercase transition-colors {% if tag == "substack" %}bg-amber-500/10 text-amber-700 dark:text-amber-300 border border-amber-500/20 hover:border-amber-500/40{% elif tag == "shorts" %}bg-sky-500/10 text-sky-700 dark:text-sky-300 border border-sky-500/20 hover:border-sky-500/40{% else %}bg-slate-100 text-slate-600 dark:bg-slate-800/70 dark:text-slate-400 border border-slate-200 dark:border-slate-700/60 hover:border-accent/40{% endif %}">
+                #{{ tag }}
+              </a>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+      <h1 class="post-title-main text-slate-900 dark:text-white">{{ post.title }}</h1>
     </header>
 
     <div class="post-body">

@@ -1,6 +1,7 @@
 #+TITLE: AI assistants need adaptive conversational tempo to be good cognitive companions
 #+AUTHOR: Siva Swaminathan
 #+DATE: <2026-08-25 Tue>
+#+FILETAGS: :substack:ai:cognition:
 #+OPTIONS: toc:nil
 
 When interacting with AI assistants, be it a coding agent or a chatbot, a short 1-2 sentence prompt often produces a wall of text that would take me several minutes to even read and orient myself, let alone fully understand.

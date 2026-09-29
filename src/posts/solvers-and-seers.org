@@ -1,6 +1,7 @@
 #+TITLE: Solvers, seers, and the spirit of research
 #+AUTHOR: Siva Swaminathan
 #+DATE: <2026-09-09 Wed>
+#+FILETAGS: :substack:shorts:research:
 #+OPTIONS: toc:nil
 
 Sometimes being able to "hold a problem" and gaze into the abyss without rushing to solve it is central to coming up with deep insights instead of pedantic ones. Haste is bad practice when the real goal is to mine insights, particularly in research.

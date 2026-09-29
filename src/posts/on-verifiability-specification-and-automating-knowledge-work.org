@@ -1,6 +1,7 @@
 #+TITLE: On verifiability, specification, and automating knowledge work
 #+AUTHOR: Siva Swaminathan
 #+DATE: <2026-09-01 Tue>
+#+FILETAGS: :substack:shorts:ai:
 #+OPTIONS: toc:nil
 
 I've been reading some chatter about how everything that can be verified can easily be automated, and how this covers much of knowledge work (along with exhortations of how this should push AI services towards outcome-based pricing rather than token-based). I want to rebut the strong version of that claim by pointing out a neglected bit of nuance.

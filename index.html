@@ -77,74 +77,509 @@
 
       <main id="main">
         
-  <div class="section-label mb-8">Posts</div>
+  <header class="mb-12">
+    <div class="section-label text-accent mb-2">Essays & Notes</div>
+    <h1 class="text-4xl md:text-5xl font-medium tracking-tight text-slate-900 dark:text-white font-serif mb-4">
+      Writing
+    </h1>
+    <p class="text-lg md:text-xl text-slate-600 dark:text-slate-400 font-light max-w-2xl leading-relaxed">
+      Ponderings, essays, and marginalia spanning artificial intelligence, sensing, economics, and books.
+    </p>
 
-  <ul class="posts">
+    <!-- Tag Filter Bar -->
+    <div class="mt-8 pt-6 border-t border-slate-200 dark:border-slate-800">
+      <div class="flex items-center justify-between mb-3">
+        <span class="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-400 dark:text-slate-500">
+          Filter by tag
+        </span>
+        <button id="clear-filter" class="hidden text-xs text-accent hover:underline font-medium">
+          Show all
+        </button>
+      </div>
+      <div id="tag-filters" class="flex flex-wrap gap-2 items-center">
+        <button type="button" data-tag="all" class="tag-filter active px-3 py-1 rounded-full text-xs font-semibold tracking-wide transition-all border border-accent bg-accent text-white">
+          All <span class="posts-count opacity-75 font-normal ml-1">(9)</span>
+        </button>
+        <!-- Dynamic tag pills will be injected here -->
+      </div>
+    </div>
+  </header>
+
+  <!-- Posts list -->
+  <ul id="posts-list" class="posts-list space-y-2 list-none p-0 m-0">
     
-      <li class="post-item group">
-        <div class="post-date">Sep 09, 2026</div>
-        <h2 class="post-title">
-          <a href="solvers-seers-and-the-spirit-of-research.html">Solvers, seers, and the spirit of research</a>
+      <li class="post-item group border-b border-slate-200/80 dark:border-slate-800/80 py-6 transition-all duration-200"
+          data-tags="substack shorts research ">
+        <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2 mb-2">
+          
+            <time class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 font-sans" datetime="2026-09-09">
+              Sep 09, 2026
+            </time>
+          
+
+          
+            <div class="flex flex-wrap gap-1.5 items-center">
+              
+                <button type="button"
+                        data-filter-to="substack"
+                        class="tag-badge inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium tracking-normal lowercase transition-colors cursor-pointer bg-amber-500/10 text-amber-700 dark:text-amber-300 border border-amber-500/20 hover:border-amber-500/40">
+                  #substack
+                </button>
+              
+                <button type="button"
+                        data-filter-to="shorts"
+                        class="tag-badge inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium tracking-normal lowercase transition-colors cursor-pointer bg-sky-500/10 text-sky-700 dark:text-sky-300 border border-sky-500/20 hover:border-sky-500/40">
+                  #shorts
+                </button>
+              
+                <button type="button"
+                        data-filter-to="research"
+                        class="tag-badge inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium tracking-normal lowercase transition-colors cursor-pointer bg-slate-100 text-slate-600 dark:bg-slate-800/70 dark:text-slate-400 border border-slate-200 dark:border-slate-700/60 hover:border-accent/40">
+                  #research
+                </button>
+              
+            </div>
+          
+        </div>
+
+        <h2 class="font-serif text-2xl sm:text-3xl font-semibold leading-snug">
+          <a href="solvers-seers-and-the-spirit-of-research.html" class="text-slate-900 dark:text-white group-hover:text-accent transition-colors flex items-baseline justify-between gap-3 border-none">
+            <span>Solvers, seers, and the spirit of research</span>
+            <span class="inline-block transform transition-transform group-hover:translate-x-1 text-accent opacity-0 group-hover:opacity-100 text-xl font-normal select-none">→</span>
+          </a>
         </h2>
       </li>
     
-      <li class="post-item group">
-        <div class="post-date">Sep 01, 2026</div>
-        <h2 class="post-title">
-          <a href="on-verifiability-specification-and-automating-knowledge-work.html">On verifiability, specification, and automating knowledge work</a>
+      <li class="post-item group border-b border-slate-200/80 dark:border-slate-800/80 py-6 transition-all duration-200"
+          data-tags="substack shorts ai ">
+        <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2 mb-2">
+          
+            <time class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 font-sans" datetime="2026-09-01">
+              Sep 01, 2026
+            </time>
+          
+
+          
+            <div class="flex flex-wrap gap-1.5 items-center">
+              
+                <button type="button"
+                        data-filter-to="substack"
+                        class="tag-badge inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium tracking-normal lowercase transition-colors cursor-pointer bg-amber-500/10 text-amber-700 dark:text-amber-300 border border-amber-500/20 hover:border-amber-500/40">
+                  #substack
+                </button>
+              
+                <button type="button"
+                        data-filter-to="shorts"
+                        class="tag-badge inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium tracking-normal lowercase transition-colors cursor-pointer bg-sky-500/10 text-sky-700 dark:text-sky-300 border border-sky-500/20 hover:border-sky-500/40">
+                  #shorts
+                </button>
+              
+                <button type="button"
+                        data-filter-to="ai"
+                        class="tag-badge inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium tracking-normal lowercase transition-colors cursor-pointer bg-slate-100 text-slate-600 dark:bg-slate-800/70 dark:text-slate-400 border border-slate-200 dark:border-slate-700/60 hover:border-accent/40">
+                  #ai
+                </button>
+              
+            </div>
+          
+        </div>
+
+        <h2 class="font-serif text-2xl sm:text-3xl font-semibold leading-snug">
+          <a href="on-verifiability-specification-and-automating-knowledge-work.html" class="text-slate-900 dark:text-white group-hover:text-accent transition-colors flex items-baseline justify-between gap-3 border-none">
+            <span>On verifiability, specification, and automating knowledge work</span>
+            <span class="inline-block transform transition-transform group-hover:translate-x-1 text-accent opacity-0 group-hover:opacity-100 text-xl font-normal select-none">→</span>
+          </a>
         </h2>
       </li>
     
-      <li class="post-item group">
-        <div class="post-date">Aug 25, 2026</div>
-        <h2 class="post-title">
-          <a href="ai-assistants-need-adaptive-conversational-tempo-to-be-good-cognitive-companions.html">AI assistants need adaptive conversational tempo to be good cognitive companions</a>
+      <li class="post-item group border-b border-slate-200/80 dark:border-slate-800/80 py-6 transition-all duration-200"
+          data-tags="substack ai cognition ">
+        <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2 mb-2">
+          
+            <time class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 font-sans" datetime="2026-08-25">
+              Aug 25, 2026
+            </time>
+          
+
+          
+            <div class="flex flex-wrap gap-1.5 items-center">
+              
+                <button type="button"
+                        data-filter-to="substack"
+                        class="tag-badge inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium tracking-normal lowercase transition-colors cursor-pointer bg-amber-500/10 text-amber-700 dark:text-amber-300 border border-amber-500/20 hover:border-amber-500/40">
+                  #substack
+                </button>
+              
+                <button type="button"
+                        data-filter-to="ai"
+                        class="tag-badge inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium tracking-normal lowercase transition-colors cursor-pointer bg-slate-100 text-slate-600 dark:bg-slate-800/70 dark:text-slate-400 border border-slate-200 dark:border-slate-700/60 hover:border-accent/40">
+                  #ai
+                </button>
+              
+                <button type="button"
+                        data-filter-to="cognition"
+                        class="tag-badge inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium tracking-normal lowercase transition-colors cursor-pointer bg-slate-100 text-slate-600 dark:bg-slate-800/70 dark:text-slate-400 border border-slate-200 dark:border-slate-700/60 hover:border-accent/40">
+                  #cognition
+                </button>
+              
+            </div>
+          
+        </div>
+
+        <h2 class="font-serif text-2xl sm:text-3xl font-semibold leading-snug">
+          <a href="ai-assistants-need-adaptive-conversational-tempo-to-be-good-cognitive-companions.html" class="text-slate-900 dark:text-white group-hover:text-accent transition-colors flex items-baseline justify-between gap-3 border-none">
+            <span>AI assistants need adaptive conversational tempo to be good cognitive companions</span>
+            <span class="inline-block transform transition-transform group-hover:translate-x-1 text-accent opacity-0 group-hover:opacity-100 text-xl font-normal select-none">→</span>
+          </a>
         </h2>
       </li>
     
-      <li class="post-item group">
-        <div class="post-date">Jun 20, 2026</div>
-        <h2 class="post-title">
-          <a href="visions-and-blindspots-the-midjourney-scanner.html">Visions and blindspots: the Midjourney scanner</a>
+      <li class="post-item group border-b border-slate-200/80 dark:border-slate-800/80 py-6 transition-all duration-200"
+          data-tags="substack ultrasound ai ">
+        <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2 mb-2">
+          
+            <time class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 font-sans" datetime="2026-06-20">
+              Jun 20, 2026
+            </time>
+          
+
+          
+            <div class="flex flex-wrap gap-1.5 items-center">
+              
+                <button type="button"
+                        data-filter-to="substack"
+                        class="tag-badge inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium tracking-normal lowercase transition-colors cursor-pointer bg-amber-500/10 text-amber-700 dark:text-amber-300 border border-amber-500/20 hover:border-amber-500/40">
+                  #substack
+                </button>
+              
+                <button type="button"
+                        data-filter-to="ultrasound"
+                        class="tag-badge inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium tracking-normal lowercase transition-colors cursor-pointer bg-slate-100 text-slate-600 dark:bg-slate-800/70 dark:text-slate-400 border border-slate-200 dark:border-slate-700/60 hover:border-accent/40">
+                  #ultrasound
+                </button>
+              
+                <button type="button"
+                        data-filter-to="ai"
+                        class="tag-badge inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium tracking-normal lowercase transition-colors cursor-pointer bg-slate-100 text-slate-600 dark:bg-slate-800/70 dark:text-slate-400 border border-slate-200 dark:border-slate-700/60 hover:border-accent/40">
+                  #ai
+                </button>
+              
+            </div>
+          
+        </div>
+
+        <h2 class="font-serif text-2xl sm:text-3xl font-semibold leading-snug">
+          <a href="visions-and-blindspots-the-midjourney-scanner.html" class="text-slate-900 dark:text-white group-hover:text-accent transition-colors flex items-baseline justify-between gap-3 border-none">
+            <span>Visions and blindspots: the Midjourney scanner</span>
+            <span class="inline-block transform transition-transform group-hover:translate-x-1 text-accent opacity-0 group-hover:opacity-100 text-xl font-normal select-none">→</span>
+          </a>
         </h2>
       </li>
     
-      <li class="post-item group">
-        <div class="post-date">Aug 01, 2021</div>
-        <h2 class="post-title">
-          <a href="time-crystals.html">Time crystals</a>
+      <li class="post-item group border-b border-slate-200/80 dark:border-slate-800/80 py-6 transition-all duration-200"
+          data-tags="physics quantum ">
+        <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2 mb-2">
+          
+            <time class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 font-sans" datetime="2021-08-01">
+              Aug 01, 2021
+            </time>
+          
+
+          
+            <div class="flex flex-wrap gap-1.5 items-center">
+              
+                <button type="button"
+                        data-filter-to="physics"
+                        class="tag-badge inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium tracking-normal lowercase transition-colors cursor-pointer bg-slate-100 text-slate-600 dark:bg-slate-800/70 dark:text-slate-400 border border-slate-200 dark:border-slate-700/60 hover:border-accent/40">
+                  #physics
+                </button>
+              
+                <button type="button"
+                        data-filter-to="quantum"
+                        class="tag-badge inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium tracking-normal lowercase transition-colors cursor-pointer bg-slate-100 text-slate-600 dark:bg-slate-800/70 dark:text-slate-400 border border-slate-200 dark:border-slate-700/60 hover:border-accent/40">
+                  #quantum
+                </button>
+              
+            </div>
+          
+        </div>
+
+        <h2 class="font-serif text-2xl sm:text-3xl font-semibold leading-snug">
+          <a href="time-crystals.html" class="text-slate-900 dark:text-white group-hover:text-accent transition-colors flex items-baseline justify-between gap-3 border-none">
+            <span>Time crystals</span>
+            <span class="inline-block transform transition-transform group-hover:translate-x-1 text-accent opacity-0 group-hover:opacity-100 text-xl font-normal select-none">→</span>
+          </a>
         </h2>
       </li>
     
-      <li class="post-item group">
-        <div class="post-date">Mar 07, 2021</div>
-        <h2 class="post-title">
-          <a href="ergodicity-economics-and-von-neumann-morgenstern-utility.html">Ergodicity Economics and von Neumann-Morgenstern utility</a>
+      <li class="post-item group border-b border-slate-200/80 dark:border-slate-800/80 py-6 transition-all duration-200"
+          data-tags="economics probability ">
+        <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2 mb-2">
+          
+            <time class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 font-sans" datetime="2021-03-07">
+              Mar 07, 2021
+            </time>
+          
+
+          
+            <div class="flex flex-wrap gap-1.5 items-center">
+              
+                <button type="button"
+                        data-filter-to="economics"
+                        class="tag-badge inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium tracking-normal lowercase transition-colors cursor-pointer bg-slate-100 text-slate-600 dark:bg-slate-800/70 dark:text-slate-400 border border-slate-200 dark:border-slate-700/60 hover:border-accent/40">
+                  #economics
+                </button>
+              
+                <button type="button"
+                        data-filter-to="probability"
+                        class="tag-badge inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium tracking-normal lowercase transition-colors cursor-pointer bg-slate-100 text-slate-600 dark:bg-slate-800/70 dark:text-slate-400 border border-slate-200 dark:border-slate-700/60 hover:border-accent/40">
+                  #probability
+                </button>
+              
+            </div>
+          
+        </div>
+
+        <h2 class="font-serif text-2xl sm:text-3xl font-semibold leading-snug">
+          <a href="ergodicity-economics-and-von-neumann-morgenstern-utility.html" class="text-slate-900 dark:text-white group-hover:text-accent transition-colors flex items-baseline justify-between gap-3 border-none">
+            <span>Ergodicity Economics and von Neumann-Morgenstern utility</span>
+            <span class="inline-block transform transition-transform group-hover:translate-x-1 text-accent opacity-0 group-hover:opacity-100 text-xl font-normal select-none">→</span>
+          </a>
         </h2>
       </li>
     
-      <li class="post-item group">
-        <div class="post-date">Dec 28, 2020</div>
-        <h2 class="post-title">
-          <a href="what-is-art.html">What is art?</a>
+      <li class="post-item group border-b border-slate-200/80 dark:border-slate-800/80 py-6 transition-all duration-200"
+          data-tags="philosophy art ">
+        <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2 mb-2">
+          
+            <time class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 font-sans" datetime="2020-12-28">
+              Dec 28, 2020
+            </time>
+          
+
+          
+            <div class="flex flex-wrap gap-1.5 items-center">
+              
+                <button type="button"
+                        data-filter-to="philosophy"
+                        class="tag-badge inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium tracking-normal lowercase transition-colors cursor-pointer bg-slate-100 text-slate-600 dark:bg-slate-800/70 dark:text-slate-400 border border-slate-200 dark:border-slate-700/60 hover:border-accent/40">
+                  #philosophy
+                </button>
+              
+                <button type="button"
+                        data-filter-to="art"
+                        class="tag-badge inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium tracking-normal lowercase transition-colors cursor-pointer bg-slate-100 text-slate-600 dark:bg-slate-800/70 dark:text-slate-400 border border-slate-200 dark:border-slate-700/60 hover:border-accent/40">
+                  #art
+                </button>
+              
+            </div>
+          
+        </div>
+
+        <h2 class="font-serif text-2xl sm:text-3xl font-semibold leading-snug">
+          <a href="what-is-art.html" class="text-slate-900 dark:text-white group-hover:text-accent transition-colors flex items-baseline justify-between gap-3 border-none">
+            <span>What is art?</span>
+            <span class="inline-block transform transition-transform group-hover:translate-x-1 text-accent opacity-0 group-hover:opacity-100 text-xl font-normal select-none">→</span>
+          </a>
         </h2>
       </li>
     
-      <li class="post-item group">
-        <div class="post-date">Jun 30, 2020</div>
-        <h2 class="post-title">
-          <a href="the-great-rebalancing-by-michael-pettis.html">The Great Rebalancing, by Michael Pettis</a>
+      <li class="post-item group border-b border-slate-200/80 dark:border-slate-800/80 py-6 transition-all duration-200"
+          data-tags="books economics ">
+        <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2 mb-2">
+          
+            <time class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 font-sans" datetime="2020-06-30">
+              Jun 30, 2020
+            </time>
+          
+
+          
+            <div class="flex flex-wrap gap-1.5 items-center">
+              
+                <button type="button"
+                        data-filter-to="books"
+                        class="tag-badge inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium tracking-normal lowercase transition-colors cursor-pointer bg-slate-100 text-slate-600 dark:bg-slate-800/70 dark:text-slate-400 border border-slate-200 dark:border-slate-700/60 hover:border-accent/40">
+                  #books
+                </button>
+              
+                <button type="button"
+                        data-filter-to="economics"
+                        class="tag-badge inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium tracking-normal lowercase transition-colors cursor-pointer bg-slate-100 text-slate-600 dark:bg-slate-800/70 dark:text-slate-400 border border-slate-200 dark:border-slate-700/60 hover:border-accent/40">
+                  #economics
+                </button>
+              
+            </div>
+          
+        </div>
+
+        <h2 class="font-serif text-2xl sm:text-3xl font-semibold leading-snug">
+          <a href="the-great-rebalancing-by-michael-pettis.html" class="text-slate-900 dark:text-white group-hover:text-accent transition-colors flex items-baseline justify-between gap-3 border-none">
+            <span>The Great Rebalancing, by Michael Pettis</span>
+            <span class="inline-block transform transition-transform group-hover:translate-x-1 text-accent opacity-0 group-hover:opacity-100 text-xl font-normal select-none">→</span>
+          </a>
         </h2>
       </li>
     
-      <li class="post-item group">
-        <div class="post-date">May 14, 2014</div>
-        <h2 class="post-title">
-          <a href="thoughts-on-a-fine-balance-by-rohinton-mistry.html">Thoughts on &#34;A fine balance&#34; by Rohinton Mistry</a>
+      <li class="post-item group border-b border-slate-200/80 dark:border-slate-800/80 py-6 transition-all duration-200"
+          data-tags="books literature ">
+        <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2 mb-2">
+          
+            <time class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 font-sans" datetime="2014-05-14">
+              May 14, 2014
+            </time>
+          
+
+          
+            <div class="flex flex-wrap gap-1.5 items-center">
+              
+                <button type="button"
+                        data-filter-to="books"
+                        class="tag-badge inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium tracking-normal lowercase transition-colors cursor-pointer bg-slate-100 text-slate-600 dark:bg-slate-800/70 dark:text-slate-400 border border-slate-200 dark:border-slate-700/60 hover:border-accent/40">
+                  #books
+                </button>
+              
+                <button type="button"
+                        data-filter-to="literature"
+                        class="tag-badge inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium tracking-normal lowercase transition-colors cursor-pointer bg-slate-100 text-slate-600 dark:bg-slate-800/70 dark:text-slate-400 border border-slate-200 dark:border-slate-700/60 hover:border-accent/40">
+                  #literature
+                </button>
+              
+            </div>
+          
+        </div>
+
+        <h2 class="font-serif text-2xl sm:text-3xl font-semibold leading-snug">
+          <a href="thoughts-on-a-fine-balance-by-rohinton-mistry.html" class="text-slate-900 dark:text-white group-hover:text-accent transition-colors flex items-baseline justify-between gap-3 border-none">
+            <span>Thoughts on &#34;A fine balance&#34; by Rohinton Mistry</span>
+            <span class="inline-block transform transition-transform group-hover:translate-x-1 text-accent opacity-0 group-hover:opacity-100 text-xl font-normal select-none">→</span>
+          </a>
         </h2>
       </li>
     
   </ul>
+
+  <!-- Empty state for tag filtering -->
+  <div id="empty-state" class="hidden py-16 text-center">
+    <p class="text-slate-500 dark:text-slate-400 font-serif text-xl italic mb-3">No posts found with this tag.</p>
+    <button type="button" onclick="filterPosts('all')" class="text-sm font-semibold uppercase tracking-wider text-accent hover:underline">
+      View all posts →
+    </button>
+  </div>
+
+  <script>
+    (function() {
+      const postsList = document.getElementById('posts-list');
+      const postItems = Array.from(postsList.querySelectorAll('.post-item'));
+      const filtersContainer = document.getElementById('tag-filters');
+      const clearBtn = document.getElementById('clear-filter');
+      const emptyState = document.getElementById('empty-state');
+
+      // 1. Gather all unique tags and their frequency
+      const tagCounts = {};
+      postItems.forEach(item => {
+        const rawTags = (item.dataset.tags || '').trim().split(/\s+/).filter(Boolean);
+        rawTags.forEach(tag => {
+          tagCounts[tag] = (tagCounts[tag] || 0) + 1;
+        });
+      });
+
+      // Preferred tag ordering: substack, shorts, then frequency/alphabetical
+      const sortedTags = Object.keys(tagCounts).sort((a, b) => {
+        if (a === 'substack') return -1;
+        if (b === 'substack') return 1;
+        if (a === 'shorts') return -1;
+        if (b === 'shorts') return 1;
+        return tagCounts[b] - tagCounts[a] || a.localeCompare(b);
+      });
+
+      // 2. Render dynamic tag buttons
+      sortedTags.forEach(tag => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.dataset.tag = tag;
+        btn.className = `tag-filter px-2.5 py-1 rounded-full text-xs font-medium tracking-wide transition-all border border-slate-200 dark:border-slate-800 bg-white/60 dark:bg-slate-900/60 text-slate-700 dark:text-slate-300 hover:border-accent hover:text-accent cursor-pointer flex items-center gap-1.5`;
+        
+        let tagPrefix = '#';
+        if (tag === 'substack') tagPrefix = '✉ ';
+        if (tag === 'shorts') tagPrefix = '⚡ ';
+
+        btn.innerHTML = `<span>${tagPrefix}${tag}</span><span class="text-[10px] opacity-60 font-mono">(${tagCounts[tag]})</span>`;
+        btn.addEventListener('click', () => filterPosts(tag));
+        filtersContainer.appendChild(btn);
+      });
+
+      // 3. Filter posts function
+      window.filterPosts = function(selectedTag) {
+        let visibleCount = 0;
+
+        postItems.forEach(item => {
+          const rawTags = (item.dataset.tags || '').trim().split(/\s+/).filter(Boolean);
+          if (selectedTag === 'all' || rawTags.includes(selectedTag)) {
+            item.style.display = '';
+            visibleCount++;
+          } else {
+            item.style.display = 'none';
+          }
+        });
+
+        // Update button states
+        const allButtons = filtersContainer.querySelectorAll('.tag-filter');
+        allButtons.forEach(btn => {
+          if (btn.dataset.tag === selectedTag) {
+            btn.classList.add('border-accent', 'bg-accent', 'text-white');
+            btn.classList.remove('bg-white/60', 'dark:bg-slate-900/60', 'text-slate-700', 'dark:text-slate-300', 'border-slate-200', 'dark:border-slate-800');
+          } else {
+            btn.classList.remove('border-accent', 'bg-accent', 'text-white');
+            btn.classList.add('border-slate-200', 'dark:border-slate-800', 'bg-white/60', 'dark:bg-slate-900/60', 'text-slate-700', 'dark:text-slate-300');
+          }
+        });
+
+        // Toggle clear filter button & empty state
+        if (selectedTag === 'all') {
+          clearBtn.classList.add('hidden');
+          if (history.replaceState) {
+            history.replaceState(null, '', window.location.pathname);
+          }
+        } else {
+          clearBtn.classList.remove('hidden');
+          if (history.replaceState) {
+            history.replaceState(null, '', '#tag=' + encodeURIComponent(selectedTag));
+          }
+        }
+
+        if (visibleCount === 0) {
+          emptyState.classList.remove('hidden');
+        } else {
+          emptyState.classList.add('hidden');
+        }
+      };
+
+      // 4. Attach click handlers to inline tag badges
+      document.querySelectorAll('.tag-badge').forEach(badge => {
+        badge.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          const targetTag = badge.getAttribute('data-filter-to');
+          if (targetTag) {
+            filterPosts(targetTag);
+            window.scrollTo({ top: filtersContainer.offsetTop - 50, behavior: 'smooth' });
+          }
+        });
+      });
+
+      clearBtn.addEventListener('click', () => filterPosts('all'));
+
+      // 5. Initialize from URL hash if present
+      const hash = window.location.hash;
+      const tagMatch = hash.match(/#tag=([^&]+)/);
+      if (tagMatch && tagMatch[1]) {
+        const decoded = decodeURIComponent(tagMatch[1]);
+        if (tagCounts[decoded]) {
+          filterPosts(decoded);
+        }
+      }
+    })();
+  </script>
 
       </main>
 

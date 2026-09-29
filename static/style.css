@@ -86,14 +86,24 @@ code {
     background: rgba(194, 155, 109, 0.12);
 }
 
-/* Lists */
-ul, ol {
+/* Lists in article body */
+.post-body ul, .post-body ol {
     margin-left: 2rem;
     margin-bottom: 2rem;
 }
 
-li {
+.post-body li {
     margin-bottom: 0.5rem;
+}
+
+.posts-list {
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none !important;
+}
+
+.posts-list li {
+    margin-bottom: 0;
 }
 
 /* Images */

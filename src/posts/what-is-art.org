@@ -2,6 +2,7 @@
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="css/new.css" />
 #+AUTHOR: Siva Swaminathan
 #+DATE: <2020-12-28 Mon>
+#+FILETAGS: :philosophy:art:
 #+OPTIONS: toc:nil
 
 

@@ -1,6 +1,7 @@
 #+TITLE: Ergodicity Economics and von Neumann-Morgenstern utility
 #+AUTHOR: Siva Swaminathan
 #+DATE: <2021-03-07 Sun>
+#+FILETAGS: :economics:probability:
 #+OPTIONS: toc:nil
 
 I have seen claims that the von Neumann Morgenstern utility theorem (vNM) grounding Expected Utility Theory (EUT) voids [[https://ergodicityeconomics.com/][Ergodicity Economics]] (EE) and time averages, including appeals to authority about von Neumann being an expert on the idea of (non)ergodicity. I think that misses a subtlety; in what follows I have tried to avoid any use of "right" or "wrong", instead trying to emphasize the /"usefulness"/ of modeling assumptions given the situation.

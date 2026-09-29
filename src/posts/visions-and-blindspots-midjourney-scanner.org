@@ -1,6 +1,7 @@
 #+TITLE: Visions and blindspots: the Midjourney scanner
 #+AUTHOR: Siva Swaminathan
 #+DATE: <2026-06-20 Sat>
+#+FILETAGS: :substack:ultrasound:ai:
 #+OPTIONS: toc:nil
 
 I ended up writing [[https://x.com/ergodicthought/status/2067827364277698929][a longform note on Twitter]] following the [[https://www.midjourney.com/medical/blogpost][launch of the Midjourney ultrasound scanner]], but Substack feels like a better place for a slower and more thoughtful discourse. I might have more follow-ups with a more pointed analysis of the underlying ultrasound technology, or how this fits into the healthcare system. For now, I’m just replicating from Twitter my initial thoughts on the Midjourney tank scanner.
