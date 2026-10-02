@@ -23,8 +23,16 @@
         }
     </script>
     <style>
-        :root { --bg-light: #f7f2e8; --bg-dark: #f7f2e8; --accent: #8b4513; }
+        :root { --bg-light: #f7f2e8; --bg-dark: #1a1c1e; --accent: #8b4513; }
         .dark { --bg-light: #1a1c1e; --bg-dark: #1a1c1e; --accent: #c29b6d; }
+
+        html, body {
+            background-color: var(--bg-light);
+            min-height: 100%;
+        }
+        html.dark, html.dark body, .dark body {
+            background-color: var(--bg-dark) !important;
+        }
 
         body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; transition: background-color 0.4s ease, color 0.4s ease; }
         
@@ -37,13 +45,13 @@
         .decoration-accent { text-decoration-color: var(--accent); }
 
         body::before {
-            content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 50; pointer-events: none;
+            content: ""; position: fixed; top: -50vh; left: -50vw; width: 200vw; height: 200vh; z-index: 0; pointer-events: none;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-            filter: grayscale(100%) contrast(250%) brightness(95%); mix-blend-mode: multiply; opacity: 0.2;
+            filter: grayscale(100%) contrast(200%) brightness(95%); mix-blend-mode: multiply; opacity: 0.15;
         }
-        .dark body::before { 
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='fogFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.4' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.5 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23fogFilter)'/%3E%3C/svg%3E");
-            filter: brightness(1.1) contrast(150%); mix-blend-mode: overlay; opacity: 0.5; 
+        .dark body::before, html.dark body::before { 
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='fogFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23fogFilter)'/%3E%3C/svg%3E");
+            filter: brightness(1.2) contrast(150%); mix-blend-mode: overlay; opacity: 0.15; 
         }
         
         .section-label { letter-spacing: 0.15em; text-transform: uppercase; font-size: 0.8rem; font-weight: 800; }
@@ -61,48 +69,50 @@
       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
     </script>
   </head>
-  <body class="bg-paper text-slate-900 dark:text-slate-200 selection:bg-accent selection:text-black">
-    <div class="max-w-5xl mx-auto px-6 py-10 md:py-16 content-fade relative">
+  <body class="bg-paper dark:bg-midnight text-slate-900 dark:text-slate-200">
+    <!-- Theme Toggle outside max-w-5xl container -->
+    <button id="theme-toggle" type="button" aria-label="Toggle theme" class="fixed top-6 right-6 z-50 p-3 rounded-xl border border-slate-200/80 dark:border-slate-700/80 bg-paper/80 dark:bg-midnight/80 backdrop-blur hover:bg-slate-100 dark:hover:bg-slate-800 transition-all shadow-sm">
+      <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 fill-current text-yellow-500" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+      <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 fill-current text-slate-700 dark:text-slate-300" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+    </button>
+
+    <div class="max-w-5xl mx-auto px-6 py-10 md:py-16 content-fade relative z-10">
       <header class="border-b-2 border-slate-900 dark:border-slate-700 pb-8 mb-12 relative flex justify-between items-center">
         <nav class="flex items-center gap-3 text-[12px] font-bold uppercase tracking-[0.2em]">
           <a href="http://sivark.me" class="text-accent hover:text-black dark:hover:text-white transition-colors">Siva Swaminathan</a>
           <span class="text-slate-400 dark:text-slate-600">/</span>
           <a href="index.html" class="text-slate-900 dark:text-white">Blog</a>
         </nav>
-        <button id="theme-toggle" type="button" aria-label="Toggle theme" class="p-3 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all">
-          <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 fill-current text-yellow-500" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
-          <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 fill-current text-slate-700 dark:text-slate-300" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
-        </button>
       </header>
 
       <main id="main">
         
   <article class="post">
     <header class="post-header mb-10 pb-6 border-b border-slate-200 dark:border-slate-800">
-      <div class="flex flex-wrap items-center gap-3 text-xs font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-4">
+      <div class="post-meta">
         
-          <time datetime="2026-06-20">Jun 20, 2026</time>
+          <time class="post-date" datetime="2026-06-20">2026 June 20</time>
         
         
-          <span class="text-slate-300 dark:text-slate-700">•</span>
-          <div class="flex flex-wrap gap-1.5 items-center">
+          <span class="post-meta-separator">•</span>
+          <div class="post-tags">
             
-              <a href="index.html#tag=substack" class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium tracking-normal lowercase transition-colors bg-amber-500/10 text-amber-700 dark:text-amber-300 border border-amber-500/20 hover:border-amber-500/40">
+              <a href="index.html#tag=substack" class="post-tag">
                 #substack
               </a>
             
-              <a href="index.html#tag=ultrasound" class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium tracking-normal lowercase transition-colors bg-slate-100 text-slate-600 dark:bg-slate-800/70 dark:text-slate-400 border border-slate-200 dark:border-slate-700/60 hover:border-accent/40">
+              <a href="index.html#tag=ultrasound" class="post-tag">
                 #ultrasound
               </a>
             
-              <a href="index.html#tag=ai" class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium tracking-normal lowercase transition-colors bg-slate-100 text-slate-600 dark:bg-slate-800/70 dark:text-slate-400 border border-slate-200 dark:border-slate-700/60 hover:border-accent/40">
+              <a href="index.html#tag=ai" class="post-tag">
                 #ai
               </a>
             
           </div>
         
       </div>
-      <h1 class="post-title-main text-slate-900 dark:text-white">Visions and blindspots: the Midjourney scanner</h1>
+      <h1 class="post-title-main">Visions and blindspots: the Midjourney scanner</h1>
     </header>
 
     <div class="post-body">
@@ -111,7 +121,7 @@ I ended up writing <a href="https://x.com/ergodicthought/status/2067827364277698
 </p>
 
 
-<div id="org36d41d9" class="figure">
+<div id="org8a61ef6" class="figure">
 <p><img src="static/midjourney-tank-scanner.png" alt="midjourney-tank-scanner.png" />
 </p>
 </div>
@@ -234,6 +244,14 @@ AI could transform healthcare, but only if it has high-quality <i>context</i> to
         });
       }
       updateToggleIcons();
+
+      window.addEventListener('storage', function(e) {
+        if (e.key === 'color-theme') {
+          var isDark = e.newValue === 'dark';
+          document.documentElement.classList.toggle('dark', isDark);
+          updateToggleIcons();
+        }
+      });
     </script>
   </body>
 </html>
