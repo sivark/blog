@@ -30,8 +30,21 @@
             background-color: var(--bg-light);
             min-height: 100%;
         }
-        html.dark, html.dark body, .dark body {
-            background-color: var(--bg-dark) !important;
+        /* Keep the texture on the viewport canvas while the transparent content scrolls. */
+        html.dark {
+            color-scheme: dark;
+            background-color: var(--bg-dark);
+            background-image: url("data:image/svg+xml,%3Csvg%20viewBox%3D%270%200%20200%20200%27%20preserveAspectRatio%3D%27none%27%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%3E%3Cfilter%20id%3D%27noise%27%3E%3CfeTurbulence%20type%3D%27fractalNoise%27%20baseFrequency%3D%270.9%27%20numOctaves%3D%274%27%20stitchTiles%3D%27stitch%27%2F%3E%3CfeColorMatrix%20type%3D%27matrix%27%20values%3D%270%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200.15%200%200%200%200%27%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D%27100%25%27%20height%3D%27100%25%27%20filter%3D%27url%28%23noise%29%27%2F%3E%3C%2Fsvg%3E");
+            background-size: 200vw 200vh;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+        html.dark body {
+            background-color: transparent !important;
+        }
+        .content-fade {
+            background-color: transparent;
         }
 
         body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; transition: background-color 0.4s ease, color 0.4s ease; }
@@ -49,9 +62,8 @@
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
             filter: grayscale(100%) contrast(200%) brightness(95%); mix-blend-mode: multiply; opacity: 0.15;
         }
-        .dark body::before, html.dark body::before { 
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='fogFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23fogFilter)'/%3E%3C/svg%3E");
-            filter: brightness(1.2) contrast(150%); mix-blend-mode: overlay; opacity: 0.15; 
+        html.dark body::before {
+            content: none;
         }
         
         .section-label { letter-spacing: 0.15em; text-transform: uppercase; font-size: 0.8rem; font-weight: 800; }
