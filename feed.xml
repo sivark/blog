@@ -18,7 +18,7 @@
     <description><![CDATA[]]></description>
     <language>en</language>
     <pubDate>Wed, 09 Sep 2026 00:00:00 +0530</pubDate>
-    <lastBuildDate>Mon, 28 Sep 2026 15:36:51 +0530</lastBuildDate>
+    <lastBuildDate>Fri, 02 Oct 2026 16:57:30 +0530</lastBuildDate>
     <generator>weblorg 0.1.0 (https://emacs.love/weblorg)</generator>
     <webMaster>web@master (Blog Author)</webMaster>
     <image>
@@ -29,10 +29,10 @@
 
     
     <item>
-      <title>Solvers, seers, and the spirit of research</title>
-      <link>http://sivark.me/blogsolvers-seers-and-the-spirit-of-research.html</link>
+      <title>Spirit of research</title>
+      <link>http://sivark.me/blogspirit-of-research.html</link>
       <author>Siva Swaminathan</author>
-      <guid isPermaLink="false">http://sivark.me/blogsolvers-seers-and-the-spirit-of-research.html</guid>
+      <guid isPermaLink="false">http://sivark.me/blogspirit-of-research.html</guid>
       
         <pubDate>Wed, 09 Sep 2026 00:00:00 +0530</pubDate>
       
@@ -59,10 +59,10 @@ To "solve" protein folding or fusion energy means something qualitatively very d
     </item>
     
     <item>
-      <title>On verifiability, specification, and automating knowledge work</title>
-      <link>http://sivark.me/blogon-verifiability-specification-and-automating-knowledge-work.html</link>
+      <title>On verifiability and automating knowledge work</title>
+      <link>http://sivark.me/blogon-verifiability-and-automating-knowledge-work.html</link>
       <author>Siva Swaminathan</author>
-      <guid isPermaLink="false">http://sivark.me/blogon-verifiability-specification-and-automating-knowledge-work.html</guid>
+      <guid isPermaLink="false">http://sivark.me/blogon-verifiability-and-automating-knowledge-work.html</guid>
       
         <pubDate>Tue, 01 Sep 2026 00:00:00 +0530</pubDate>
       
@@ -79,16 +79,16 @@ This is what is underlying the common advice to get moving and avoid analysis pa
 </p>
 
 <p>
-In essence, there is sometimes no way to specify the goal / verifier <i>a priori</i> without first understanding how to solve the problem! This is related to the AI failure mode articulated in <a href="ai-assistants-need-adaptive-conversational-tempo-to-be-good-cognitive-companions.html">my previous post</a>, that it prematurely interprets your developing thoughts as fleshed-out task descriptions. I suspect AI gets trained towards this behavior because this is what is needed to “automate” work!
+In essence, there is sometimes no way to specify the goal / verifier <i>a priori</i> without first understanding how to solve the problem! This is related to the AI failure mode articulated in <a href="adaptive-conversational-tempo-for-ai-cognitive-companions.html">my previous post</a>, that it prematurely interprets your developing thoughts as fleshed-out task descriptions. I suspect AI gets trained towards this behavior because this is what is needed to “automate” work!
 </p>
 ]]></description>
     </item>
     
     <item>
-      <title>AI assistants need adaptive conversational tempo to be good cognitive companions</title>
-      <link>http://sivark.me/blogai-assistants-need-adaptive-conversational-tempo-to-be-good-cognitive-companions.html</link>
+      <title>Adaptive conversational tempo for AI cognitive companions</title>
+      <link>http://sivark.me/blogadaptive-conversational-tempo-for-ai-cognitive-companions.html</link>
       <author>Siva Swaminathan</author>
-      <guid isPermaLink="false">http://sivark.me/blogai-assistants-need-adaptive-conversational-tempo-to-be-good-cognitive-companions.html</guid>
+      <guid isPermaLink="false">http://sivark.me/blogadaptive-conversational-tempo-for-ai-cognitive-companions.html</guid>
       
         <pubDate>Tue, 25 Aug 2026 00:00:00 +0530</pubDate>
       
@@ -219,7 +219,7 @@ I ended up writing <a href="https://x.com/ergodicthought/status/2067827364277698
 </p>
 
 
-<div id="org80c3366" class="figure">
+<div id="org3104b5d" class="figure">
 <p><img src="static/midjourney-tank-scanner.png" alt="midjourney-tank-scanner.png" />
 </p>
 </div>

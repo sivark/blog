@@ -1,4 +1,4 @@
-#+TITLE: On verifiability, specification, and automating knowledge work
+#+TITLE: On verifiability and automating knowledge work
 #+AUTHOR: Siva Swaminathan
 #+DATE: <2026-09-01 Tue>
 #+FILETAGS: :substack:shorts:ai:
@@ -10,4 +10,4 @@ To delegate something to be “solved”, you don't just need a verifier, but yo
 
 This is what is underlying the common advice to get moving and avoid analysis paralysis. That's also why software gave up on waterfall and moved towards agile as software systems became more complex.
 
-In essence, there is sometimes no way to specify the goal / verifier /a priori/ without first understanding how to solve the problem! This is related to the AI failure mode articulated in [[file:ai-assistants-need-adaptive-conversational-tempo-to-be-good-cognitive-companions.html][my previous post]], that it prematurely interprets your developing thoughts as fleshed-out task descriptions. I suspect AI gets trained towards this behavior because this is what is needed to “automate” work!
+In essence, there is sometimes no way to specify the goal / verifier /a priori/ without first understanding how to solve the problem! This is related to the AI failure mode articulated in [[file:adaptive-conversational-tempo-for-ai-cognitive-companions.html][my previous post]], that it prematurely interprets your developing thoughts as fleshed-out task descriptions. I suspect AI gets trained towards this behavior because this is what is needed to “automate” work!

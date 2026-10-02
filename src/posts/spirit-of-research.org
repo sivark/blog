@@ -1,4 +1,4 @@
-#+TITLE: Solvers, seers, and the spirit of research
+#+TITLE: Spirit of research
 #+AUTHOR: Siva Swaminathan
 #+DATE: <2026-09-09 Wed>
 #+FILETAGS: :substack:shorts:research:

@@ -1,4 +1,4 @@
-#+TITLE: AI assistants need adaptive conversational tempo to be good cognitive companions
+#+TITLE: Adaptive conversational tempo for AI cognitive companions
 #+AUTHOR: Siva Swaminathan
 #+DATE: <2026-08-25 Tue>
 #+FILETAGS: :substack:ai:cognition:
