@@ -70,13 +70,13 @@
     </script>
   </head>
   <body class="bg-paper dark:bg-midnight text-slate-900 dark:text-slate-200">
-    <!-- Theme Toggle outside max-w-5xl container -->
+    <!-- Theme Toggle outside container -->
     <button id="theme-toggle" type="button" aria-label="Toggle theme" class="fixed top-6 right-6 z-50 p-3 rounded-xl border border-slate-200/80 dark:border-slate-700/80 bg-paper/80 dark:bg-midnight/80 backdrop-blur hover:bg-slate-100 dark:hover:bg-slate-800 transition-all shadow-sm">
       <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 fill-current text-yellow-500" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
       <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 fill-current text-slate-700 dark:text-slate-300" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
     </button>
 
-    <div class="max-w-5xl mx-auto px-6 py-10 md:py-16 content-fade relative z-10">
+    <div class="max-w-[68.5rem] mx-auto px-6 py-10 md:py-16 content-fade relative z-10">
       <header class="border-b-2 border-slate-900 dark:border-slate-700 pb-8 mb-12 relative flex justify-between items-center">
         <nav class="flex items-center gap-3 text-[12px] font-bold uppercase tracking-[0.2em]">
           <a href="http://sivark.me" class="text-accent hover:text-black dark:hover:text-white transition-colors">Siva Swaminathan</a>
@@ -113,21 +113,21 @@
 
     <div class="post-body">
       <p>
-A friend shared with me this <a href="https://www.quantamagazine.org/first-time-crystal-built-using-googles-quantum-computer-20210730/">very nice Quanta magazine article about some recent work on an experimental realization of time crystals in Google's quantum computer</a>, and sought an explanation. Having not looked into time crystals before, this proved to be a fun Sunday morning exercise :-)
+A friend shared with me this <a href="https://www.quantamagazine.org/first-time-crystal-built-using-googles-quantum-computer-20210730/">very nice Quanta magazine article about some recent work on an experimental realization of time crystals in Google&rsquo;s quantum computer</a>, and sought an explanation. Having not looked into time crystals before, this proved to be a fun Sunday morning exercise :-)
 </p>
 
 <p>
-I summarize my understanding below. I don't fully understand the story yet, so take it with a grain of salt (pun unintended).
+I summarize my understanding below. I don&rsquo;t fully understand the story yet, so take it with a grain of salt (pun unintended).
 </p>
 <div id="outline-container-what-is-a-crystal" class="outline-2">
 <h2 id="what-is-a-crystal"><span class="section-number-2">1.</span> What is a crystal?</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-Consider a "soup" of electrons and protons. Or, to be more realistic, (valence) electrons and nuclei+(non-valence electrons). One state of matter is a "gas" where all these lumps move around freely, where the spatial translation symmetry of physical laws is fully manifest.
+Consider a &ldquo;soup&rdquo; of electrons and protons. Or, to be more realistic, (valence) electrons and nuclei+(non-valence electrons). One state of matter is a &ldquo;gas&rdquo; where all these lumps move around freely, where the spatial translation symmetry of physical laws is fully manifest.
 </p>
 
 <p>
-However, there can be occasions where these lumps decide to coordinate through their (complicated) long-range interactions (in this case electromagnetic, since they're all charged) such that the heavier lumps assemble into some regular periodic structure, and the lighter lumps float freely through the maze.
+However, there can be occasions where these lumps decide to coordinate through their (complicated) long-range interactions (in this case electromagnetic, since they&rsquo;re all charged) such that the heavier lumps assemble into some regular periodic structure, and the lighter lumps float freely through the maze.
 </p>
 
 <p>
@@ -135,7 +135,7 @@ If you try to characterize the positions of the heavy lumps by looking at their 
 </p>
 
 <p>
-This phenomenon &ndash; where the "symmetry" of infinitesimal translations breaks down into just finite/discrete translations (modulo lattica spacing) &ndash; is what we call a (spatial) "crystal".
+This phenomenon -- where the &ldquo;symmetry&rdquo; of infinitesimal translations breaks down into just finite/discrete translations (modulo lattica spacing) -- is what we call a (spatial) &ldquo;crystal&rdquo;.
 </p>
 
 <p>
@@ -147,7 +147,7 @@ As an important technical detail, the phenomenon happens in thermal equilibrium.
 <h2 id="what-is-a-time-crystal"><span class="section-number-2">2.</span> What is a time crystal?</h2>
 <div class="outline-text-2" id="text-2">
 <p>
-By analogy with a (spatial) crystal, could we conjure a system whose natural behavior in time is not a placid ground state which is unchanging, but one which has a periodic nature which "comes back" to itself only after certain intervals (and do so for arbitrarily long periods)?
+By analogy with a (spatial) crystal, could we conjure a system whose natural behavior in time is not a placid ground state which is unchanging, but one which has a periodic nature which &ldquo;comes back&rdquo; to itself only after certain intervals (and do so for arbitrarily long periods)?
 </p>
 
 <p>
@@ -159,7 +159,7 @@ To prevent any exponential decay requires both the states to have the same energ
 </p>
 
 <p>
-In case you recall from elementary quantum mechanics, simple systems could exist in a superposition of states. But when you get to complex "many-body" systems with "disorder" (read: impurities/dirt/junk), it is extremely hard to maintain this coherence, and the system (arbitrarily) picks one of the two states. The only way for the system to get to the other state is by <b>tunneling</b> &ndash; the probability of which is exponentially suppressed by the activation barrier &ndash; even if the net energy change is zero.
+In case you recall from elementary quantum mechanics, simple systems could exist in a superposition of states. But when you get to complex &ldquo;many-body&rdquo; systems with &ldquo;disorder&rdquo; (read: impurities/dirt/junk), it is extremely hard to maintain this coherence, and the system (arbitrarily) picks one of the two states. The only way for the system to get to the other state is by <b>tunneling</b> -- the probability of which is exponentially suppressed by the activation barrier -- even if the net energy change is zero.
 </p>
 
 <p>
@@ -167,7 +167,7 @@ If the system could tunnel back-and-forth between the two (or many) states, then
 </p>
 
 <p>
-Ok, so if not in "equilibrium", could a system at least be "driven" by some external mechanism (aka "Floquet systems") to exhibit the desired behavior? This turns out to be possible &ndash; with different research groups constructing their own examples. One such example is using a laser to drive a system with two ground states.
+Ok, so if not in &ldquo;equilibrium&rdquo;, could a system at least be &ldquo;driven&rdquo; by some external mechanism (aka &ldquo;Floquet systems&rdquo;) to exhibit the desired behavior? This turns out to be possible -- with different research groups constructing their own examples. One such example is using a laser to drive a system with two ground states.
 </p>
 </div>
 </div>
@@ -175,15 +175,15 @@ Ok, so if not in "equilibrium", could a system at least be "driven" by some exte
 <h2 id="what-kind-of-weird-systems-have-two-ground-states"><span class="section-number-2">3.</span> What kind of weird systems have two ground states?</h2>
 <div class="outline-text-2" id="text-3">
 <p>
-Consider a bunch of interacting spins (commonly simplified as an Ising model). In samples with impurities (doped just the right way), even if the spins happen to be on a lattice, their interactions will have quite a bit of randomness rather than being regular and periodic. <b>Localization</b> is the phenomenon where due to the disorder, electrons can't freely flow through the lattice structure; so their eigenstates &ndash; instead of being Fourier modes that are spread all over the lattice &ndash; "localize" spatially.
+Consider a bunch of interacting spins (commonly simplified as an Ising model). In samples with impurities (doped just the right way), even if the spins happen to be on a lattice, their interactions will have quite a bit of randomness rather than being regular and periodic. <b>Localization</b> is the phenomenon where due to the disorder, electrons can&rsquo;t freely flow through the lattice structure; so their eigenstates -- instead of being Fourier modes that are spread all over the lattice -- &ldquo;localize&rdquo; spatially.
 </p>
 
 <p>
-Such disordered systems often form states known as a <b>spin glass</b> (glassy/amorphous, as opposed to ordered/crystalling). The high-dimensional space of configurations of this system typically turns out to have an incredibly complicated landscape &ndash; it is not fully understood, but believed to have many local minima and saddle points, leading to all kinds of interesting behavior &ndash; including <b>memory</b>. (Aside: For this reason, spin glasses serve as fascinating models of high-dimensional systems "learning" to represent certain information, and there are many links to ML/optimization/etc.)
+Such disordered systems often form states known as a <b>spin glass</b> (glassy/amorphous, as opposed to ordered/crystalling). The high-dimensional space of configurations of this system typically turns out to have an incredibly complicated landscape -- it is not fully understood, but believed to have many local minima and saddle points, leading to all kinds of interesting behavior -- including <b>memory</b>. (Aside: For this reason, spin glasses serve as fascinating models of high-dimensional systems &ldquo;learning&rdquo; to represent certain information, and there are many links to ML/optimization/etc.)
 </p>
 
 <p>
-Given that these systems have two global minima (start with one global minimum, and flip ALL the spins to get the other global minimum), and enough disorder to stabilize this property even when the system is driven (that is what allows them to have a "rugged" landscape of multiple local minima), they serve as great candidates to build a time crystal.
+Given that these systems have two global minima (start with one global minimum, and flip ALL the spins to get the other global minimum), and enough disorder to stabilize this property even when the system is driven (that is what allows them to have a &ldquo;rugged&rdquo; landscape of multiple local minima), they serve as great candidates to build a time crystal.
 </p>
 </div>
 </div>
@@ -195,11 +195,11 @@ Given that these systems have two global minima (start with one global minimum, 
 </p>
 
 <p>
-We have two global minima (call them A &amp; B), but tunneling from one to the other is really really hard. But have heart &ndash; any quantum superposition of these two global minima are also ground states of the system! In particular, we could take the symmetric/"A+B" and antisymmetric/"A-B" combinations, so that (in reverse) the original global minima are just combinations of the + &amp; - states. So, even if the original system settles in (say) A, we know that A can be represented as a superposition (A+B) + (A-B).
+We have two global minima (call them A &amp; B), but tunneling from one to the other is really really hard. But have heart -- any quantum superposition of these two global minima are also ground states of the system! In particular, we could take the symmetric/&ldquo;A+B&rdquo; and antisymmetric/&ldquo;A-B&rdquo; combinations, so that (in reverse) the original global minima are just combinations of the + &amp; - states. So, even if the original system settles in (say) A, we know that A can be represented as a superposition (A+B) + (A-B).
 </p>
 
 <p>
-When driven by a laser the energies of the + and - states will split (E+ &amp; E-), and the states ought to "oscillate" with different frequencies (w+ &amp; w-). Even when the actual system continues to exist in its ground state A ~ (A+B) + (A-B), certain measurable physical properties of the system will oscillate at the beat frequency (w+ - w-), and this will keep going forever. Even though this is "non-equilibrium" in that it requires being driven by a laser, this system doesn't really dissipate the laser energy &ndash; over a complete cycle, it gives back what it takes. There, we have a time crystal!
+When driven by a laser the energies of the + and - states will split (E+ &amp; E-), and the states ought to &ldquo;oscillate&rdquo; with different frequencies (w+ &amp; w-). Even when the actual system continues to exist in its ground state A ~ (A+B) + (A-B), certain measurable physical properties of the system will oscillate at the beat frequency (w+ - w-), and this will keep going forever. Even though this is &ldquo;non-equilibrium&rdquo; in that it requires being driven by a laser, this system doesn&rsquo;t really dissipate the laser energy -- over a complete cycle, it gives back what it takes. There, we have a time crystal!
 </p>
 </div>
 </div>
@@ -211,7 +211,7 @@ AFAIU, the relation is only incidental, as a matter of details. Ising spins (aka
 </p>
 
 <p>
-The fact that a quantum computer is built not just with the goal of being able to "program" the couplings, but also being able to "read out" the qubit states makes it a perfect study tool where you can convincingly repeat the same experiment many many times &ndash; while querying/probing the system after a different time interval in each repetition, in order to map out the evolving behavior. Do this thoroughly enough, and you can convincingly demonstrate that you've built a time crystal where you have pretty good control over all the pieces that went into the experiment.
+The fact that a quantum computer is built not just with the goal of being able to &ldquo;program&rdquo; the couplings, but also being able to &ldquo;read out&rdquo; the qubit states makes it a perfect study tool where you can convincingly repeat the same experiment many many times -- while querying/probing the system after a different time interval in each repetition, in order to map out the evolving behavior. Do this thoroughly enough, and you can convincingly demonstrate that you&rsquo;ve built a time crystal where you have pretty good control over all the pieces that went into the experiment.
 </p>
 </div>
 </div>

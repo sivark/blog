@@ -14,6 +14,29 @@
 (require 'htmlize)
 
 (setq org-html-htmlize-output-type 'css)
+(setq org-export-with-smart-quotes t)
+(setq org-export-with-special-strings nil)
+
+(defun my-smart-quotes (str)
+  "Convert straight quotes in STR to typographic curly quotes without altering dashes."
+  (if (stringp str)
+      (let ((res str))
+        ;; Double quotes
+        (setq res (replace-regexp-in-string "\"\\([^\"]*\\)\"" "“\\1”" res))
+        (setq res (replace-regexp-in-string "\\(^\\|[ \t(]\\)\"" "\\1“" res))
+        (setq res (replace-regexp-in-string "\"" "”" res))
+        ;; Contractions & single quotes
+        (setq res (replace-regexp-in-string "\\([[:alnum:]]\\)'\\([[:alnum:]]\\)" "\\1’\\2" res))
+        (setq res (replace-regexp-in-string "'\\([^']*\\)'" "‘\\1’" res))
+        res)
+    str))
+
+(advice-add 'weblorg--parse-org-keyword :filter-return
+            (lambda (cell)
+              (when (and (consp cell)
+                         (member (car cell) '("title" "description")))
+                (setcdr cell (my-smart-quotes (cdr cell))))
+              cell))
 
 ;; Define the site
 (setq my-site

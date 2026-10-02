@@ -17,8 +17,8 @@
     <link>http://sivark.me/blogindex.html</link>
     <description><![CDATA[]]></description>
     <language>en</language>
-    <pubDate>Wed, 09 Sep 2026 00:00:00 +0530</pubDate>
-    <lastBuildDate>Fri, 02 Oct 2026 16:57:30 +0530</lastBuildDate>
+    <pubDate>Thu, 01 Oct 2026 00:00:00 +0530</pubDate>
+    <lastBuildDate>Fri, 02 Oct 2026 18:40:57 +0530</lastBuildDate>
     <generator>weblorg 0.1.0 (https://emacs.love/weblorg)</generator>
     <webMaster>web@master (Blog Author)</webMaster>
     <image>
@@ -29,6 +29,575 @@
 
     
     <item>
+      <title>Adjudicated Decision Games (ADGs): Judgment in the Fog of Synthetic Ambiguity</title>
+      <link>http://sivark.me/blogadjudicated-decision-games-adgs-judgment-in-the-fog-of-synthetic-ambiguity.html</link>
+      <author>Siva Swaminathan</author>
+      <guid isPermaLink="false">http://sivark.me/blogadjudicated-decision-games-adgs-judgment-in-the-fog-of-synthetic-ambiguity.html</guid>
+      
+        <pubDate>Thu, 01 Oct 2026 00:00:00 +0530</pubDate>
+      
+      <description><![CDATA[<p>
+Decision-forcing case studies have an enduring heritage in training to operate under ambiguity, ranging from dilemmas in the Panchatantra, Machiavelli&rsquo;s field exercises, 19th century Prussian military Kriegspiel, to modern business case studies and military Tactical Decision Games (TDGs). A standard TDG sets up a tight operational dilemma: a clear role, incomplete or conflicting field reports, and an objective with an urgent deadline. There is no clever trick or secret answer; it’s about maintaining one&rsquo;s wits and eking out advantages while avoiding attrition, succumbing neither to haste nor paralysis. 
+</p>
+
+
+<div id="orgd331a8f" class="figure">
+<p><img src="static/tdg_comic.png" alt="tdg_comic.png" width="80%" style="display: block; margin-left: auto; margin-right: auto;" />
+</p>
+</div>
+
+<p>
+The linchpin of a TDG is an experienced facilitator who can simulate causal reality, enforce authentic friction, and evaluate reasoning rather than luck -- which makes these exercises hard to scale. While many professions require such judgment, I suspect this is why few train it systematically. We teach domain knowledge through textbooks and lectures, but leave for a trial-by-fire the ability to execute under ambiguity, high stakes, and a ticking clock. The TDG experience helps build recognition-primed judgement for exactly such scenarios.
+</p>
+
+<p>
+Modern LLMs are interesting candidates for good facilitators; they carry a broad level of intelligence and can be supplemented with the necessary context for any specific game situation. I certainly don&rsquo;t claim to be the first to connect generative models to interactive scenarios -- the intuition is obvious in hindsight, and a cursory search throws up several text RPGs and scenario simulators. But I&rsquo;ve been playing with this concept independent of those other attempts, and I want to share my learnings on what drives the game, and the mechanics to operationalize it well.
+</p>
+<div id="outline-container-game-mechanics" class="outline-2">
+<h2 id="game-mechanics">Game mechanics</h2>
+<div class="outline-text-2">
+<p>
+Real ambiguity isn&rsquo;t just randomness; it&rsquo;s the Knightian uncertainty of an unknown situation with its own internal logic. A few design principles help create that context:
+</p>
+<ul class="org-ul">
+<li><b>High orientation, low strategic certainty:</b> The player should be abundantly clear on basic operational ontology: their mandate, authority, and available tools. All the uncertainty must reside strictly in interpreting ambiguous signals and choosing an intervention. Games venturing into strategic decision-making could of course involve ambiguity in the ontology as well.</li>
+<li><b>Coupled trade-offs:</b> Useful probes typically carry operational costs -- be it asking for an extra blood culture, or taking a server offline to inspect logs -- and efforts to reduce ambiguity might take up precious time from quick action.</li>
+<li><b>Time pressure:</b> The clock is an active adversary; asking too many questions or hesitating eats into the time budget. A persistent, visible Heads-Up Display (HUD) grounds the player in their dwindling resources and pending commitments.</li>
+<li><b>A review that emphasizes process over outcome:</b> A terrible, reckless guess can get lucky and a good decision can fail due to unresolvable ambiguity. The post-game evaluation inspects the coherence of diagnostic inquiry, and its rationale against what was knowable at the time, rather than grading against a hidden answer.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-architecture" class="outline-2">
+<h2 id="architecture">Architecture</h2>
+<div class="outline-text-2">
+<p>
+Just like the quality of a TDG is determined by how realistic the facilitator manages to make the player experience, the ADG experience is ultimately characterized by how well grounded the game components are, for the adjudicator to meaningfully enforce the facts, constraints, and causal rules. Bad grounding means that a player&rsquo;s learning experience overfits to hallucinated behavior, rather than learning the kind of decision-making that would be useful in the real world.
+</p>
+
+<p>
+When implementing such a game with LLMs, it helps to split the many responsibilities held by the facilitator into different agents or personas, each with its own context. Without strong boundaries, an LLM is prone to make the narration structure self-justifying by inventing just-so consequences and explanations. Further, it might be preferable to ground the facts <i>that must not change</i> (true underlying situation, rules and behaviors for the world and its entities) outside the model&rsquo;s context. That could be model weights (eg. using a world model fine tuned for a scenario), or else have both be written to files on disk, before the start of each game. A good game design would mean that the generated facts never need to be redrafted as the game proceeds. The adjudicator might need to derive responses from that foundation (especially in case of creative questions) but should never need to patch the foundations or step outside it. 
+</p>
+
+
+<ol class="org-ol">
+<li><b>Game State</b>: A persistent record of the situation, including facts hidden from the player. Storing it explicitly keeps established facts from drifting as the conversation grows. In simpler situations where the ground truth world state doesn&rsquo;t need to evolve (single decision instead of sequential actions), it could just as well be written to a text file on disk, to ensure that it doesn&rsquo;t get clobbered by the entropy of the adjudicator&rsquo;s context.</li>
+<li><b>Causal World Model:</b> Determines how actions change the situation, using established rules or case evidence. An agent can apply this model, but shouldn’t freely reinvent its consequences.</li>
+<li><b>Adjudicator:</b> The player never interacts with or has any access to the raw world state; their epistemic state evolves turn-by-turn based purely on the probes they run, the questions they ask, and the interventions they commit. The adjudicator serves to intermediate between the player and the game, and ground the player&rsquo;s free-form intent against physical constraints, doctrine, and costs.</li>
+<li><b>HUD</b>: The game output generated by the adjudicator at each turn represents the player&rsquo;s perception of the situation: the goal, game-time, available resources, and knowledge of the situation.</li>
+<li><b>Coach</b>: Reviews the player’s inquiry, reasoning, and commitment against the information available at the time, distinguishing decision quality from outcome luck.</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-illustrative-synthetic-vignettes" class="outline-2">
+<h2 id="illustrative-synthetic-vignettes">Illustrative (synthetic) vignettes</h2>
+<div class="outline-text-2">
+<p>
+What does this look like in practice? Below is an interactive walkthrough of four synthetic vignettes across different operational dilemmas. Use the tabs to select between scenarios, and step through each turn to observe the dynamic HUD, the player&rsquo;s inquiry and commitments, the adjudicator&rsquo;s constraints, and the coach&rsquo;s evaluation.
+</p>
+
+<div class="adg-widget" id="adg-vignette-player">
+  <style>
+    .adg-widget {
+      margin: 2.5rem 0;
+      border: 1px solid rgba(139, 69, 19, 0.2);
+      border-radius: 8px;
+      background: rgba(0, 0, 0, 0.02);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.04);
+      overflow: hidden;
+      transition: background-color 0.3s ease, border-color 0.3s ease;
+    }
+    .dark .adg-widget {
+      background: rgba(255, 255, 255, 0.025);
+      border-color: rgba(194, 155, 109, 0.25);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    }
+    .adg-nav-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      background: rgba(0, 0, 0, 0.035);
+      border-bottom: 1px solid rgba(139, 69, 19, 0.18);
+      padding: 0.35rem 0.5rem 0;
+      gap: 0.25rem;
+    }
+    .dark .adg-nav-tabs {
+      background: rgba(0, 0, 0, 0.25);
+      border-bottom-color: rgba(194, 155, 109, 0.22);
+    }
+    .adg-tab-btn {
+      background: transparent;
+      border: 1px solid transparent;
+      border-bottom: none;
+      padding: 0.55rem 0.85rem;
+      font-size: 0.88rem;
+      font-weight: 500;
+      cursor: pointer;
+      color: #64748b;
+      border-top-left-radius: 6px;
+      border-top-right-radius: 6px;
+      transition: all 0.15s ease;
+      font-family: inherit;
+    }
+    .adg-tab-btn:hover {
+      color: var(--accent);
+    }
+    .dark .adg-tab-btn {
+      color: #94a3b8;
+    }
+    .dark .adg-tab-btn:hover {
+      color: var(--accent);
+    }
+    .adg-tab-btn.active {
+      background: var(--bg-light);
+      color: var(--accent);
+      border-color: rgba(139, 69, 19, 0.25);
+      border-bottom: 1px solid var(--bg-light);
+      font-weight: 600;
+    }
+    .dark .adg-tab-btn.active {
+      background: var(--bg-dark);
+      color: var(--accent);
+      border-color: rgba(194, 155, 109, 0.3);
+      border-bottom: 1px solid var(--bg-dark);
+    }
+    .adg-body {
+      padding: 1.5rem;
+    }
+    .adg-header-title {
+      font-family: 'EB Garamond', serif;
+      font-size: 1.65rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--accent);
+      line-height: 1.3;
+    }
+    .adg-hud {
+      background: rgba(139, 69, 19, 0.07);
+      border-left: 4px solid var(--accent);
+      padding: 0.6rem 0.9rem;
+      font-family: 'Inter', monospace;
+      font-size: 0.84rem;
+      margin-bottom: 1.4rem;
+      border-radius: 0 4px 4px 0;
+      line-height: 1.45;
+      color: #292524;
+    }
+    .dark .adg-hud {
+      background: rgba(194, 155, 109, 0.1);
+      color: #f5f5f4;
+      border-left-color: var(--accent);
+    }
+    .adg-dialog-flow {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .adg-entry {
+      padding: 0.85rem 1.15rem;
+      border-radius: 6px;
+      font-size: 1.05rem;
+      line-height: 1.6;
+    }
+    .adg-brief {
+      background: rgba(0, 0, 0, 0.025);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      color: inherit;
+      font-style: italic;
+    }
+    .dark .adg-brief {
+      background: rgba(255, 255, 255, 0.03);
+      border-color: rgba(255, 255, 255, 0.09);
+      color: #cbd5e1;
+    }
+    .adg-player {
+      background: rgba(139, 69, 19, 0.06);
+      border: 1px solid rgba(139, 69, 19, 0.22);
+      margin-left: 1.5rem;
+      color: inherit;
+    }
+    .dark .adg-player {
+      background: rgba(194, 155, 109, 0.1);
+      border-color: rgba(194, 155, 109, 0.25);
+      color: #f5f5f4;
+    }
+    .adg-adjudicator {
+      background: rgba(0, 0, 0, 0.02);
+      border: 1px solid rgba(0, 0, 0, 0.07);
+      margin-right: 1.5rem;
+      color: inherit;
+    }
+    .dark .adg-adjudicator {
+      background: rgba(255, 255, 255, 0.025);
+      border-color: rgba(255, 255, 255, 0.07);
+      color: #e2e8f0;
+    }
+    .adg-coach {
+      background: rgba(34, 197, 94, 0.08);
+      border: 1px solid rgba(34, 197, 94, 0.25);
+      color: #14532d;
+    }
+    .dark .adg-coach {
+      background: rgba(34, 197, 94, 0.12);
+      border-color: rgba(34, 197, 94, 0.28);
+      color: #dcfce7;
+    }
+    .adg-speaker {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.35rem;
+      display: block;
+      color: #78716c;
+    }
+    .dark .adg-speaker {
+      color: #a8a29e;
+    }
+    .adg-player .adg-speaker {
+      color: var(--accent);
+    }
+    .adg-coach .adg-speaker {
+      color: #16a34a;
+    }
+    .dark .adg-coach .adg-speaker {
+      color: #86efac;
+    }
+    .adg-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 1.25rem;
+      padding-top: 0.85rem;
+      border-top: 1px solid rgba(139, 69, 19, 0.15);
+    }
+    .dark .adg-controls {
+      border-top-color: rgba(194, 155, 109, 0.2);
+    }
+    .adg-btn {
+      padding: 0.45rem 0.95rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      background: transparent;
+      border: 1px solid rgba(139, 69, 19, 0.25);
+      border-radius: 4px;
+      cursor: pointer;
+      color: var(--accent);
+      transition: all 0.15s ease;
+      font-family: inherit;
+    }
+    .dark .adg-btn {
+      border-color: rgba(194, 155, 109, 0.3);
+      color: var(--accent);
+    }
+    .adg-btn:hover:not(:disabled) {
+      background: rgba(139, 69, 19, 0.08);
+    }
+    .dark .adg-btn:hover:not(:disabled) {
+      background: rgba(194, 155, 109, 0.12);
+    }
+    .adg-btn:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+    .adg-step-indicator {
+      font-size: 0.85rem;
+      color: #78716c;
+    }
+    .dark .adg-step-indicator {
+      color: #a8a29e;
+    }
+    .adg-curtain {
+      margin-top: 1.5rem;
+      font-size: 0.95rem;
+      color: #57534e;
+      border-top: 1px dashed rgba(139, 69, 19, 0.2);
+      padding-top: 0.85rem;
+      line-height: 1.6;
+    }
+    .dark .adg-curtain {
+      color: #a8a29e;
+      border-top-color: rgba(194, 155, 109, 0.22);
+    }
+    .adg-curtain summary {
+      cursor: pointer;
+      font-weight: 600;
+      color: var(--accent);
+      outline: none;
+    }
+  </style>
+
+  <div class="adg-nav-tabs" id="adg-tabs">
+    <button class="adg-tab-btn active" onclick="adgSetVignette(0)">1. Production Triage</button>
+    <button class="adg-tab-btn" onclick="adgSetVignette(1)">2. Clinical Emergency</button>
+    <button class="adg-tab-btn" onclick="adgSetVignette(2)">3. Cleanroom Yield</button>
+    <button class="adg-tab-btn" onclick="adgSetVignette(3)">4. Enterprise Whale</button>
+  </div>
+
+  <div class="adg-body">
+    <div class="adg-header-title" id="adg-title"></div>
+    <div class="adg-hud" id="adg-hud-bar"></div>
+    <div class="adg-dialog-flow" id="adg-content-flow"></div>
+
+    <div class="adg-controls">
+      <button class="adg-btn" id="adg-prev-btn" onclick="adgPrevStep()">← Previous Turn</button>
+      <span class="adg-step-indicator" id="adg-step-counter">Turn 1 of 4</span>
+      <button class="adg-btn" id="adg-next-btn" onclick="adgNextStep()">Next Turn →</button>
+    </div>
+
+    <details class="adg-curtain" id="adg-curtain-box">
+      <summary>Behind the curtain: what was fixed before play?</summary>
+      <div id="adg-curtain-text" style="margin-top: 0.5rem; line-height: 1.5;"></div>
+    </details>
+  </div>
+</div>
+
+<script>
+(function() {
+  const vignettes = [
+    {
+      title: "1. Production triage: which risk can you contain?",
+      curtain: "The episode fixes measurement latency, separate staff capacity, isolation and promotion durations, and the limited meaning of a missing heartbeat. Concurrent work advances two minutes rather than three. Isolation prevents competing writes in this synthetic model; it does not recover missing transactions. No secret diagnostic discovery is introduced to vindicate the plan.",
+      steps: [
+        {
+          hud: "02:14 | Decision due 02:20 | One incident engineer; database operator available | Synthetic; dynamic clock",
+          items: [
+            { type: "brief", speaker: "Brief", text: "You are the incident lead. The primary database has stopped reporting heartbeats. The standby is reachable, but dashboard replication data is 90 seconds old. Writes are still reaching some application workers. Decide how to restore service while protecting committed data. You can stop incoming writes, request fresh replication measurements, or authorize promotion. Automatic promotion is scheduled for 02:20 unless you suspend it." }
+          ]
+        },
+        {
+          hud: "02:14 | Automatic promotion suspended | Investigating primary status",
+          items: [
+            { type: "player", speaker: "Player", text: "“Suspend automatic promotion. What do we actually know about the primary, and how long would fresh measurements take?”" },
+            { type: "adjudicator", speaker: "Adjudicator", text: "“The missing heartbeat establishes loss of contact, not shutdown. The last dashboard sample showed four seconds of replication lag. Fresh measurements take two minutes of the incident engineer’s time. Stopping incoming writes takes one minute of the database operator’s time; requests will fail while that restriction is active.”" },
+            { type: "player", speaker: "Player", text: "“Stop incoming writes and measure replication concurrently. Don’t promote yet.”" }
+          ]
+        },
+        {
+          hud: "02:16 | Decision due 02:20 | Measurements complete; incoming writes stopped",
+          items: [
+            { type: "adjudicator", speaker: "Adjudicator", text: "“The standby is 18 seconds behind the last primary position you can verify. You still cannot establish whether the primary accepted additional writes after that position. The operator can isolate the primary from application traffic in one further minute; promotion and verification then take two minutes.”" },
+            { type: "player", speaker: "Player", text: "“Isolate it, then promote. Keep writes disabled until the operator confirms the new primary is writable. Preserve the old node for reconciliation; tell support that recent transactions may need checking.”" }
+          ]
+        },
+        {
+          hud: "02:19 | Commitment executed | Service restored; reconciliation pending",
+          items: [
+            { type: "adjudicator", speaker: "Adjudicator", text: "“Isolation completed at 02:17; promotion and verification completed at 02:19. Writes have resumed on the new primary. Within this exercise’s model, isolation prevents further competing writes. The record still does not establish which recent transactions were absent from the standby.”" },
+            { type: "coach", speaker: "Coach Review", text: "“You separated restoring service from reconciling uncertain data. The extra measurement informed the exposure but did not remove it. Your commitment explicitly accepted that residual risk rather than treating an available standby as proof that promotion was safe.”" }
+          ]
+        }
+      ]
+    },
+    {
+      title: "2. Clinical emergency: prepare before the diagnosis settles",
+      curtain: "The synthetic specification establishes resource independence, imaging limits, the scanner cutoff, specialist response time, and the clinical lead’s reassessment. It does not model treatment efficacy. The adjudicator reports observations and professional assessments without converting the imaging finding into a definitive diagnosis.",
+      steps: [
+        {
+          hud: "14:08 | Disposition decision due 14:12 | One bedside imaging team; transfer team available | Synthetic; dynamic clock",
+          items: [
+            { type: "brief", speaker: "Brief", text: "You coordinate an emergency team caring for a deteriorating patient. Senior clinicians disagree about whether the next diagnostic step justifies transport away from the resuscitation area. Your mandate is to coordinate immediate resources and the next review point; treatment remains with the clinical lead. Bedside imaging can address one suspected cause in three minutes, but cannot settle the entire differential. The next scanner slot requires departure at 14:12." }
+          ]
+        },
+        {
+          hud: "14:08 | Clarifying transfer constraints & bedside yield",
+          items: [
+            { type: "player", speaker: "Player", text: "“Can we prepare transport while keeping the patient here? And what would a negative bedside scan establish?”" },
+            { type: "adjudicator", speaker: "Adjudicator", text: "“Transfer preparation takes two minutes and uses a separate team. It does not authorize departure. A negative bedside study would leave other suspected causes unresolved. The scanner slot can be held until 14:12 without moving the patient.”" },
+            { type: "player", speaker: "Player", text: "“Prepare transport, hold the slot, and obtain bedside imaging. Ask the clinical lead to reassess transport suitability when the result arrives. No automatic departure.”" }
+          ]
+        },
+        {
+          hud: "14:11 | One minute to scanner departure cutoff | Transport prepared; bedside result available",
+          items: [
+            { type: "adjudicator", speaker: "Adjudicator", text: "“The imaging team reports a finding that supports one suspected cause, but its extent remains uncertain. The clinical lead reports continued deterioration and advises against transport now. Keeping the patient here means releasing the scanner slot; the next slot is estimated 40 minutes later.”" },
+            { type: "player", speaker: "Player", text: "“Release the slot. Keep the team here, request the relevant specialist at the bedside, and have the clinical lead reassess in two minutes or immediately if the condition changes.”" }
+          ]
+        },
+        {
+          hud: "14:13 | Coordination commitment executed | Specialist requested; diagnosis and patient outcome unresolved",
+          items: [
+            { type: "adjudicator", speaker: "Adjudicator", text: "“The scanner slot was released. The specialist is expected at 14:17. The team remains at the bedside; the clinical lead has begun the scheduled reassessment. This episode ends at that handoff and makes no claim about the patient’s eventual outcome.”" },
+            { type: "coach", speaker: "Coach Review", text: "“You prepared an option without confusing preparation with permission to execute it. Your final commitment used both the new finding and the clinical lead’s transport assessment, while keeping an explicit review point. The episode supports a review of coordination; it cannot establish that your choice improved the clinical outcome.”" }
+          ]
+        }
+      ]
+    },
+    {
+      title: "3. Cleanroom yield collapse: what is worth sacrificing?",
+      curtain: "The two candidate mechanisms predict the same non-destructive result. The cross-section test has a specified discriminatory output, duration, and material cost. The deadline requires a disposition, not a successful diagnosis. Requesting an extension neither grants it nor silently starts a test.",
+      steps: [
+        {
+          hud: "10:00 | Process disposition due 11:00 | Two prototype wafers remain; one metrology station | Synthetic; dynamic clock",
+          items: [
+            { type: "brief", speaker: "Brief", text: "You lead a prototype fabrication run. The first wafer’s usable yield is 12%, against a 65% target. Two unprocessed wafers remain. Decide whether to continue, alter the process, or hold the run. Existing polishing and alignment records are available. A new cross-section measurement would consume one remaining wafer and take 45 minutes; it can distinguish between two leading process explanations. A non-destructive measurement takes 20 minutes but may leave them unresolved." }
+          ]
+        },
+        {
+          hud: "10:00 | Investigating defect clustering & past logs",
+          items: [
+            { type: "player", speaker: "Player", text: "“Show me the existing records and tell me whether the failed dies cluster by wafer position.”" },
+            { type: "adjudicator", speaker: "Adjudicator", text: "“The failed dies cluster near the edge. Recorded thickness variation was elevated there. The alignment checks passed at their sampled locations, but those samples do not cover the entire edge. These records are already available; retrieving them consumes no game time.”" },
+            { type: "player", speaker: "Player", text: "“Hold processing. Use the non-destructive measurement on the failed wafer; preserve the two remaining wafers.”" }
+          ]
+        },
+        {
+          hud: "10:20 | Forty minutes to disposition | Two prototype wafers remain",
+          items: [
+            { type: "adjudicator", speaker: "Adjudicator", text: "“The new measurement confirms the edge pattern. Both candidate explanations remain compatible with it. The destructive measurement would now finish at 11:05, after the disposition deadline. You can request an extension, but none has been granted.”" },
+            { type: "player", speaker: "Player", text: "“Hold the run at 11:00 rather than gamble both wafers on a process change. Request an extension and approval to consume one wafer for the discriminating measurement. Do not begin that measurement before approval.”" }
+          ]
+        },
+        {
+          hud: "11:00 | Disposition submitted | Run held; extension and destructive test pending approval",
+          items: [
+            { type: "adjudicator", speaker: "Adjudicator", text: "“No further wafer was processed or consumed. The hold and extension request were submitted. This episode closes with the causal diagnosis unresolved.”" },
+            { type: "coach", speaker: "Coach Review", text: "“You preserved material, but the first test consumed 20 minutes without distinguishing the leading explanations, leaving insufficient time for the stronger test. Whether that was worthwhile depends on what you expected the cheaper test to reveal. The record supports that question; it does not justify declaring either process mechanism the culprit.”" }
+          ]
+        }
+      ]
+    },
+    {
+      title: "4. The enterprise whale: money with obligations attached",
+      curtain: "The scenario fixes contract authority, payment conditions, interview evidence, staffing requirements, and the launch delay caused by reassignment. Founder tasks run sequentially because they use the same person. Submitting the prepared proposal incurs no further modeled delay. The episode ends at submission; no weeks of additional work or burn are invented to dramatize the offer.",
+      steps: [
+        {
+          hud: "Monday 09:00 | Contract response due Tuesday 17:00 | $450k cash; four engineers | Synthetic; dynamic clock",
+          items: [
+            { type: "brief", speaker: "Brief", text: "You are the founder. An enterprise prospect offers a $300k annual contract, including $150k upfront, conditional on an on-prem connector delivered in eight weeks. The connector would occupy two engineers for those eight weeks. All four engineers are currently allocated to a self-serve launch six weeks away. Decide what to offer and which delivery commitments to make. Net burn is $100k per month; signing creates obligations, not just runway." }
+          ]
+        },
+        {
+          hud: "Monday 09:00 | Evaluating customer signals & decision authority",
+          items: [
+            { type: "player", speaker: "Player", text: "“What do the last five lost deals tell us about the connector? And does the enterprise champion have authority to accept a cloud pilot?”" },
+            { type: "adjudicator", speaker: "Adjudicator", text: "“Existing notes mention onboarding difficulty in four deals and integration requirements in two; the categories overlap. They do not establish which change would have won the deals. The champion can sponsor a pilot, but procurement must approve it. A contract discussion takes two hours; follow-up interviews with three lost prospects take four hours of founder time.”" },
+            { type: "player", speaker: "Player", text: "“Offer a paid cloud pilot, with no connector commitment. Ask procurement what would make it acceptable, then conduct the interviews.”" }
+          ]
+        },
+        {
+          hud: "Monday 15:00 | Response due tomorrow 17:00 | Engineering allocation unchanged",
+          items: [
+            { type: "adjudicator", speaker: "Adjudicator", text: "“Procurement will consider a $25k pilot, payable on approval, but production deployment still requires on-prem support. Two interviewed prospects describe setup problems; one also requires an integration. None commits to buying after a fix. Your engineering lead estimates that allocating two engineers to the connector would move the self-serve launch from six to ten weeks under the current plan.”" },
+            { type: "player", speaker: "Player", text: "“Submit the $25k cloud pilot proposal, subject to procurement approval. Preserve the launch allocation. Make any later connector offer conditional on a separate capacity plan and signed terms; tell the board the $150k upfront payment is not secured.”" }
+          ]
+        },
+        {
+          hud: "Monday 15:00 | Response submitted ahead of deadline | Pilot approval pending; launch plan preserved",
+          items: [
+            { type: "adjudicator", speaker: "Adjudicator", text: "“The proposal was submitted without a connector obligation. Procurement has not approved or paid for the pilot. The modeled launch schedule remains six weeks. Neither the launch’s revenue nor the enterprise contract is guaranteed; the cash constraint remains.”" },
+            { type: "coach", speaker: "Coach Review", text: "“You distinguished a plausible customer signal from committed revenue and avoided spending capacity twice. The commitment preserves the launch plan while declining the larger payment on its offered terms. That makes the tradeoff explicit; it does not establish that the self-serve strategy will succeed.”" }
+          ]
+        }
+      ]
+    }
+  ];
+
+  let currentVig = 0;
+  let currentStep = 0;
+
+  function render() {
+    const vig = vignettes[currentVig];
+    const step = vig.steps[currentStep];
+
+    const titleEl = document.getElementById("adg-title");
+    const hudEl = document.getElementById("adg-hud-bar");
+    const flowEl = document.getElementById("adg-content-flow");
+    const curtainTextEl = document.getElementById("adg-curtain-text");
+    const curtainBox = document.getElementById("adg-curtain-box");
+    const counterEl = document.getElementById("adg-step-counter");
+    const prevBtn = document.getElementById("adg-prev-btn");
+    const nextBtn = document.getElementById("adg-next-btn");
+
+    if (!titleEl) return;
+
+    titleEl.textContent = vig.title;
+    hudEl.textContent = "HUD: " + step.hud;
+    flowEl.innerHTML = "";
+
+    step.items.forEach(item => {
+      const entryEl = document.createElement("div");
+      entryEl.className = "adg-entry adg-" + item.type;
+      
+      const spkEl = document.createElement("span");
+      spkEl.className = "adg-speaker";
+      spkEl.textContent = item.speaker;
+      
+      const textEl = document.createElement("div");
+      textEl.textContent = item.text.replace(/^“|”$/g, "");
+      
+      entryEl.appendChild(spkEl);
+      entryEl.appendChild(textEl);
+      flowEl.appendChild(entryEl);
+    });
+
+    curtainTextEl.textContent = vig.curtain;
+    curtainBox.open = false;
+    counterEl.textContent = "Turn " + (currentStep + 1) + " of " + vig.steps.length;
+
+    prevBtn.disabled = currentStep === 0;
+    nextBtn.disabled = currentStep === vig.steps.length - 1;
+
+    const tabBtns = document.querySelectorAll(".adg-tab-btn");
+    tabBtns.forEach((btn, idx) => {
+      if (idx === currentVig) {
+        btn.classList.add("active");
+      } else {
+        btn.classList.remove("active");
+      }
+    });
+  }
+
+  window.adgSetVignette = function(idx) {
+    currentVig = idx;
+    currentStep = 0;
+    render();
+  };
+
+  window.adgPrevStep = function() {
+    if (currentStep > 0) {
+      currentStep--;
+      render();
+    }
+  };
+
+  window.adgNextStep = function() {
+    const vig = vignettes[currentVig];
+    if (currentStep < vig.steps.length - 1) {
+      currentStep++;
+      render();
+    }
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", render);
+  } else {
+    render();
+  }
+})();
+</script>
+</div>
+</div>
+<div id="outline-container-a-playground-for-humans-and-then-agents" class="outline-2">
+<h2 id="a-playground-for-humans-and-then-agents">A playground for humans, and then agents?</h2>
+<div class="outline-text-2">
+<p>
+The motivation here is to create good games that force us to look into the abyss, grapple with the trade-offs, learn to make decisions and keep moving forward.
+</p>
+
+<p>
+Inevitably, there is also an angle here for evaluating AI agents. Subjecting autonomous agents to ADGs could serve as a stress test for bounded reasoning, calibration, and tool choice under epistemic uncertainty. What can be used as an eval could just as well be used for automated hill-climbing i.e reinforcement learning. A note of caution, though... done naively (eg. if the acting agent, the causal world model and the adjudicating referee share the same priors) this risks running headlong into some kind of &ldquo;mode collapse&rdquo; or myriad forms of reward hacking. But that&rsquo;s not my primary interest here so let&rsquo;s skip that for a simpler focus: an engaging low-cost sparring ring to develop human cognition.
+</p>
+
+<p>
+The demo, scenario engine, and case dossiers are open source on <a href="https://github.com/sivark/judgement-call">GitHub</a>. Try a run, see if you can survive the fog, and let me know where the referee or the world break. Remember also that these pieces are very simple to fork and modify to construct your own domains and scenarios. Pair it with your world-building and have fun!
+</p>
+</div>
+</div>
+]]></description>
+    </item>
+    
+    <item>
       <title>Spirit of research</title>
       <link>http://sivark.me/blogspirit-of-research.html</link>
       <author>Siva Swaminathan</author>
@@ -37,7 +606,7 @@
         <pubDate>Wed, 09 Sep 2026 00:00:00 +0530</pubDate>
       
       <description><![CDATA[<p>
-Sometimes being able to "hold a problem" and gaze into the abyss without rushing to solve it is central to coming up with deep insights instead of pedantic ones. Haste is bad practice when the real goal is to mine insights, particularly in research.
+Sometimes being able to &ldquo;hold a problem&rdquo; and gaze into the abyss without rushing to solve it is central to coming up with deep insights instead of pedantic ones. Haste is bad practice when the real goal is to mine insights, particularly in research.
 </p>
 
 <p>
@@ -45,15 +614,15 @@ To adapt JFK to capture the spirit of research, [we do things not because they a
 </p>
 
 <p>
-The longer arc of human progress doesn't work by hill-climbing, even though that might well power the day-to-day. For exactly that reason we created separate cocoons for intellectual work, away from the humdrum of operational activity. They're meant to be wombs to nurture nascent ideas.
+The longer arc of human progress doesn&rsquo;t work by hill-climbing, even though that might well power the day-to-day. For exactly that reason we created separate cocoons for intellectual work, away from the humdrum of operational activity. They&rsquo;re meant to be wombs to nurture nascent ideas.
 </p>
 
 <p>
-AI "research" is a strange mix of conference-driven CS lineage and Silicon Valley lineage (shaped by startup mentality, esp SaaS growth hacking), and has been having enormous success in progress of an instrumental nature (rather than insights of an epistemic nature). It feels jarring to see this culture invade our intellectual pockets with a harvesting mentality.
+AI &ldquo;research&rdquo; is a strange mix of conference-driven CS lineage and Silicon Valley lineage (shaped by startup mentality, esp SaaS growth hacking), and has been having enormous success in progress of an instrumental nature (rather than insights of an epistemic nature). It feels jarring to see this culture invade our intellectual pockets with a harvesting mentality.
 </p>
 
 <p>
-To "solve" protein folding or fusion energy means something qualitatively very different compared to solving Navier-Stokes or P/NP or the incompleteness theorems. Conflating the two is a category error, downstream of a solver mentality.
+To &ldquo;solve&rdquo; protein folding or fusion energy means something qualitatively very different compared to solving Navier-Stokes or P/NP or the incompleteness theorems. Conflating the two is a category error, downstream of a solver mentality.
 </p>
 ]]></description>
     </item>
@@ -67,15 +636,15 @@ To "solve" protein folding or fusion energy means something qualitatively very d
         <pubDate>Tue, 01 Sep 2026 00:00:00 +0530</pubDate>
       
       <description><![CDATA[<p>
-I've been reading some chatter about how everything that can be verified can easily be automated, and how this covers much of knowledge work (along with exhortations of how this should push AI services towards outcome-based pricing rather than token-based). I want to rebut the strong version of that claim by pointing out a neglected bit of nuance.
+I&rsquo;ve been reading some chatter about how everything that can be verified can easily be automated, and how this covers much of knowledge work (along with exhortations of how this should push AI services towards outcome-based pricing rather than token-based). I want to rebut the strong version of that claim by pointing out a neglected bit of nuance.
 </p>
 
 <p>
-To delegate something to be “solved”, you don't just need a verifier, but you need to be able to write it down <i>ex ante</i> in a (smart) contract before you kick off the work. But most knowledge work is under-specified, and can't be carved into discrete units with fully defined outcomes; discovery and scoping are intrinsic to it.
+To delegate something to be “solved”, you don&rsquo;t just need a verifier, but you need to be able to write it down <i>ex ante</i> in a (smart) contract before you kick off the work. But most knowledge work is under-specified, and can&rsquo;t be carved into discrete units with fully defined outcomes; discovery and scoping are intrinsic to it.
 </p>
 
 <p>
-This is what is underlying the common advice to get moving and avoid analysis paralysis. That's also why software gave up on waterfall and moved towards agile as software systems became more complex.
+This is what is underlying the common advice to get moving and avoid analysis paralysis. That&rsquo;s also why software gave up on waterfall and moved towards agile as software systems became more complex.
 </p>
 
 <p>
@@ -219,7 +788,7 @@ I ended up writing <a href="https://x.com/ergodicthought/status/2067827364277698
 </p>
 
 
-<div id="org3104b5d" class="figure">
+<div id="orgf44c66f" class="figure">
 <p><img src="static/midjourney-tank-scanner.png" alt="midjourney-tank-scanner.png" />
 </p>
 </div>
@@ -269,7 +838,7 @@ Coming to the scan experience, it seems that scans currently take 20 minutes. I 
 </p>
 
 <p>
-One might expect Midjourney to use generative AI models to compensate for the above. But the diagnostic value of medical images is all in the FINE DETAILS. An image with the liver in roughly the right place and with roughly the right shape is zero signal &ndash; since that’s true for almost every human being. The clinically useful information in an ultrasound image is in the texture and the pattern of speckle. To be useful, what the images really need is to separate certainty and uncertainty. A realistic looking image when the underlying biology is uncertain is actually dangerous! This is exactly the opposite of typical generative AI benchmarks &amp; usage.
+One might expect Midjourney to use generative AI models to compensate for the above. But the diagnostic value of medical images is all in the FINE DETAILS. An image with the liver in roughly the right place and with roughly the right shape is zero signal -- since that’s true for almost every human being. The clinically useful information in an ultrasound image is in the texture and the pattern of speckle. To be useful, what the images really need is to separate certainty and uncertainty. A realistic looking image when the underlying biology is uncertain is actually dangerous! This is exactly the opposite of typical generative AI benchmarks &amp; usage.
 </p>
 
 <hr />
@@ -283,7 +852,7 @@ That would require starting with higher image quality and fidelity, but those ar
 </p>
 
 <p>
-It’s great to not need a skilled operator, but&hellip; a scanning hub is just a hospital dressed in better vibes. It is just as much a systemic bottleneck. There are a lot more than 50k hospitals, and we are far from making medical imaging abundant. Wouldn’t it be way better if everyone could scan themselves at home, all the time?
+It’s great to not need a skilled operator, but... a scanning hub is just a hospital dressed in better vibes. It is just as much a systemic bottleneck. There are a lot more than 50k hospitals, and we are far from making medical imaging abundant. Wouldn’t it be way better if everyone could scan themselves at home, all the time?
 </p>
 
 <p>
@@ -324,21 +893,21 @@ AI could transform healthcare, but only if it has high-quality <i>context</i> to
         <pubDate>Sun, 01 Aug 2021 00:00:00 +0530</pubDate>
       
       <description><![CDATA[<p>
-A friend shared with me this <a href="https://www.quantamagazine.org/first-time-crystal-built-using-googles-quantum-computer-20210730/">very nice Quanta magazine article about some recent work on an experimental realization of time crystals in Google's quantum computer</a>, and sought an explanation. Having not looked into time crystals before, this proved to be a fun Sunday morning exercise :-)
+A friend shared with me this <a href="https://www.quantamagazine.org/first-time-crystal-built-using-googles-quantum-computer-20210730/">very nice Quanta magazine article about some recent work on an experimental realization of time crystals in Google&rsquo;s quantum computer</a>, and sought an explanation. Having not looked into time crystals before, this proved to be a fun Sunday morning exercise :-)
 </p>
 
 <p>
-I summarize my understanding below. I don't fully understand the story yet, so take it with a grain of salt (pun unintended).
+I summarize my understanding below. I don&rsquo;t fully understand the story yet, so take it with a grain of salt (pun unintended).
 </p>
 <div id="outline-container-what-is-a-crystal" class="outline-2">
 <h2 id="what-is-a-crystal"><span class="section-number-2">1.</span> What is a crystal?</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-Consider a "soup" of electrons and protons. Or, to be more realistic, (valence) electrons and nuclei+(non-valence electrons). One state of matter is a "gas" where all these lumps move around freely, where the spatial translation symmetry of physical laws is fully manifest.
+Consider a &ldquo;soup&rdquo; of electrons and protons. Or, to be more realistic, (valence) electrons and nuclei+(non-valence electrons). One state of matter is a &ldquo;gas&rdquo; where all these lumps move around freely, where the spatial translation symmetry of physical laws is fully manifest.
 </p>
 
 <p>
-However, there can be occasions where these lumps decide to coordinate through their (complicated) long-range interactions (in this case electromagnetic, since they're all charged) such that the heavier lumps assemble into some regular periodic structure, and the lighter lumps float freely through the maze.
+However, there can be occasions where these lumps decide to coordinate through their (complicated) long-range interactions (in this case electromagnetic, since they&rsquo;re all charged) such that the heavier lumps assemble into some regular periodic structure, and the lighter lumps float freely through the maze.
 </p>
 
 <p>
@@ -346,7 +915,7 @@ If you try to characterize the positions of the heavy lumps by looking at their 
 </p>
 
 <p>
-This phenomenon &ndash; where the "symmetry" of infinitesimal translations breaks down into just finite/discrete translations (modulo lattica spacing) &ndash; is what we call a (spatial) "crystal".
+This phenomenon -- where the &ldquo;symmetry&rdquo; of infinitesimal translations breaks down into just finite/discrete translations (modulo lattica spacing) -- is what we call a (spatial) &ldquo;crystal&rdquo;.
 </p>
 
 <p>
@@ -358,7 +927,7 @@ As an important technical detail, the phenomenon happens in thermal equilibrium.
 <h2 id="what-is-a-time-crystal"><span class="section-number-2">2.</span> What is a time crystal?</h2>
 <div class="outline-text-2" id="text-2">
 <p>
-By analogy with a (spatial) crystal, could we conjure a system whose natural behavior in time is not a placid ground state which is unchanging, but one which has a periodic nature which "comes back" to itself only after certain intervals (and do so for arbitrarily long periods)?
+By analogy with a (spatial) crystal, could we conjure a system whose natural behavior in time is not a placid ground state which is unchanging, but one which has a periodic nature which &ldquo;comes back&rdquo; to itself only after certain intervals (and do so for arbitrarily long periods)?
 </p>
 
 <p>
@@ -370,7 +939,7 @@ To prevent any exponential decay requires both the states to have the same energ
 </p>
 
 <p>
-In case you recall from elementary quantum mechanics, simple systems could exist in a superposition of states. But when you get to complex "many-body" systems with "disorder" (read: impurities/dirt/junk), it is extremely hard to maintain this coherence, and the system (arbitrarily) picks one of the two states. The only way for the system to get to the other state is by <b>tunneling</b> &ndash; the probability of which is exponentially suppressed by the activation barrier &ndash; even if the net energy change is zero.
+In case you recall from elementary quantum mechanics, simple systems could exist in a superposition of states. But when you get to complex &ldquo;many-body&rdquo; systems with &ldquo;disorder&rdquo; (read: impurities/dirt/junk), it is extremely hard to maintain this coherence, and the system (arbitrarily) picks one of the two states. The only way for the system to get to the other state is by <b>tunneling</b> -- the probability of which is exponentially suppressed by the activation barrier -- even if the net energy change is zero.
 </p>
 
 <p>
@@ -378,7 +947,7 @@ If the system could tunnel back-and-forth between the two (or many) states, then
 </p>
 
 <p>
-Ok, so if not in "equilibrium", could a system at least be "driven" by some external mechanism (aka "Floquet systems") to exhibit the desired behavior? This turns out to be possible &ndash; with different research groups constructing their own examples. One such example is using a laser to drive a system with two ground states.
+Ok, so if not in &ldquo;equilibrium&rdquo;, could a system at least be &ldquo;driven&rdquo; by some external mechanism (aka &ldquo;Floquet systems&rdquo;) to exhibit the desired behavior? This turns out to be possible -- with different research groups constructing their own examples. One such example is using a laser to drive a system with two ground states.
 </p>
 </div>
 </div>
@@ -386,15 +955,15 @@ Ok, so if not in "equilibrium", could a system at least be "driven" by some exte
 <h2 id="what-kind-of-weird-systems-have-two-ground-states"><span class="section-number-2">3.</span> What kind of weird systems have two ground states?</h2>
 <div class="outline-text-2" id="text-3">
 <p>
-Consider a bunch of interacting spins (commonly simplified as an Ising model). In samples with impurities (doped just the right way), even if the spins happen to be on a lattice, their interactions will have quite a bit of randomness rather than being regular and periodic. <b>Localization</b> is the phenomenon where due to the disorder, electrons can't freely flow through the lattice structure; so their eigenstates &ndash; instead of being Fourier modes that are spread all over the lattice &ndash; "localize" spatially.
+Consider a bunch of interacting spins (commonly simplified as an Ising model). In samples with impurities (doped just the right way), even if the spins happen to be on a lattice, their interactions will have quite a bit of randomness rather than being regular and periodic. <b>Localization</b> is the phenomenon where due to the disorder, electrons can&rsquo;t freely flow through the lattice structure; so their eigenstates -- instead of being Fourier modes that are spread all over the lattice -- &ldquo;localize&rdquo; spatially.
 </p>
 
 <p>
-Such disordered systems often form states known as a <b>spin glass</b> (glassy/amorphous, as opposed to ordered/crystalling). The high-dimensional space of configurations of this system typically turns out to have an incredibly complicated landscape &ndash; it is not fully understood, but believed to have many local minima and saddle points, leading to all kinds of interesting behavior &ndash; including <b>memory</b>. (Aside: For this reason, spin glasses serve as fascinating models of high-dimensional systems "learning" to represent certain information, and there are many links to ML/optimization/etc.)
+Such disordered systems often form states known as a <b>spin glass</b> (glassy/amorphous, as opposed to ordered/crystalling). The high-dimensional space of configurations of this system typically turns out to have an incredibly complicated landscape -- it is not fully understood, but believed to have many local minima and saddle points, leading to all kinds of interesting behavior -- including <b>memory</b>. (Aside: For this reason, spin glasses serve as fascinating models of high-dimensional systems &ldquo;learning&rdquo; to represent certain information, and there are many links to ML/optimization/etc.)
 </p>
 
 <p>
-Given that these systems have two global minima (start with one global minimum, and flip ALL the spins to get the other global minimum), and enough disorder to stabilize this property even when the system is driven (that is what allows them to have a "rugged" landscape of multiple local minima), they serve as great candidates to build a time crystal.
+Given that these systems have two global minima (start with one global minimum, and flip ALL the spins to get the other global minimum), and enough disorder to stabilize this property even when the system is driven (that is what allows them to have a &ldquo;rugged&rdquo; landscape of multiple local minima), they serve as great candidates to build a time crystal.
 </p>
 </div>
 </div>
@@ -406,11 +975,11 @@ Given that these systems have two global minima (start with one global minimum, 
 </p>
 
 <p>
-We have two global minima (call them A &amp; B), but tunneling from one to the other is really really hard. But have heart &ndash; any quantum superposition of these two global minima are also ground states of the system! In particular, we could take the symmetric/"A+B" and antisymmetric/"A-B" combinations, so that (in reverse) the original global minima are just combinations of the + &amp; - states. So, even if the original system settles in (say) A, we know that A can be represented as a superposition (A+B) + (A-B).
+We have two global minima (call them A &amp; B), but tunneling from one to the other is really really hard. But have heart -- any quantum superposition of these two global minima are also ground states of the system! In particular, we could take the symmetric/&ldquo;A+B&rdquo; and antisymmetric/&ldquo;A-B&rdquo; combinations, so that (in reverse) the original global minima are just combinations of the + &amp; - states. So, even if the original system settles in (say) A, we know that A can be represented as a superposition (A+B) + (A-B).
 </p>
 
 <p>
-When driven by a laser the energies of the + and - states will split (E+ &amp; E-), and the states ought to "oscillate" with different frequencies (w+ &amp; w-). Even when the actual system continues to exist in its ground state A ~ (A+B) + (A-B), certain measurable physical properties of the system will oscillate at the beat frequency (w+ - w-), and this will keep going forever. Even though this is "non-equilibrium" in that it requires being driven by a laser, this system doesn't really dissipate the laser energy &ndash; over a complete cycle, it gives back what it takes. There, we have a time crystal!
+When driven by a laser the energies of the + and - states will split (E+ &amp; E-), and the states ought to &ldquo;oscillate&rdquo; with different frequencies (w+ &amp; w-). Even when the actual system continues to exist in its ground state A ~ (A+B) + (A-B), certain measurable physical properties of the system will oscillate at the beat frequency (w+ - w-), and this will keep going forever. Even though this is &ldquo;non-equilibrium&rdquo; in that it requires being driven by a laser, this system doesn&rsquo;t really dissipate the laser energy -- over a complete cycle, it gives back what it takes. There, we have a time crystal!
 </p>
 </div>
 </div>
@@ -422,7 +991,7 @@ AFAIU, the relation is only incidental, as a matter of details. Ising spins (aka
 </p>
 
 <p>
-The fact that a quantum computer is built not just with the goal of being able to "program" the couplings, but also being able to "read out" the qubit states makes it a perfect study tool where you can convincingly repeat the same experiment many many times &ndash; while querying/probing the system after a different time interval in each repetition, in order to map out the evolving behavior. Do this thoroughly enough, and you can convincingly demonstrate that you've built a time crystal where you have pretty good control over all the pieces that went into the experiment.
+The fact that a quantum computer is built not just with the goal of being able to &ldquo;program&rdquo; the couplings, but also being able to &ldquo;read out&rdquo; the qubit states makes it a perfect study tool where you can convincingly repeat the same experiment many many times -- while querying/probing the system after a different time interval in each repetition, in order to map out the evolving behavior. Do this thoroughly enough, and you can convincingly demonstrate that you&rsquo;ve built a time crystal where you have pretty good control over all the pieces that went into the experiment.
 </p>
 </div>
 </div>
@@ -438,27 +1007,27 @@ The fact that a quantum computer is built not just with the goal of being able t
         <pubDate>Sun, 07 Mar 2021 00:00:00 +0530</pubDate>
       
       <description><![CDATA[<p>
-I have seen claims that the von Neumann Morgenstern utility theorem (vNM) grounding Expected Utility Theory (EUT) voids <a href="https://ergodicityeconomics.com/">Ergodicity Economics</a> (EE) and time averages, including appeals to authority about von Neumann being an expert on the idea of (non)ergodicity. I think that misses a subtlety; in what follows I have tried to avoid any use of "right" or "wrong", instead trying to emphasize the <i>"usefulness"</i> of modeling assumptions given the situation.
+I have seen claims that the von Neumann Morgenstern utility theorem (vNM) grounding Expected Utility Theory (EUT) voids <a href="https://ergodicityeconomics.com/">Ergodicity Economics</a> (EE) and time averages, including appeals to authority about von Neumann being an expert on the idea of (non)ergodicity. I think that misses a subtlety; in what follows I have tried to avoid any use of &ldquo;right&rdquo; or &ldquo;wrong&rdquo;, instead trying to emphasize the <i>&ldquo;usefulness&rdquo;</i> of modeling assumptions given the situation.
 </p>
 
 <p>
-The <a href="https://en.wikipedia.org/wiki/Von_Neumann%E2%80%93Morgenstern_utility_theorem">vNM theorem</a> guarantees the existence of a utility function IFF four axioms (termed {completeness, transitivity, continuity, independence}) are satisfied. Quite reasonable on the face of it, but the theorem implicitly assumes the existence of a probability distribution, and <i>doesn't say anything about where the probabilities come from</i>. That choice is a separate <b>modeling assumption</b> when applying the vNM framework to a specific situation, and presumably <i>a crucial implicit assumption underlying EUT</i>, as commonly used.
+The <a href="https://en.wikipedia.org/wiki/Von_Neumann%E2%80%93Morgenstern_utility_theorem">vNM theorem</a> guarantees the existence of a utility function IFF four axioms (termed {completeness, transitivity, continuity, independence}) are satisfied. Quite reasonable on the face of it, but the theorem implicitly assumes the existence of a probability distribution, and <i>doesn&rsquo;t say anything about where the probabilities come from</i>. That choice is a separate <b>modeling assumption</b> when applying the vNM framework to a specific situation, and presumably <i>a crucial implicit assumption underlying EUT</i>, as commonly used.
 </p>
 
 <p>
-Consider the simple experiment of repeated tosses of a fair coin, increasing or decreasing the agent's wealth by \(10\%\) on each turn<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>, i.e. <a href="https://en.wikipedia.org/wiki/Geometric_Brownian_motion">Geometric Brownian motion</a> (without the drift, for simplicity). <i>What probability distribution over the set of trajectories is appropriate to capture the agent's behavior?</i> Note that vNM has nothing to say about this &ndash; leaving it up to the modeler to choose judiciously. That choice implicitly decides between time and ensemble averages (or whatever else kind of average).
+Consider the simple experiment of repeated tosses of a fair coin, increasing or decreasing the agent&rsquo;s wealth by \(10\%\) on each turn<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>, i.e. <a href="https://en.wikipedia.org/wiki/Geometric_Brownian_motion">Geometric Brownian motion</a> (without the drift, for simplicity). <i>What probability distribution over the set of trajectories is appropriate to capture the agent&rsquo;s behavior?</i> Note that vNM has nothing to say about this -- leaving it up to the modeler to choose judiciously. That choice implicitly decides between time and ensemble averages (or whatever else kind of average).
 </p>
 
 <p>
-If we expect this game to be played a small number of times compared with the number of trajectories (eg: a billion = \(2^{30} \ll 2^{100}\), for 100 sequential coin tosses), then the distribution of <i>"typical"</i> trajectories <a href="https://en.wikipedia.org/wiki/Concentration_of_measure"><i>concentrates</i></a> around the median case (expected number of H and T) with probability approaching one, leaving the agent almost no chance to probe the extreme scenarios (strings with mostly H or strings with mostly T). This concentrated measure &ndash; which describes how the (available "small" number of) agents/plays will "probe" the trajectories, and leads to what we call "time averages"<sup><a id="fnr.2" class="footref" href="#fn.2" role="doc-backlink">2</a></sup> &ndash; is very different from the distribution corresponding to ensemble probabilities of trajectories, where each trajectory is equally likely (for a fair coin).
+If we expect this game to be played a small number of times compared with the number of trajectories (eg: a billion = \(2^{30} \ll 2^{100}\), for 100 sequential coin tosses), then the distribution of <i>&ldquo;typical&rdquo;</i> trajectories <a href="https://en.wikipedia.org/wiki/Concentration_of_measure"><i>concentrates</i></a> around the median case (expected number of H and T) with probability approaching one, leaving the agent almost no chance to probe the extreme scenarios (strings with mostly H or strings with mostly T). This concentrated measure -- which describes how the (available &ldquo;small&rdquo; number of) agents/plays will &ldquo;probe&rdquo; the trajectories, and leads to what we call &ldquo;time averages&rdquo;<sup><a id="fnr.2" class="footref" href="#fn.2" role="doc-backlink">2</a></sup> -- is very different from the distribution corresponding to ensemble probabilities of trajectories, where each trajectory is equally likely (for a fair coin).
 </p>
 
 <p>
-The only way to realize a situation which circumvents this concentration of measure is to live in the regime where the number of (parallel) plays far exceeds the number of trajectories. In such a scenario, it will turn out that the distribution probed by the ensemble of agents/plays corresponds to what we call the "ensemble average"<sup><a id="fnr.3" class="footref" href="#fn.3" role="doc-backlink">3</a></sup> among the trajectories.
+The only way to realize a situation which circumvents this concentration of measure is to live in the regime where the number of (parallel) plays far exceeds the number of trajectories. In such a scenario, it will turn out that the distribution probed by the ensemble of agents/plays corresponds to what we call the &ldquo;ensemble average&rdquo;<sup><a id="fnr.3" class="footref" href="#fn.3" role="doc-backlink">3</a></sup> among the trajectories.
 </p>
 
 <p>
-To be even more thorough, we care about the probability distribution not in the space of trajectories, but the induced distribution on the observable (i.e. the space of payoffs) &ndash; which is the quantity we are actually averaging. These two distributions could look very different eg. in cases where a small set of trajectories in the ensemble have outsized (exponentially large) payoffs! IFF we happen to be in the latter situation (depending on the observable/payoff, and the process) we may call the {observable, process} combination  <i>"ergodic"</i>.
+To be even more thorough, we care about the probability distribution not in the space of trajectories, but the induced distribution on the observable (i.e. the space of payoffs) -- which is the quantity we are actually averaging. These two distributions could look very different eg. in cases where a small set of trajectories in the ensemble have outsized (exponentially large) payoffs! IFF we happen to be in the latter situation (depending on the observable/payoff, and the process) we may call the {observable, process} combination  <i>&ldquo;ergodic&rdquo;</i>.
 </p>
 <div id="outline-container-ergodicity-and-economic-modeling" class="outline-2">
 <h2 id="ergodicity-and-economic-modeling"><span class="section-number-2">1.</span> Ergodicity and economic modeling</h2>
@@ -468,7 +1037,7 @@ EE is not in opposition with the vNM framework! Rather, <i>the point of EE is th
 </p>
 
 <p>
-If one were only interested in modeling a single problem, the prescription of distribution is about as much input as a prescription of utilities &ndash; they both beg the question equally, in a sense. The true value of EE comes from its potential <i>generalizability to modeling multiple problems with the same prescription of averaging</i> if it turns out that the prescription of time averages is sufficient to correctly model behaviour using simple/obvious utility functions, rather than cooking up a different utility function to model the behavior in each problem.
+If one were only interested in modeling a single problem, the prescription of distribution is about as much input as a prescription of utilities -- they both beg the question equally, in a sense. The true value of EE comes from its potential <i>generalizability to modeling multiple problems with the same prescription of averaging</i> if it turns out that the prescription of time averages is sufficient to correctly model behaviour using simple/obvious utility functions, rather than cooking up a different utility function to model the behavior in each problem.
 </p>
 </div>
 </div>
@@ -481,7 +1050,7 @@ We have all the pieces in place to understand the roots of ergodicity in physica
 
 <p>
 The <a href="https://en.wikipedia.org/wiki/Ergodic_hypothesis">ergodic hypothesis</a> claims that (even) a single agent (i.e. a physical system in a given macrostate) will (over a reasonable time scale) uniformly explore the microstates in the ensemble corresponding to the macrostate (through natural dynamics).
-The only observables that can be probed by experiments on a single system (or a few systems) are time averages, but the ergodic hypothesis allows those to be equated with ensemble averages (which are far easier to compute). For this replacement to be a useful model (at least in non-pathological systems), we don't really need the system's trajectory to probe <i>all</i> the microstates, but merely to probe the phase space volume densely<sup><a id="fnr.4" class="footref" href="#fn.4" role="doc-backlink">4</a></sup> and uniformly. Loosely speaking, chaotic dynamics can induce a dense sampling, while Liouville's theorem guarantees uniformity along the trajectory. There are caveats to that statement, whose subtleties I haven't fully mapped out yet; suffice to say that there are interesting examples where this doesn't trivially happen, such as the <a href="https://en.wikipedia.org/wiki/Fermi%E2%80%93Pasta%E2%80%93Ulam%E2%80%93Tsingou_problem">Fermi–Pasta–Ulam–Tsingou problem</a> or <a href="http://www.scholarpedia.org/article/Glassy_dynamics">glassy dynamics</a>.
+The only observables that can be probed by experiments on a single system (or a few systems) are time averages, but the ergodic hypothesis allows those to be equated with ensemble averages (which are far easier to compute). For this replacement to be a useful model (at least in non-pathological systems), we don&rsquo;t really need the system&rsquo;s trajectory to probe <i>all</i> the microstates, but merely to probe the phase space volume densely<sup><a id="fnr.4" class="footref" href="#fn.4" role="doc-backlink">4</a></sup> and uniformly. Loosely speaking, chaotic dynamics can induce a dense sampling, while Liouville&rsquo;s theorem guarantees uniformity along the trajectory. There are caveats to that statement, whose subtleties I haven&rsquo;t fully mapped out yet; suffice to say that there are interesting examples where this doesn&rsquo;t trivially happen, such as the <a href="https://en.wikipedia.org/wiki/Fermi%E2%80%93Pasta%E2%80%93Ulam%E2%80%93Tsingou_problem">Fermi–Pasta–Ulam–Tsingou problem</a> or <a href="http://www.scholarpedia.org/article/Glassy_dynamics">glassy dynamics</a>.
 </p>
 </div>
 </div>
@@ -493,7 +1062,7 @@ The only observables that can be probed by experiments on a single system (or a 
 
 <div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2" role="doc-backlink">2</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">The concentrated measure is basically the model underlying the <a href="https://en.wikipedia.org/wiki/Kelly_criterion">Kelly criterion</a>.</p></div></div>
 
-<div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3" role="doc-backlink">3</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">This is the commonly (implicitly) assumed situation in probability theory &ndash; where the number of trials (far) exceeds the number of events underlying a random variable (validating a frequentist perspective) &ndash; under which ensemble averaging turns out to be a meaningful/useful concept, because of the concentration driven by the law of large numbers.</p></div></div>
+<div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3" role="doc-backlink">3</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">This is the commonly (implicitly) assumed situation in probability theory -- where the number of trials (far) exceeds the number of events underlying a random variable (validating a frequentist perspective) -- under which ensemble averaging turns out to be a meaningful/useful concept, because of the concentration driven by the law of large numbers.</p></div></div>
 
 <div class="footdef"><sup><a id="fn.4" class="footnum" href="#fnr.4" role="doc-backlink">4</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">Like the <a href="https://math.stackexchange.com/questions/1027970/what-does-it-mean-for-rational-numbers-to-be-dense-in-the-reals">rationals among the reals</a>.</p></div></div>
 
@@ -519,7 +1088,7 @@ If the essence of art is sharing/communication, what is beauty? It is about the 
 </p>
 
 <p>
-Sometimes, the message might simply be the mastery of a medium or form (including the human physical form), in which case the "beauty" might associate more intrinsically with just the method &amp; its expression, rather than with some extrinsic content.
+Sometimes, the message might simply be the mastery of a medium or form (including the human physical form), in which case the &ldquo;beauty&rdquo; might associate more intrinsically with just the method &amp; its expression, rather than with some extrinsic content.
 </p>
 
 <p>
@@ -527,15 +1096,15 @@ Typically, the most natural path for the emergence of a work of such beauty is a
 </p>
 
 <p>
-&mdash;
+---
 </p>
 
 <p>
-Artifacts produced in this manner get called "art", though it's worth discriminating between the process and the artifacts. Art <span class="underline">works</span> are (imho) valueable not intrinsically, but for the message they carry &ndash; especially for their potency in offering a new perspective of reality, in contrast to those embedded in a certain context and history. They might be so effective in reshaping the sensory experience that they automatically lead to a consequential change in behavior. Absorbed into the human experience, they forever change how we perceive things.<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>
+Artifacts produced in this manner get called &ldquo;art&rdquo;, though it&rsquo;s worth discriminating between the process and the artifacts. Art <span class="underline">works</span> are (imho) valueable not intrinsically, but for the message they carry -- especially for their potency in offering a new perspective of reality, in contrast to those embedded in a certain context and history. They might be so effective in reshaping the sensory experience that they automatically lead to a consequential change in behavior. Absorbed into the human experience, they forever change how we perceive things.<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>
 </p>
 
 <p>
-In this sense, the most beautiful composition would be meaningless (in the sense of not carrying a message) if it were generated "randomly" by a computer. The content of human value is not typically the artifact or the method, but the message it encodes, and the feeling it (intentionally) engenders in the receiver.
+In this sense, the most beautiful composition would be meaningless (in the sense of not carrying a message) if it were generated &ldquo;randomly&rdquo; by a computer. The content of human value is not typically the artifact or the method, but the message it encodes, and the feeling it (intentionally) engenders in the receiver.
 </p>
 
 <p>
@@ -547,11 +1116,11 @@ Art, in this sense, involves indirect communication, sharing perceptions that mi
 </p>
 
 <p>
-&mdash;
+---
 </p>
 
 <p>
-It is often very hard to communicate ideas in abstract, and the best way to share is to actually reify the idea into something concrete &ndash; using an apropos medium.
+It is often very hard to communicate ideas in abstract, and the best way to share is to actually reify the idea into something concrete -- using an apropos medium.
 The medium may be chosen for a combination of its affordances, and your proficiency/skill in <b>playing</b> with it.
 </p>
 
@@ -560,11 +1129,11 @@ Sometimes the reification might be so subtle as to simply enable the creation of
 </p>
 
 <p>
-The expressive medium could be pretty much anything &ndash; including engineering, economics, software, communities/organizations, etc, and ways of “playing” those media might involve anything from scientific research to starting a company to managing people &amp; organizations.<sup><a id="fnr.2" class="footref" href="#fn.2" role="doc-backlink">2</a></sup>
+The expressive medium could be pretty much anything -- including engineering, economics, software, communities/organizations, etc, and ways of “playing” those media might involve anything from scientific research to starting a company to managing people &amp; organizations.<sup><a id="fnr.2" class="footref" href="#fn.2" role="doc-backlink">2</a></sup>
 </p>
 
 <p>
-In this perspective, media are merely vessels &ndash; a means to communicate &ndash; and come and go as the circumstances of technology and society evolve. It's worth keeping separate any specific medium from the deeper idea of perception &amp; communication.
+In this perspective, media are merely vessels -- a means to communicate -- and come and go as the circumstances of technology and society evolve. It&rsquo;s worth keeping separate any specific medium from the deeper idea of perception &amp; communication.
 </p>
 
 <p>
@@ -576,11 +1145,11 @@ We often wear several layers of tinted galsses when we see the world, and radica
 </p>
 
 <p>
-&mdash;
+---
 </p>
 
 <p>
-Every human activity, including life itself, is potentially a canvas on which you create art given your unique combination of constraints and freedom. This is a medium available to <b>everyone</b>, and it behooves us to indulge in this process in the spirit of <b>play</b> (the idea of `leela`). A life "well lived" may well be considered a work of art.
+Every human activity, including life itself, is potentially a canvas on which you create art given your unique combination of constraints and freedom. This is a medium available to <b>everyone</b>, and it behooves us to indulge in this process in the spirit of <b>play</b> (the idea of `leela`). A life &ldquo;well lived&rdquo; may well be considered a work of art.
 </p>
 
 <p>
@@ -588,16 +1157,16 @@ Every human activity, including life itself, is potentially a canvas on which yo
 </p>
 
 <p>
-The (main?) application of technology is, imho, to expand artistic freedom and agency &ndash; to help people <span class="underline">get a grip</span> (affordances) on tools and media so they may express themselves artistically (including self-authoring).
+The (main?) application of technology is, imho, to expand artistic freedom and agency -- to help people <span class="underline">get a grip</span> (affordances) on tools and media so they may express themselves artistically (including self-authoring).
 </p>
 
 
 <p>
-&mdash;
+---
 </p>
 
 <p>
-None of what I've said might come as a revelation to anyone who's devoted many years to art, but as someone who has not, and has never consciously reflected on this question till recently, I find this to be a potent insight to play with.
+None of what I&rsquo;ve said might come as a revelation to anyone who&rsquo;s devoted many years to art, but as someone who has not, and has never consciously reflected on this question till recently, I find this to be a potent insight to play with.
 </p>
 <div id="footnotes">
 <h2 class="footnotes">Footnotes: </h2>
@@ -621,13 +1190,13 @@ None of what I've said might come as a revelation to anyone who's devoted many y
         <pubDate>Tue, 30 Jun 2020 00:00:00 +0530</pubDate>
       
       <description><![CDATA[<p>
-(2013), so it is interesting to see how the book has aged. This post is based primarily on the appendix elucidating the author's framework (which is what the author recommends starting with). 
+(2013), so it is interesting to see how the book has aged. This post is based primarily on the appendix elucidating the author&rsquo;s framework (which is what the author recommends starting with). 
 </p>
 
 <ul class="org-ul">
 <li>The way I would phrase his punchline: <b>In a globalized world, all domestic policy is trade policy.</b></li>
-<li>Makes the point (and cites consensus among economic historians) that imperialism was driven by finding a market for excess production ("savings") generated by the industrial revolution (Ref: Hobson, Luxemburg, Lenin)</li>
-<li>\(\textrm{GDP} \equiv \textrm{Consumption} + \textrm{Surplus (invested productively or not)}\) (eg: Refers to production surplus as "savings" which is unusual; normal English usage would lead one to consider <i>uninvested &amp; fungible</i> capital as savings, not quite production in excess of consumption, but maybe the wording is not crucial for the argument)(Seems like "GDP = Consumption + Savings/Investment" by definition, so any unconsumed surplus is called "savings")</li>
+<li>Makes the point (and cites consensus among economic historians) that imperialism was driven by finding a market for excess production (&ldquo;savings&rdquo;) generated by the industrial revolution (Ref: Hobson, Luxemburg, Lenin)</li>
+<li>\(\textrm{GDP} \equiv \textrm{Consumption} + \textrm{Surplus (invested productively or not)}\) (eg: Refers to production surplus as &ldquo;savings&rdquo; which is unusual; normal English usage would lead one to consider <i>uninvested &amp; fungible</i> capital as savings, not quite production in excess of consumption, but maybe the wording is not crucial for the argument)(Seems like &ldquo;GDP = Consumption + Savings/Investment&rdquo; by definition, so any unconsumed surplus is called &ldquo;savings&rdquo;)</li>
 <li>In summary, the only time it makes sense for a country to suppress wages (i.e. household income, which will mostly go towards consumption) is when it has high unemployment. In that case, increased investment compared to consumption will promote productive investment (<i>especially towards export</i>), and hence increase employment. After reaching high employment, continuing to suppress household income is effectively forcing unemployment in countries with policies less oriented towards thrift.</li>
 <li>Financial repression through low interest rates might effectively be similar to devaluing the currency, because it shifts resources from households (consumption) to businesses (investment).</li>
 </ul>
@@ -635,15 +1204,15 @@ None of what I've said might come as a revelation to anyone who's devoted many y
 <h2 id="on-production-surpluses-and-income-inequality-appendix"><span class="section-number-2">1.</span> On production surpluses and income inequality (appendix)</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
-<li>Age of mass production &amp; mass consumption. Lacking capital for mass consumption, non-savers reduce consumption, so there's no return for savers investing capital to boost production &ndash; unless consumers take on debt. So, <i>rising income inequality forces up the savings rate</i> since rich people can't/don't consume proportional to wealth (or redistribute for others to consume). If credit cannot surge enough, another consequence is rising unemployment (decreased production to match decreased demand) (This is what triggered New Deal policy making, as a response to Gilded Age inequality &ndash; Marriner Eccles FRB Chairman 1932-1948).</li>
+<li>Age of mass production &amp; mass consumption. Lacking capital for mass consumption, non-savers reduce consumption, so there&rsquo;s no return for savers investing capital to boost production -- unless consumers take on debt. So, <i>rising income inequality forces up the savings rate</i> since rich people can&rsquo;t/don&rsquo;t consume proportional to wealth (or redistribute for others to consume). If credit cannot surge enough, another consequence is rising unemployment (decreased production to match decreased demand) (This is what triggered New Deal policy making, as a response to Gilded Age inequality -- Marriner Eccles FRB Chairman 1932-1948).</li>
 <li>If household income (as a fraction of GDP) shrinks, then households retain (and therefore consume) a smaller fraction of their productivity.</li>
 <li>Pettis argues that different policies in Germany &amp; China which transfer money from households (suppress consumption) to producers (boost production) have similar effects.
 <ul class="org-ul">
-<li>In Germany, agreement circa ~2000 to restrain wage growth lower than productivity. German euro is "undervalued" in relation to Spain, Italy, France having "overvalued" euro.</li>
+<li>In Germany, agreement circa ~2000 to restrain wage growth lower than productivity. German euro is &ldquo;undervalued&rdquo; in relation to Spain, Italy, France having &ldquo;overvalued&rdquo; euro.</li>
 <li>In China, caused by a combination of large (rural) unemployment rate (and export-focused policies?). Undervalued yuan since 1994, and artificially low interest rates.</li>
 </ul></li>
-<li>If there are available avenues for productive investment (i.e. capital is the limiting factor determining growth i.e. "capital-ism"), inequality is a good eay of financing them &ndash; since the rich will likely invest marginal gains, compared to the poor who will likely consume marginal gains. (Many developing countries suffer because of insufficient savings to bootstrap productive investments, simultaneously creating jobs).</li>
-<li>Productivity improvements could result in increasing incomes or inequality (empirical analysis: Piketty's r-vs-g). When productivity improvements are sufficiently high (the target of juicy investment opportunities i.e. low-hanging fruit), household quality-of-life increases even when inequality does (can now consume more per unit income, so okay if incomes don't grow as much, esp. as a fraction of GDP), and the increased inequality is used to sponsor the next round of productivity improvements. This is the crux of the "trickle down" theory (where capitalists are mythologized as "job creators" leading progress; the phase the US "elite" believe themselves to be in).</li>
+<li>If there are available avenues for productive investment (i.e. capital is the limiting factor determining growth i.e. &ldquo;capital-ism&rdquo;), inequality is a good eay of financing them -- since the rich will likely invest marginal gains, compared to the poor who will likely consume marginal gains. (Many developing countries suffer because of insufficient savings to bootstrap productive investments, simultaneously creating jobs).</li>
+<li>Productivity improvements could result in increasing incomes or inequality (empirical analysis: Piketty&rsquo;s r-vs-g). When productivity improvements are sufficiently high (the target of juicy investment opportunities i.e. low-hanging fruit), household quality-of-life increases even when inequality does (can now consume more per unit income, so okay if incomes don&rsquo;t grow as much, esp. as a fraction of GDP), and the increased inequality is used to sponsor the next round of productivity improvements. This is the crux of the &ldquo;trickle down&rdquo; theory (where capitalists are mythologized as &ldquo;job creators&rdquo; leading progress; the phase the US &ldquo;elite&rdquo; believe themselves to be in).</li>
 </ul>
 </div>
 <div id="outline-container-what-happens-when-savings-rise-due-to-increasing-income-inequality" class="outline-3">
@@ -654,12 +1223,12 @@ As an immediate consequence, productive investment must rise with savings, or it
 </p>
 <ul class="org-ul">
 <li>But (as Eccles pointed out) since the purpose of investment today is (to profit off) increased consumption tomorrow, productive investment will only happen if inequality were not permanent (and about to reverse). So, unlikely to get increase in productive investment.</li>
-<li>Over short time periods, increasing inequality can be "buffered" by increasing inventory &ndash; but likely people will not stupidly continue that over long periods.</li>
-<li>Too much capital, and not enough investing opportunities, so interest rates will naturally fall &ndash; and suddenly cheap capital will likely lead to speculative asset bubbles! Example unproductive investments:
+<li>Over short time periods, increasing inequality can be &ldquo;buffered&rdquo; by increasing inventory -- but likely people will not stupidly continue that over long periods.</li>
+<li>Too much capital, and not enough investing opportunities, so interest rates will naturally fall -- and suddenly cheap capital will likely lead to speculative asset bubbles! Example unproductive investments:
 <ul class="org-ul">
 <li>Infrastructure: unused {lavish buildings, swanky airports, highways, hosting a mega sporting event, etc}. Pettis claims: Arizona housing tracts, Dublin apartments, Spanish airports, Chinese ghost cities, etc.</li>
 <li>Financial assets: overvalued securities.</li>
-<li>Investment in zero-sum games (eg: Softbank &ndash; WeWork and Uber; What about SuperPACs &ndash; too small in scale?)</li>
+<li>Investment in zero-sum games (eg: Softbank -- WeWork and Uber; What about SuperPACs -- too small in scale?)</li>
 </ul></li>
 </ul>
 </div>
@@ -671,10 +1240,10 @@ As an immediate consequence, productive investment must rise with savings, or it
 Needs transfer of wealth from the rich to the poor. (eg: redistributive taxation to fuel consumption)
 </p>
 <ol class="org-ol">
-<li>Wealthy households "consume" proportionally to income. Generically unlikely to happen, but one set of possibilities eg: by funding charity, research(alternatively seen as productive investment), etc (eg: Gilded age; Bill Gates). Also, politically unsustainable in a democracy.</li>
+<li>Wealthy households &ldquo;consume&rdquo; proportionally to income. Generically unlikely to happen, but one set of possibilities eg: by funding charity, research(alternatively seen as productive investment), etc (eg: Gilded age; Bill Gates). Also, politically unsustainable in a democracy.</li>
 <li>Lower savings from poorer people to offset increased savings from wealthy people. eg: debt-fueled consumption (eg: student, home, credit-card loans; health-care funding?) but this is only possible whe there is an asset bubble (borrow against assets with increasing value, eg: houses, college degrees, etc.)
 <ul class="org-ul">
-<li>Note: An (eventual) debt jubilee is akin to redistributive taxation, except morally unfair in punishing poor savers who held off unwise consumption (hence politicallly untenable, unless done "uniformly" eg: universal college education)</li>
+<li>Note: An (eventual) debt jubilee is akin to redistributive taxation, except morally unfair in punishing poor savers who held off unwise consumption (hence politicallly untenable, unless done &ldquo;uniformly&rdquo; eg: universal college education)</li>
 </ul></li>
 <li>Increasing unemployment, so that you have a segment of population whose income drops to zero but consumption cannot, so they contribute negative to savings (either dip into their own savings, or borrow from others savings, or welfare from govt., or crime, etc.). This also reduces GDP, thereby reducing savings (since basic consumption will remain constant)</li>
 </ol>
@@ -684,7 +1253,7 @@ Needs transfer of wealth from the rich to the poor. (eg: redistributive taxation
 <h3 id="universal-thrift-and-the-tragedy-of-the-commons"><span class="section-number-3">1.3.</span> Universal thrift, and the tragedy of the commons</h3>
 <div class="outline-text-3" id="text-1-3">
 <ul class="org-ul">
-<li>Bernard Mandeville's <i>Fable of the bees</i> was considered "un-christian" for stating that spending by the rich was good for the poor, and everyone becoming thrifty would be a disaster! (Interesting relation to Max Weber's Protestant ethic and the spirit of capitalism)</li>
+<li>Bernard Mandeville&rsquo;s <i>Fable of the bees</i> was considered &ldquo;un-christian&rdquo; for stating that spending by the rich was good for the poor, and everyone becoming thrifty would be a disaster! (Interesting relation to Max Weber&rsquo;s Protestant ethic and the spirit of capitalism)</li>
 <li>John Hobson, Confessions of an economic heretic (~1930s)</li>
 <li>Thrift is great at an individual level; why not at the universal level?
 <ul class="org-ul">
@@ -699,8 +1268,8 @@ Needs transfer of wealth from the rich to the poor. (eg: redistributive taxation
 <ul class="org-ul">
 <li>Summary table of possible equilibrating responses to increased savings from income inequality.
 <ul class="org-ul">
-<li>Of the six options, only "sustainable"<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup> ones are to put savings towards productive investments, or unemployment (or welfare &ndash; either by the rich, or through the government with VERY HIGH marginal tax rates, which is one of the sub-cases of "linear consumption").</li>
-<li>In the current political climate (welfare unlikely), if productive investments don't absorb savings, the only macroeconomic solution is unemployment.</li>
+<li>Of the six options, only &ldquo;sustainable&rdquo;<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup> ones are to put savings towards productive investments, or unemployment (or welfare -- either by the rich, or through the government with VERY HIGH marginal tax rates, which is one of the sub-cases of &ldquo;linear consumption&rdquo;).</li>
+<li>In the current political climate (welfare unlikely), if productive investments don&rsquo;t absorb savings, the only macroeconomic solution is unemployment.</li>
 </ul></li>
 <li>In the intermediate term, unsustainable possibilities include debt-fueled consumption, but that will likely increase debt beyond serviceable levels, so unlikely to continue.
 <ul class="org-ul">
@@ -713,7 +1282,7 @@ Needs transfer of wealth from the rich to the poor. (eg: redistributive taxation
 <li>Nicely worked out example of Germany-Spain system. (Presumably could equally well have been Greece instead of Spain. Also, I wonder whether this explains the impetus for the Catalonian separatist movement)</li>
 <li>Trade war is how regions negotiate/assign global unemployment; so expect trade tensions to be increasingly focal over the next several years.</li>
 </ul></li>
-<li>"Austerity economics" is completely wrong, because it presumes that universal thrift is a positive thing; in reality, you're always playing whack-a-mole to try and bury the excess savings in a zero-sum game. <i>The solution is not for low-savings countries to cut back on consumption, but for high-savings countries to increase consumption (lest they be forced into unemployment!)</i></li>
+<li>&ldquo;Austerity economics&rdquo; is completely wrong, because it presumes that universal thrift is a positive thing; in reality, you&rsquo;re always playing whack-a-mole to try and bury the excess savings in a zero-sum game. <i>The solution is not for low-savings countries to cut back on consumption, but for high-savings countries to increase consumption (lest they be forced into unemployment!)</i></li>
 <li>At the global level, there are only three sustainable options:
 <ol class="org-ol">
 <li>Increase in consumption by saving groups (Something China is trying to do<sup><a id="fnr.3" class="footref" href="#fn.3" role="doc-backlink">3</a></sup>, and Germany has tepid steps towards)</li>
@@ -732,7 +1301,7 @@ Private sector reluctance (hard to capture value), so likely government funded (
 <div class="outline-text-3" id="text-1-5">
 <blockquote>
 <p>
-<i>"It is utterly impossible, as this country has demonstrated again and again, for the rich to save as much as they have been trying to save, and save anything that is worth saving. They can save idle factories and useless railroad coaches; they can save empty office buildings and closed banks; they can save paper evidences of foreign loans; but as a class they cannot save anything that is worth saving, above and beyond the amount that is made profitable by the increase of consumer buying. It is for the interests of the well-to-do &ndash; to protect them from the results of their own folly &ndash; that we should take from them a sufficient amount of their surplus to enable consumers to consume and business to operate at a profit. This is not “soaking the rich”; it is saving the rich. Incidentally, it is the only way to assure them the serenity and security which they do not have at the present moment."</i>  (Marriner Eccles testimony to the US Congress, 1933)
+<i>&ldquo;It is utterly impossible, as this country has demonstrated again and again, for the rich to save as much as they have been trying to save, and save anything that is worth saving. They can save idle factories and useless railroad coaches; they can save empty office buildings and closed banks; they can save paper evidences of foreign loans; but as a class they cannot save anything that is worth saving, above and beyond the amount that is made profitable by the increase of consumer buying. It is for the interests of the well-to-do -- to protect them from the results of their own folly -- that we should take from them a sufficient amount of their surplus to enable consumers to consume and business to operate at a profit. This is not “soaking the rich”; it is saving the rich. Incidentally, it is the only way to assure them the serenity and security which they do not have at the present moment.&rdquo;</i>  (Marriner Eccles testimony to the US Congress, 1933)
 </p>
 </blockquote>
 </div>
@@ -741,16 +1310,16 @@ Private sector reluctance (hard to capture value), so likely government funded (
 <h3 id="my-comments"><span class="section-number-3">1.6.</span> My comments</h3>
 <div class="outline-text-3" id="text-1-6">
 <ul class="org-ul">
-<li><i>FRB further injecting "liquidity" into capital markets is akin to pouring fuel on the fire, because it's all meant to go towards investment!</i> Also, perversely, generating debt to fuel investment is effectively claiming that inequality is <i>"not high enough"</i> to produce the necessary investment, for the given consumption level!</li>
+<li><i>FRB further injecting &ldquo;liquidity&rdquo; into capital markets is akin to pouring fuel on the fire, because it&rsquo;s all meant to go towards investment!</i> Also, perversely, generating debt to fuel investment is effectively claiming that inequality is <i>&ldquo;not high enough&rdquo;</i> to produce the necessary investment, for the given consumption level!</li>
 <li>Note: <b>The same likely applies even if the inequality is driven by technology/automation, and in fact explains the imperial dynamics of the industrial revolution quite well!</b></li>
-<li>PS: Apart from inequality, population dynamics also contribute to the dynamics of savings. Young and old people weigh heavily on the consumption, while middle-aged people weigh heavily on savings&hellip; either for retirement, or to fuel consumption of the other two groups under their umbrella. An excess of savings-age population (unwilling to retire) will also likely cause complications.</li>
+<li>PS: Apart from inequality, population dynamics also contribute to the dynamics of savings. Young and old people weigh heavily on the consumption, while middle-aged people weigh heavily on savings... either for retirement, or to fuel consumption of the other two groups under their umbrella. An excess of savings-age population (unwilling to retire) will also likely cause complications.</li>
 <li>Unemployment in high-savings regions is reminiscent of the Maxwell construction for phase mixtures, stabilizing otherwise metastable states. (Employment being the order parameter; savings among employed must match consumption among unemployed)</li>
-<li>Alternate solution to "unemployment" &ndash; instead of reducing the number of employed people, reduce the per-capita working hours.</li>
-<li>Basically, the rest of the world refuses to act as the "bank" for the thrifty, allowing them to run up large and sustained surpluses, because that is a hard promise to keep.</li>
+<li>Alternate solution to &ldquo;unemployment&rdquo; -- instead of reducing the number of employed people, reduce the per-capita working hours.</li>
+<li>Basically, the rest of the world refuses to act as the &ldquo;bank&rdquo; for the thrifty, allowing them to run up large and sustained surpluses, because that is a hard promise to keep.</li>
 <li>The savings glut from US inequality combined with the savings glut from China has been a double whammy on the Rust Belt[fn::which is exactly where unemployment hit first! Only, the Republicans &amp; progressive Democrats disagree on which of the two sources of savings glut to squeeze, while the moderate Democrats are stuck) (and rural US more broadly).</li>
-<li>Done well, healthcare welfare might be one form of wealth redistribution which is very difficult to export away to China (largely a service industry, and most value of drugs captured in the US). Likewise education, since American students don't go abroad for college. (<i>I don't mean loans, unless they're loans that are meant to be forgiven</i>). This would reduce (structural) inequality, by pipint (rich people) savings towards (poor people) consumption; any improvement in productive capacity from improved health or capabilities is a bonus.</li>
-<li>Applications to India? Sainath has mentioned that since the opening up of India's economy, India has had <b>massive</b> inequality growth. How does that affect unemployment, and trade deficits? Also, the propensity to buy gold contributes to the deficitr</li>
-<li>Applications to intra-US politics &ndash; rural(central)-vs-urban(bicoastal)?</li>
+<li>Done well, healthcare welfare might be one form of wealth redistribution which is very difficult to export away to China (largely a service industry, and most value of drugs captured in the US). Likewise education, since American students don&rsquo;t go abroad for college. (<i>I don&rsquo;t mean loans, unless they&rsquo;re loans that are meant to be forgiven</i>). This would reduce (structural) inequality, by pipint (rich people) savings towards (poor people) consumption; any improvement in productive capacity from improved health or capabilities is a bonus.</li>
+<li>Applications to India? Sainath has mentioned that since the opening up of India&rsquo;s economy, India has had <b>massive</b> inequality growth. How does that affect unemployment, and trade deficits? Also, the propensity to buy gold contributes to the deficitr</li>
+<li>Applications to intra-US politics -- rural(central)-vs-urban(bicoastal)?</li>
 <li>Why do religions forbid lending with interest?</li>
 <li>We saw a use of this perspective to analyze the industrial revolution and imperialism. What about analyzing automation?</li>
 </ul>
@@ -773,7 +1342,7 @@ Private sector reluctance (hard to capture value), so likely government funded (
     </item>
     
     <item>
-      <title>Thoughts on &#34;A fine balance&#34; by Rohinton Mistry</title>
+      <title>Thoughts on “A fine balance” by Rohinton Mistry</title>
       <link>http://sivark.me/blogthoughts-on-a-fine-balance-by-rohinton-mistry.html</link>
       <author>author@mail.com (Blog Author)</author>
       <guid isPermaLink="false">http://sivark.me/blogthoughts-on-a-fine-balance-by-rohinton-mistry.html</guid>
@@ -781,7 +1350,7 @@ Private sector reluctance (hard to capture value), so likely government funded (
         <pubDate>Wed, 14 May 2014 00:00:00 +0530</pubDate>
       
       <description><![CDATA[<p>
-The book needed some effort to get through the first third or so (took me a week!), while Mistry sets up his four characters and brings them together. After that, it's simply un-put-downable and I read the remaining two-thirds in one sitting. When I finished, it was 7am in the morning and I'd been reading all night!
+The book needed some effort to get through the first third or so (took me a week!), while Mistry sets up his four characters and brings them together. After that, it&rsquo;s simply un-put-downable and I read the remaining two-thirds in one sitting. When I finished, it was 7am in the morning and I&rsquo;d been reading all night!
 </p>
 
 <blockquote>
@@ -792,39 +1361,39 @@ The book needed some effort to get through the first third or so (took me a week
 
 
 <p>
-It's impossible not to feel overwhelmed by the absolutely heart-wrenching tale. I feel devastated and bitter. 1984 is the only other book which affected me like this. Wretched story but sublime writing&hellip; it feels effortless and poignant at the same time. I typically read to seek escape, but this is <i>so</i> not the kind of book for that. I definitely wasn't prepared for this.
+It&rsquo;s impossible not to feel overwhelmed by the absolutely heart-wrenching tale. I feel devastated and bitter. 1984 is the only other book which affected me like this. Wretched story but sublime writing... it feels effortless and poignant at the same time. I typically read to seek escape, but this is <i>so</i> not the kind of book for that. I definitely wasn&rsquo;t prepared for this.
 </p>
 
 <p>
-The book had some fine humour &ndash; spontaneous and witty and made me really laugh. It shows how people in the direst situations are still capable of laughing genuinely. And smile and hope. And just when you think that the glimmer of hope will lead to sunrise, Mistry pulls out the rug from under your feet and leaves you with a cold and treacherous dawn followed by sunshine as normal, which seems particularly cruel since it does little to shine light on the protagonist's lives, almost as if it were a matter-of-fact occurrence and their suffering was nobody's concern.
+The book had some fine humour -- spontaneous and witty and made me really laugh. It shows how people in the direst situations are still capable of laughing genuinely. And smile and hope. And just when you think that the glimmer of hope will lead to sunrise, Mistry pulls out the rug from under your feet and leaves you with a cold and treacherous dawn followed by sunshine as normal, which seems particularly cruel since it does little to shine light on the protagonist&rsquo;s lives, almost as if it were a matter-of-fact occurrence and their suffering was nobody&rsquo;s concern.
 </p>
 
 <p>
-The author has produced something so stunning that I feel thoroughly inadequate to judge it. The question that haunts me is: what do I get out of this book? What to make of it? It is such an awe-stricking experience that I can't just let it be and move on.
+The author has produced something so stunning that I feel thoroughly inadequate to judge it. The question that haunts me is: what do I get out of this book? What to make of it? It is such an awe-stricking experience that I can&rsquo;t just let it be and move on.
 </p>
 
 <p>
-It feels like a tragedy without any moral or lesson to learn. Almost every character in the book is a good and sincere person (limited by a perspective based on their circumstances) but fickle fate wrings them through misery for no obvious reason &ndash; to the extent that their fight almost seems futile. It conveys the hopelessness and powerlessness felt by the protagonists &ndash; which denies you any possible sense of catharsis. Everything seems bleak, with no hope for redemption.
+It feels like a tragedy without any moral or lesson to learn. Almost every character in the book is a good and sincere person (limited by a perspective based on their circumstances) but fickle fate wrings them through misery for no obvious reason -- to the extent that their fight almost seems futile. It conveys the hopelessness and powerlessness felt by the protagonists -- which denies you any possible sense of catharsis. Everything seems bleak, with no hope for redemption.
 </p>
 
 <p>
-An author doesn't always need to have an upshot for a book. It could be an honest <i>description</i> leaving the readers to make their own observations. But if I had to manufacture some meaning, I'd say that it gives me a hint of how incredibly privileged a life I lead, compared to a large number of people.
+An author doesn&rsquo;t always need to have an upshot for a book. It could be an honest <i>description</i> leaving the readers to make their own observations. But if I had to manufacture some meaning, I&rsquo;d say that it gives me a hint of how incredibly privileged a life I lead, compared to a large number of people.
 </p>
 
 <blockquote>
 <p>
-<i>"You fellows are amazing&hellip; Everything happens to you only. Each time you come here, you have a new adventure story to entertain us"</i>
+<i>&ldquo;You fellows are amazing... Everything happens to you only. Each time you come here, you have a new adventure story to entertain us&rdquo;</i>
 </p>
 </blockquote>
 
 
 <p>
-Because of all the challenges the protagonists faced, they come away with the most stories. They can at least feel good that they did not live out their drudgery silently but like the spider, they were constantly trying to climb out of the well even if they kept slipping and sliding on the slime. Their lives and struggles have a certain depth and dignity. Maybe that's the only honest measure of a life <i>"well-lived"</i>.
+Because of all the challenges the protagonists faced, they come away with the most stories. They can at least feel good that they did not live out their drudgery silently but like the spider, they were constantly trying to climb out of the well even if they kept slipping and sliding on the slime. Their lives and struggles have a certain depth and dignity. Maybe that&rsquo;s the only honest measure of a life <i>&ldquo;well-lived&rdquo;</i>.
 </p>
 
 <blockquote>
 <p>
-<i>"You see, you cannot draw lines and compartments, and refuse to budge beyond them. Sometimes you have to use your failures as stepping-stones to success. You have to maintain a fine balance between hope and despair."</i>
+<i>&ldquo;You see, you cannot draw lines and compartments, and refuse to budge beyond them. Sometimes you have to use your failures as stepping-stones to success. You have to maintain a fine balance between hope and despair.&rdquo;</i>
 </p>
 </blockquote>
 ]]></description>

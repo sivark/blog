@@ -1,0 +1,535 @@
+#+TITLE: Adjudicated Decision Games (ADGs): Judgment in the Fog of Synthetic Ambiguity
+#+AUTHOR: Siva Swaminathan
+#+DATE: <2026-10-01 Thu>
+#+FILETAGS: :ai:decision-making:games:
+#+OPTIONS: toc:nil num:nil
+
+Decision-forcing case studies have an enduring heritage in training to operate under ambiguity, ranging from dilemmas in the Panchatantra, Machiavelli's field exercises, 19th century Prussian military Kriegspiel, to modern business case studies and military Tactical Decision Games (TDGs). A standard TDG sets up a tight operational dilemma: a clear role, incomplete or conflicting field reports, and an objective with an urgent deadline. There is no clever trick or secret answer; it’s about maintaining one's wits and eking out advantages while avoiding attrition, succumbing neither to haste nor paralysis. 
+
+#+ATTR_HTML: :width 80% :style display: block; margin-left: auto; margin-right: auto;
+[[file:static/tdg_comic.png]]
+
+The linchpin of a TDG is an experienced facilitator who can simulate causal reality, enforce authentic friction, and evaluate reasoning rather than luck -- which makes these exercises hard to scale. While many professions require such judgment, I suspect this is why few train it systematically. We teach domain knowledge through textbooks and lectures, but leave for a trial-by-fire the ability to execute under ambiguity, high stakes, and a ticking clock. The TDG experience helps build recognition-primed judgement for exactly such scenarios.
+
+Modern LLMs are interesting candidates for good facilitators; they carry a broad level of intelligence and can be supplemented with the necessary context for any specific game situation. I certainly don't claim to be the first to connect generative models to interactive scenarios -- the intuition is obvious in hindsight, and a cursory search throws up several text RPGs and scenario simulators. But I've been playing with this concept independent of those other attempts, and I want to share my learnings on what drives the game, and the mechanics to operationalize it well.
+
+* Game mechanics
+
+Real ambiguity isn't just randomness; it's the Knightian uncertainty of an unknown situation with its own internal logic. A few design principles help create that context:
+- *High orientation, low strategic certainty:* The player should be abundantly clear on basic operational ontology: their mandate, authority, and available tools. All the uncertainty must reside strictly in interpreting ambiguous signals and choosing an intervention. Games venturing into strategic decision-making could of course involve ambiguity in the ontology as well. 
+- *Coupled trade-offs:* Useful probes typically carry operational costs -- be it asking for an extra blood culture, or taking a server offline to inspect logs -- and efforts to reduce ambiguity might take up precious time from quick action.
+- *Time pressure:* The clock is an active adversary; asking too many questions or hesitating eats into the time budget. A persistent, visible Heads-Up Display (HUD) grounds the player in their dwindling resources and pending commitments.
+- *A review that emphasizes process over outcome:* A terrible, reckless guess can get lucky and a good decision can fail due to unresolvable ambiguity. The post-game evaluation inspects the coherence of diagnostic inquiry, and its rationale against what was knowable at the time, rather than grading against a hidden answer.
+
+* Architecture
+
+Just like the quality of a TDG is determined by how realistic the facilitator manages to make the player experience, the ADG experience is ultimately characterized by how well grounded the game components are, for the adjudicator to meaningfully enforce the facts, constraints, and causal rules. Bad grounding means that a player's learning experience overfits to hallucinated behavior, rather than learning the kind of decision-making that would be useful in the real world.
+
+When implementing such a game with LLMs, it helps to split the many responsibilities held by the facilitator into different agents or personas, each with its own context. Without strong boundaries, an LLM is prone to make the narration structure self-justifying by inventing just-so consequences and explanations. Further, it might be preferable to ground the facts /that must not change/ (true underlying situation, rules and behaviors for the world and its entities) outside the model's context. That could be model weights (eg. using a world model fine tuned for a scenario), or else have both be written to files on disk, before the start of each game. A good game design would mean that the generated facts never need to be redrafted as the game proceeds. The adjudicator might need to derive responses from that foundation (especially in case of creative questions) but should never need to patch the foundations or step outside it. 
+
+
+1. *Game State*: A persistent record of the situation, including facts hidden from the player. Storing it explicitly keeps established facts from drifting as the conversation grows. In simpler situations where the ground truth world state doesn't need to evolve (single decision instead of sequential actions), it could just as well be written to a text file on disk, to ensure that it doesn't get clobbered by the entropy of the adjudicator's context.
+2. *Causal World Model:* Determines how actions change the situation, using established rules or case evidence. An agent can apply this model, but shouldn’t freely reinvent its consequences.
+3. *Adjudicator:* The player never interacts with or has any access to the raw world state; their epistemic state evolves turn-by-turn based purely on the probes they run, the questions they ask, and the interventions they commit. The adjudicator serves to intermediate between the player and the game, and ground the player's free-form intent against physical constraints, doctrine, and costs. 
+4. *HUD*: The game output generated by the adjudicator at each turn represents the player's perception of the situation: the goal, game-time, available resources, and knowledge of the situation.
+5. *Coach*: Reviews the player’s inquiry, reasoning, and commitment against the information available at the time, distinguishing decision quality from outcome luck.
+
+
+* Illustrative (synthetic) vignettes
+
+What does this look like in practice? Below is an interactive walkthrough of four synthetic vignettes across different operational dilemmas. Use the tabs to select between scenarios, and step through each turn to observe the dynamic HUD, the player's inquiry and commitments, the adjudicator's constraints, and the coach's evaluation.
+
+#+BEGIN_EXPORT html
+<div class="adg-widget" id="adg-vignette-player">
+  <style>
+    .adg-widget {
+      margin: 2.5rem 0;
+      border: 1px solid rgba(139, 69, 19, 0.2);
+      border-radius: 8px;
+      background: rgba(0, 0, 0, 0.02);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.04);
+      overflow: hidden;
+      transition: background-color 0.3s ease, border-color 0.3s ease;
+    }
+    .dark .adg-widget {
+      background: rgba(255, 255, 255, 0.025);
+      border-color: rgba(194, 155, 109, 0.25);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    }
+    .adg-nav-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      background: rgba(0, 0, 0, 0.035);
+      border-bottom: 1px solid rgba(139, 69, 19, 0.18);
+      padding: 0.35rem 0.5rem 0;
+      gap: 0.25rem;
+    }
+    .dark .adg-nav-tabs {
+      background: rgba(0, 0, 0, 0.25);
+      border-bottom-color: rgba(194, 155, 109, 0.22);
+    }
+    .adg-tab-btn {
+      background: transparent;
+      border: 1px solid transparent;
+      border-bottom: none;
+      padding: 0.55rem 0.85rem;
+      font-size: 0.88rem;
+      font-weight: 500;
+      cursor: pointer;
+      color: #64748b;
+      border-top-left-radius: 6px;
+      border-top-right-radius: 6px;
+      transition: all 0.15s ease;
+      font-family: inherit;
+    }
+    .adg-tab-btn:hover {
+      color: var(--accent);
+    }
+    .dark .adg-tab-btn {
+      color: #94a3b8;
+    }
+    .dark .adg-tab-btn:hover {
+      color: var(--accent);
+    }
+    .adg-tab-btn.active {
+      background: var(--bg-light);
+      color: var(--accent);
+      border-color: rgba(139, 69, 19, 0.25);
+      border-bottom: 1px solid var(--bg-light);
+      font-weight: 600;
+    }
+    .dark .adg-tab-btn.active {
+      background: var(--bg-dark);
+      color: var(--accent);
+      border-color: rgba(194, 155, 109, 0.3);
+      border-bottom: 1px solid var(--bg-dark);
+    }
+    .adg-body {
+      padding: 1.5rem;
+    }
+    .adg-header-title {
+      font-family: 'EB Garamond', serif;
+      font-size: 1.65rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--accent);
+      line-height: 1.3;
+    }
+    .adg-hud {
+      background: rgba(139, 69, 19, 0.07);
+      border-left: 4px solid var(--accent);
+      padding: 0.6rem 0.9rem;
+      font-family: 'Inter', monospace;
+      font-size: 0.84rem;
+      margin-bottom: 1.4rem;
+      border-radius: 0 4px 4px 0;
+      line-height: 1.45;
+      color: #292524;
+    }
+    .dark .adg-hud {
+      background: rgba(194, 155, 109, 0.1);
+      color: #f5f5f4;
+      border-left-color: var(--accent);
+    }
+    .adg-dialog-flow {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .adg-entry {
+      padding: 0.85rem 1.15rem;
+      border-radius: 6px;
+      font-size: 1.05rem;
+      line-height: 1.6;
+    }
+    .adg-brief {
+      background: rgba(0, 0, 0, 0.025);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      color: inherit;
+      font-style: italic;
+    }
+    .dark .adg-brief {
+      background: rgba(255, 255, 255, 0.03);
+      border-color: rgba(255, 255, 255, 0.09);
+      color: #cbd5e1;
+    }
+    .adg-player {
+      background: rgba(139, 69, 19, 0.06);
+      border: 1px solid rgba(139, 69, 19, 0.22);
+      margin-left: 1.5rem;
+      color: inherit;
+    }
+    .dark .adg-player {
+      background: rgba(194, 155, 109, 0.1);
+      border-color: rgba(194, 155, 109, 0.25);
+      color: #f5f5f4;
+    }
+    .adg-adjudicator {
+      background: rgba(0, 0, 0, 0.02);
+      border: 1px solid rgba(0, 0, 0, 0.07);
+      margin-right: 1.5rem;
+      color: inherit;
+    }
+    .dark .adg-adjudicator {
+      background: rgba(255, 255, 255, 0.025);
+      border-color: rgba(255, 255, 255, 0.07);
+      color: #e2e8f0;
+    }
+    .adg-coach {
+      background: rgba(34, 197, 94, 0.08);
+      border: 1px solid rgba(34, 197, 94, 0.25);
+      color: #14532d;
+    }
+    .dark .adg-coach {
+      background: rgba(34, 197, 94, 0.12);
+      border-color: rgba(34, 197, 94, 0.28);
+      color: #dcfce7;
+    }
+    .adg-speaker {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.35rem;
+      display: block;
+      color: #78716c;
+    }
+    .dark .adg-speaker {
+      color: #a8a29e;
+    }
+    .adg-player .adg-speaker {
+      color: var(--accent);
+    }
+    .adg-coach .adg-speaker {
+      color: #16a34a;
+    }
+    .dark .adg-coach .adg-speaker {
+      color: #86efac;
+    }
+    .adg-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 1.25rem;
+      padding-top: 0.85rem;
+      border-top: 1px solid rgba(139, 69, 19, 0.15);
+    }
+    .dark .adg-controls {
+      border-top-color: rgba(194, 155, 109, 0.2);
+    }
+    .adg-btn {
+      padding: 0.45rem 0.95rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      background: transparent;
+      border: 1px solid rgba(139, 69, 19, 0.25);
+      border-radius: 4px;
+      cursor: pointer;
+      color: var(--accent);
+      transition: all 0.15s ease;
+      font-family: inherit;
+    }
+    .dark .adg-btn {
+      border-color: rgba(194, 155, 109, 0.3);
+      color: var(--accent);
+    }
+    .adg-btn:hover:not(:disabled) {
+      background: rgba(139, 69, 19, 0.08);
+    }
+    .dark .adg-btn:hover:not(:disabled) {
+      background: rgba(194, 155, 109, 0.12);
+    }
+    .adg-btn:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+    .adg-step-indicator {
+      font-size: 0.85rem;
+      color: #78716c;
+    }
+    .dark .adg-step-indicator {
+      color: #a8a29e;
+    }
+    .adg-curtain {
+      margin-top: 1.5rem;
+      font-size: 0.95rem;
+      color: #57534e;
+      border-top: 1px dashed rgba(139, 69, 19, 0.2);
+      padding-top: 0.85rem;
+      line-height: 1.6;
+    }
+    .dark .adg-curtain {
+      color: #a8a29e;
+      border-top-color: rgba(194, 155, 109, 0.22);
+    }
+    .adg-curtain summary {
+      cursor: pointer;
+      font-weight: 600;
+      color: var(--accent);
+      outline: none;
+    }
+  </style>
+
+  <div class="adg-nav-tabs" id="adg-tabs">
+    <button class="adg-tab-btn active" onclick="adgSetVignette(0)">1. Production Triage</button>
+    <button class="adg-tab-btn" onclick="adgSetVignette(1)">2. Clinical Emergency</button>
+    <button class="adg-tab-btn" onclick="adgSetVignette(2)">3. Cleanroom Yield</button>
+    <button class="adg-tab-btn" onclick="adgSetVignette(3)">4. Enterprise Whale</button>
+  </div>
+
+  <div class="adg-body">
+    <div class="adg-header-title" id="adg-title"></div>
+    <div class="adg-hud" id="adg-hud-bar"></div>
+    <div class="adg-dialog-flow" id="adg-content-flow"></div>
+
+    <div class="adg-controls">
+      <button class="adg-btn" id="adg-prev-btn" onclick="adgPrevStep()">← Previous Turn</button>
+      <span class="adg-step-indicator" id="adg-step-counter">Turn 1 of 4</span>
+      <button class="adg-btn" id="adg-next-btn" onclick="adgNextStep()">Next Turn →</button>
+    </div>
+
+    <details class="adg-curtain" id="adg-curtain-box">
+      <summary>Behind the curtain: what was fixed before play?</summary>
+      <div id="adg-curtain-text" style="margin-top: 0.5rem; line-height: 1.5;"></div>
+    </details>
+  </div>
+</div>
+
+<script>
+(function() {
+  const vignettes = [
+    {
+      title: "1. Production triage: which risk can you contain?",
+      curtain: "The episode fixes measurement latency, separate staff capacity, isolation and promotion durations, and the limited meaning of a missing heartbeat. Concurrent work advances two minutes rather than three. Isolation prevents competing writes in this synthetic model; it does not recover missing transactions. No secret diagnostic discovery is introduced to vindicate the plan.",
+      steps: [
+        {
+          hud: "02:14 | Decision due 02:20 | One incident engineer; database operator available | Synthetic; dynamic clock",
+          items: [
+            { type: "brief", speaker: "Brief", text: "You are the incident lead. The primary database has stopped reporting heartbeats. The standby is reachable, but dashboard replication data is 90 seconds old. Writes are still reaching some application workers. Decide how to restore service while protecting committed data. You can stop incoming writes, request fresh replication measurements, or authorize promotion. Automatic promotion is scheduled for 02:20 unless you suspend it." }
+          ]
+        },
+        {
+          hud: "02:14 | Automatic promotion suspended | Investigating primary status",
+          items: [
+            { type: "player", speaker: "Player", text: "“Suspend automatic promotion. What do we actually know about the primary, and how long would fresh measurements take?”" },
+            { type: "adjudicator", speaker: "Adjudicator", text: "“The missing heartbeat establishes loss of contact, not shutdown. The last dashboard sample showed four seconds of replication lag. Fresh measurements take two minutes of the incident engineer’s time. Stopping incoming writes takes one minute of the database operator’s time; requests will fail while that restriction is active.”" },
+            { type: "player", speaker: "Player", text: "“Stop incoming writes and measure replication concurrently. Don’t promote yet.”" }
+          ]
+        },
+        {
+          hud: "02:16 | Decision due 02:20 | Measurements complete; incoming writes stopped",
+          items: [
+            { type: "adjudicator", speaker: "Adjudicator", text: "“The standby is 18 seconds behind the last primary position you can verify. You still cannot establish whether the primary accepted additional writes after that position. The operator can isolate the primary from application traffic in one further minute; promotion and verification then take two minutes.”" },
+            { type: "player", speaker: "Player", text: "“Isolate it, then promote. Keep writes disabled until the operator confirms the new primary is writable. Preserve the old node for reconciliation; tell support that recent transactions may need checking.”" }
+          ]
+        },
+        {
+          hud: "02:19 | Commitment executed | Service restored; reconciliation pending",
+          items: [
+            { type: "adjudicator", speaker: "Adjudicator", text: "“Isolation completed at 02:17; promotion and verification completed at 02:19. Writes have resumed on the new primary. Within this exercise’s model, isolation prevents further competing writes. The record still does not establish which recent transactions were absent from the standby.”" },
+            { type: "coach", speaker: "Coach Review", text: "“You separated restoring service from reconciling uncertain data. The extra measurement informed the exposure but did not remove it. Your commitment explicitly accepted that residual risk rather than treating an available standby as proof that promotion was safe.”" }
+          ]
+        }
+      ]
+    },
+    {
+      title: "2. Clinical emergency: prepare before the diagnosis settles",
+      curtain: "The synthetic specification establishes resource independence, imaging limits, the scanner cutoff, specialist response time, and the clinical lead’s reassessment. It does not model treatment efficacy. The adjudicator reports observations and professional assessments without converting the imaging finding into a definitive diagnosis.",
+      steps: [
+        {
+          hud: "14:08 | Disposition decision due 14:12 | One bedside imaging team; transfer team available | Synthetic; dynamic clock",
+          items: [
+            { type: "brief", speaker: "Brief", text: "You coordinate an emergency team caring for a deteriorating patient. Senior clinicians disagree about whether the next diagnostic step justifies transport away from the resuscitation area. Your mandate is to coordinate immediate resources and the next review point; treatment remains with the clinical lead. Bedside imaging can address one suspected cause in three minutes, but cannot settle the entire differential. The next scanner slot requires departure at 14:12." }
+          ]
+        },
+        {
+          hud: "14:08 | Clarifying transfer constraints & bedside yield",
+          items: [
+            { type: "player", speaker: "Player", text: "“Can we prepare transport while keeping the patient here? And what would a negative bedside scan establish?”" },
+            { type: "adjudicator", speaker: "Adjudicator", text: "“Transfer preparation takes two minutes and uses a separate team. It does not authorize departure. A negative bedside study would leave other suspected causes unresolved. The scanner slot can be held until 14:12 without moving the patient.”" },
+            { type: "player", speaker: "Player", text: "“Prepare transport, hold the slot, and obtain bedside imaging. Ask the clinical lead to reassess transport suitability when the result arrives. No automatic departure.”" }
+          ]
+        },
+        {
+          hud: "14:11 | One minute to scanner departure cutoff | Transport prepared; bedside result available",
+          items: [
+            { type: "adjudicator", speaker: "Adjudicator", text: "“The imaging team reports a finding that supports one suspected cause, but its extent remains uncertain. The clinical lead reports continued deterioration and advises against transport now. Keeping the patient here means releasing the scanner slot; the next slot is estimated 40 minutes later.”" },
+            { type: "player", speaker: "Player", text: "“Release the slot. Keep the team here, request the relevant specialist at the bedside, and have the clinical lead reassess in two minutes or immediately if the condition changes.”" }
+          ]
+        },
+        {
+          hud: "14:13 | Coordination commitment executed | Specialist requested; diagnosis and patient outcome unresolved",
+          items: [
+            { type: "adjudicator", speaker: "Adjudicator", text: "“The scanner slot was released. The specialist is expected at 14:17. The team remains at the bedside; the clinical lead has begun the scheduled reassessment. This episode ends at that handoff and makes no claim about the patient’s eventual outcome.”" },
+            { type: "coach", speaker: "Coach Review", text: "“You prepared an option without confusing preparation with permission to execute it. Your final commitment used both the new finding and the clinical lead’s transport assessment, while keeping an explicit review point. The episode supports a review of coordination; it cannot establish that your choice improved the clinical outcome.”" }
+          ]
+        }
+      ]
+    },
+    {
+      title: "3. Cleanroom yield collapse: what is worth sacrificing?",
+      curtain: "The two candidate mechanisms predict the same non-destructive result. The cross-section test has a specified discriminatory output, duration, and material cost. The deadline requires a disposition, not a successful diagnosis. Requesting an extension neither grants it nor silently starts a test.",
+      steps: [
+        {
+          hud: "10:00 | Process disposition due 11:00 | Two prototype wafers remain; one metrology station | Synthetic; dynamic clock",
+          items: [
+            { type: "brief", speaker: "Brief", text: "You lead a prototype fabrication run. The first wafer’s usable yield is 12%, against a 65% target. Two unprocessed wafers remain. Decide whether to continue, alter the process, or hold the run. Existing polishing and alignment records are available. A new cross-section measurement would consume one remaining wafer and take 45 minutes; it can distinguish between two leading process explanations. A non-destructive measurement takes 20 minutes but may leave them unresolved." }
+          ]
+        },
+        {
+          hud: "10:00 | Investigating defect clustering & past logs",
+          items: [
+            { type: "player", speaker: "Player", text: "“Show me the existing records and tell me whether the failed dies cluster by wafer position.”" },
+            { type: "adjudicator", speaker: "Adjudicator", text: "“The failed dies cluster near the edge. Recorded thickness variation was elevated there. The alignment checks passed at their sampled locations, but those samples do not cover the entire edge. These records are already available; retrieving them consumes no game time.”" },
+            { type: "player", speaker: "Player", text: "“Hold processing. Use the non-destructive measurement on the failed wafer; preserve the two remaining wafers.”" }
+          ]
+        },
+        {
+          hud: "10:20 | Forty minutes to disposition | Two prototype wafers remain",
+          items: [
+            { type: "adjudicator", speaker: "Adjudicator", text: "“The new measurement confirms the edge pattern. Both candidate explanations remain compatible with it. The destructive measurement would now finish at 11:05, after the disposition deadline. You can request an extension, but none has been granted.”" },
+            { type: "player", speaker: "Player", text: "“Hold the run at 11:00 rather than gamble both wafers on a process change. Request an extension and approval to consume one wafer for the discriminating measurement. Do not begin that measurement before approval.”" }
+          ]
+        },
+        {
+          hud: "11:00 | Disposition submitted | Run held; extension and destructive test pending approval",
+          items: [
+            { type: "adjudicator", speaker: "Adjudicator", text: "“No further wafer was processed or consumed. The hold and extension request were submitted. This episode closes with the causal diagnosis unresolved.”" },
+            { type: "coach", speaker: "Coach Review", text: "“You preserved material, but the first test consumed 20 minutes without distinguishing the leading explanations, leaving insufficient time for the stronger test. Whether that was worthwhile depends on what you expected the cheaper test to reveal. The record supports that question; it does not justify declaring either process mechanism the culprit.”" }
+          ]
+        }
+      ]
+    },
+    {
+      title: "4. The enterprise whale: money with obligations attached",
+      curtain: "The scenario fixes contract authority, payment conditions, interview evidence, staffing requirements, and the launch delay caused by reassignment. Founder tasks run sequentially because they use the same person. Submitting the prepared proposal incurs no further modeled delay. The episode ends at submission; no weeks of additional work or burn are invented to dramatize the offer.",
+      steps: [
+        {
+          hud: "Monday 09:00 | Contract response due Tuesday 17:00 | $450k cash; four engineers | Synthetic; dynamic clock",
+          items: [
+            { type: "brief", speaker: "Brief", text: "You are the founder. An enterprise prospect offers a $300k annual contract, including $150k upfront, conditional on an on-prem connector delivered in eight weeks. The connector would occupy two engineers for those eight weeks. All four engineers are currently allocated to a self-serve launch six weeks away. Decide what to offer and which delivery commitments to make. Net burn is $100k per month; signing creates obligations, not just runway." }
+          ]
+        },
+        {
+          hud: "Monday 09:00 | Evaluating customer signals & decision authority",
+          items: [
+            { type: "player", speaker: "Player", text: "“What do the last five lost deals tell us about the connector? And does the enterprise champion have authority to accept a cloud pilot?”" },
+            { type: "adjudicator", speaker: "Adjudicator", text: "“Existing notes mention onboarding difficulty in four deals and integration requirements in two; the categories overlap. They do not establish which change would have won the deals. The champion can sponsor a pilot, but procurement must approve it. A contract discussion takes two hours; follow-up interviews with three lost prospects take four hours of founder time.”" },
+            { type: "player", speaker: "Player", text: "“Offer a paid cloud pilot, with no connector commitment. Ask procurement what would make it acceptable, then conduct the interviews.”" }
+          ]
+        },
+        {
+          hud: "Monday 15:00 | Response due tomorrow 17:00 | Engineering allocation unchanged",
+          items: [
+            { type: "adjudicator", speaker: "Adjudicator", text: "“Procurement will consider a $25k pilot, payable on approval, but production deployment still requires on-prem support. Two interviewed prospects describe setup problems; one also requires an integration. None commits to buying after a fix. Your engineering lead estimates that allocating two engineers to the connector would move the self-serve launch from six to ten weeks under the current plan.”" },
+            { type: "player", speaker: "Player", text: "“Submit the $25k cloud pilot proposal, subject to procurement approval. Preserve the launch allocation. Make any later connector offer conditional on a separate capacity plan and signed terms; tell the board the $150k upfront payment is not secured.”" }
+          ]
+        },
+        {
+          hud: "Monday 15:00 | Response submitted ahead of deadline | Pilot approval pending; launch plan preserved",
+          items: [
+            { type: "adjudicator", speaker: "Adjudicator", text: "“The proposal was submitted without a connector obligation. Procurement has not approved or paid for the pilot. The modeled launch schedule remains six weeks. Neither the launch’s revenue nor the enterprise contract is guaranteed; the cash constraint remains.”" },
+            { type: "coach", speaker: "Coach Review", text: "“You distinguished a plausible customer signal from committed revenue and avoided spending capacity twice. The commitment preserves the launch plan while declining the larger payment on its offered terms. That makes the tradeoff explicit; it does not establish that the self-serve strategy will succeed.”" }
+          ]
+        }
+      ]
+    }
+  ];
+
+  let currentVig = 0;
+  let currentStep = 0;
+
+  function render() {
+    const vig = vignettes[currentVig];
+    const step = vig.steps[currentStep];
+
+    const titleEl = document.getElementById("adg-title");
+    const hudEl = document.getElementById("adg-hud-bar");
+    const flowEl = document.getElementById("adg-content-flow");
+    const curtainTextEl = document.getElementById("adg-curtain-text");
+    const curtainBox = document.getElementById("adg-curtain-box");
+    const counterEl = document.getElementById("adg-step-counter");
+    const prevBtn = document.getElementById("adg-prev-btn");
+    const nextBtn = document.getElementById("adg-next-btn");
+
+    if (!titleEl) return;
+
+    titleEl.textContent = vig.title;
+    hudEl.textContent = "HUD: " + step.hud;
+    flowEl.innerHTML = "";
+
+    step.items.forEach(item => {
+      const entryEl = document.createElement("div");
+      entryEl.className = "adg-entry adg-" + item.type;
+      
+      const spkEl = document.createElement("span");
+      spkEl.className = "adg-speaker";
+      spkEl.textContent = item.speaker;
+      
+      const textEl = document.createElement("div");
+      textEl.textContent = item.text.replace(/^“|”$/g, "");
+      
+      entryEl.appendChild(spkEl);
+      entryEl.appendChild(textEl);
+      flowEl.appendChild(entryEl);
+    });
+
+    curtainTextEl.textContent = vig.curtain;
+    curtainBox.open = false;
+    counterEl.textContent = "Turn " + (currentStep + 1) + " of " + vig.steps.length;
+
+    prevBtn.disabled = currentStep === 0;
+    nextBtn.disabled = currentStep === vig.steps.length - 1;
+
+    const tabBtns = document.querySelectorAll(".adg-tab-btn");
+    tabBtns.forEach((btn, idx) => {
+      if (idx === currentVig) {
+        btn.classList.add("active");
+      } else {
+        btn.classList.remove("active");
+      }
+    });
+  }
+
+  window.adgSetVignette = function(idx) {
+    currentVig = idx;
+    currentStep = 0;
+    render();
+  };
+
+  window.adgPrevStep = function() {
+    if (currentStep > 0) {
+      currentStep--;
+      render();
+    }
+  };
+
+  window.adgNextStep = function() {
+    const vig = vignettes[currentVig];
+    if (currentStep < vig.steps.length - 1) {
+      currentStep++;
+      render();
+    }
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", render);
+  } else {
+    render();
+  }
+})();
+</script>
+#+END_EXPORT
+
+
+* A playground for humans, and then agents?
+
+The motivation here is to create good games that force us to look into the abyss, grapple with the trade-offs, learn to make decisions and keep moving forward.
+
+Inevitably, there is also an angle here for evaluating AI agents. Subjecting autonomous agents to ADGs could serve as a stress test for bounded reasoning, calibration, and tool choice under epistemic uncertainty. What can be used as an eval could just as well be used for automated hill-climbing i.e reinforcement learning. A note of caution, though... done naively (eg. if the acting agent, the causal world model and the adjudicating referee share the same priors) this risks running headlong into some kind of "mode collapse" or myriad forms of reward hacking. But that's not my primary interest here so let's skip that for a simpler focus: an engaging low-cost sparring ring to develop human cognition.
+
+The demo, scenario engine, and case dossiers are open source on [[https://github.com/sivark/judgement-call][GitHub]]. Try a run, see if you can survive the fog, and let me know where the referee or the world break. Remember also that these pieces are very simple to fork and modify to construct your own domains and scenarios. Pair it with your world-building and have fun!
+
+
